@@ -16,3 +16,4 @@ class CommentSeeder extends Seeder
         Comment::factory()->count(50)->create();
     }
 }
+

@@ -48,7 +48,6 @@ class DatabaseSeeder extends Seeder
                     OptionSeeder::class,
                     AdditionSeeder::class,
                     ActivitySeeder::class,
-
                 ]);
     }
 }

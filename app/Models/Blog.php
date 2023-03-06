@@ -14,10 +14,10 @@ class Blog extends Model
         'name_es', 'name_en', 'name_fr', 'description_es', 'description_en', 'description_fr', 'url_es', 'url_en', 'url_fr', 'cover', 'status',
     ];
 
-/*     public function tags()
+    public function tags()
     {
     	return $this->belongsToMany(Tag::class);
-    } */
+    } 
 
     public function hotels()
     {

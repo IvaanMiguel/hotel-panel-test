@@ -17,8 +17,8 @@ class TypeSeeder extends Seeder
         $type->save();
 
         //max_people por hotel
-        $type->hotels()->attach(1,['max_people' => 2, 'base_people' => 2]);
-        $type->hotels()->attach(2,['max_people' => 2, 'base_people' => 2]);
+        $type->hotels()->attach(1,['max_people' => 2, 'base_people' => 2, 'extra_per_person' => 330]);
+        $type->hotels()->attach(2,['max_people' => 2, 'base_people' => 2, 'extra_per_person' =>250]);
 
 
         $type = new Type(); 
@@ -26,16 +26,16 @@ class TypeSeeder extends Seeder
         $type->save();
 
         //max_people por hotel
-        $type->hotels()->attach(1,['max_people' => 4, 'base_people' => 2]);
-        $type->hotels()->attach(2,['max_people' => 4, 'base_people' => 2]);
+        $type->hotels()->attach(1,['max_people' => 4, 'base_people' => 2,  'extra_per_person' => 330]);
+        $type->hotels()->attach(2,['max_people' => 4, 'base_people' => 2,  'extra_per_person' => 250]);
 
         $type = new Type(); 
         $type->name = "Jr Suite";
         $type->save();
 
         //max_people por hotel
-        $type->hotels()->attach(1,['max_people' => 3, 'base_people' => 2]);
-        $type->hotels()->attach(2,['max_people' => 3, 'base_people' => 2]);
+        $type->hotels()->attach(1,['max_people' => 3, 'base_people' => 2, 'extra_per_person' =>330]);
+        $type->hotels()->attach(2,['max_people' => 3, 'base_people' => 2,  'extra_per_person' => 250]);
         //$type->hotels()->attach(3,['max_people' => 3, 'base_people' => 2]);
 
         $type = new Type(); 
@@ -43,8 +43,8 @@ class TypeSeeder extends Seeder
         $type->save();
 
         //max_people por hotel
-        $type->hotels()->attach(1,['max_people' => 2, 'base_people' => 4]);
-        $type->hotels()->attach(2,['max_people' => 6, 'base_people' => 4]);
+        $type->hotels()->attach(1,['max_people' => 2, 'base_people' => 4,  'extra_per_person' => 330]);
+        $type->hotels()->attach(2,['max_people' => 6, 'base_people' => 4,  'extra_per_person' => 250]);
         //$type->hotels()->attach(3,['max_people' => 4, 'base_people' => 4]);
 
         $type = new Type(); 
@@ -52,35 +52,35 @@ class TypeSeeder extends Seeder
         $type->save();
 
         //max_people por hotel
-        $type->hotels()->attach(2,['max_people' => 2, 'base_people' => 2]);
+        $type->hotels()->attach(2,['max_people' => 2, 'base_people' => 2,  'extra_per_person' => 250]);
 
         $type = new Type(); 
         $type->name = "EXPRESS Doble";
         $type->save();
 
         //max_people por hotel
-        $type->hotels()->attach(3,['max_people' => 2, 'base_people' => 2]);
+        $type->hotels()->attach(3,['max_people' => 2, 'base_people' => 2,  'extra_per_person' => 330]);
 
         $type = new Type(); 
         $type->name = "EXPRESS Sencilla";
         $type->save();
 
         //max_people por hotel
-        $type->hotels()->attach(3,['max_people' => 2, 'base_people' => 2]);
+        $type->hotels()->attach(3,['max_people' => 2, 'base_people' => 2,  'extra_per_person' => 330]);
 
         $type = new Type(); 
         $type->name = "Suite Sencilla";
         $type->save();
 
         //max_people por hotel
-        $type->hotels()->attach(3,['max_people' => 2, 'base_people' => 2]);
+        $type->hotels()->attach(3,['max_people' => 2, 'base_people' => 2,  'extra_per_person' => 330]);
 
         $type = new Type(); 
         $type->name = "Suite Doble";
         $type->save();
 
         //max_people por hotel
-        $type->hotels()->attach(3,['max_people' => 2, 'base_people' => 2]);
+        $type->hotels()->attach(3,['max_people' => 2, 'base_people' => 2,  'extra_per_person' =>330]);
 
     }
 }

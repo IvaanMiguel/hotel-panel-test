@@ -8,14 +8,11 @@ use App\Models\HotelImage;
 
 class Hotel extends Model
 {
-    use HasFactory;
-
-
-    public function images(){
-        return $this->hasMany(HotelImage::class);
-    }
-
-
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name', 'address', 'phone_number', 'cover', 'email', 'url_address', 'slug', 'status',
     ];
@@ -25,9 +22,14 @@ class Hotel extends Model
     	return $this->hasMany(User::class);
     }
 
- /*    public function contacts()
+    public function contacts()
     {
         return $this->hasMany(Contact::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(HotelImage::class);
     }
 
     public function rates()
@@ -73,5 +75,5 @@ class Hotel extends Model
     public function activities()
     {
         return $this->belongsToMany(Activity::class, 'hotel_activity');
-    } */
+    }
 }

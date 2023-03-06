@@ -7,13 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Promotion extends Model
 {
-    use HasFactory;
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name_es', 'name_en', 'name_fr', 'description_es', 'description_en', 'description_fr', 'discount_es', 'discount_en', 'discount_fr', 'cover', 'start_date', 'end_date', 'hotel_id','status',
+    ];
 
-    public function rooms(){
+    public function rates()
+    {
+    	return $this->belongsToMany(Rate::class);
+    }
+
+    public function rooms()
+    {
         return $this->belongsToMany(Room::class);
     }
 
-    public function rates(){
-    	return $this->belongsToMany(Rate::class);
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
     }
 }

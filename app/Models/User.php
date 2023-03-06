@@ -15,50 +15,41 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
-        'name', 'email', 'role_id', 'password', 'hotel_id', 'status',
+        'name', 'description', 'extra_per_person', 'default_price', 'hotel_id', 'type_id', 'status',
     ];
-
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-
-
-    public function role()
-    {
-        return $this->belongsTo('Spatie\Permission\Models\Role');
-    }
 
     public function hotel()
     {
-        return $this->belongsTo(Hotel::class);
+    	return $this->belongsTo(Hotel::class);
     }
 
-    //cheac si el usuario es admin(o de sistemas)
-    public static function isAdmin()
+    public function type()
     {
-        if(Auth::user()->role->name == "Director" || Auth::user()->role->name == "Administrador" || Auth::user()->role->name == "Sistemas"){
-            return true;
-        }
-        return false;
+    	return $this->belongsTo(Type::class);
     }
+
+    
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function promotions()
+    {
+        return $this->belongsToMany(Promotion::class);
+    }
+
+    public function schedules()
+    {
+        return $this->belongsToMany(Schedule::class);
+    }
+
+    public function coupons()
+    {
+        return $this->hasMany(Coupon::class);
+    }
+    
 }
