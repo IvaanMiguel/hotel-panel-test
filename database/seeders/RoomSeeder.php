@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Image;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\RoomImage;
 use Illuminate\Database\Seeder;
 use App\Models\Room;
 class RoomSeeder extends Seeder
@@ -25,15 +25,15 @@ class RoomSeeder extends Seeder
             $room->save();
     
             //imagenes de la habitacion
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_sencilla_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_sencilla_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+            $room->images()->create([
+                'url' => 'hotel_malecon_sencilla_1.jpg'
+            ]);
+
+            $room->images()->create([
+                'url' => 'hotel_malecon_sencilla_2.jpg'
+            ]);
+      
+
     
             $room = new Room();
             $room->name = "Habitacion Doble";
@@ -46,20 +46,19 @@ class RoomSeeder extends Seeder
             $room->save();
     
             //imagenes de la habitacion
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_doble_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+            $room->images()->create([
+                'url' => 'hotel_malecon_doble_1.jpg'
+            ]);
+
+            $room->images()->create([
+                'url' => 'hotel_malecon_doble_2.jpg'
+            ]); 
+            
     
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_doble_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+            $room->images()->create([
+                'url' => 'hotel_malecon_doble_3.jpg'
+            ]); 
     
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_doble_3.jpg";
-            $image->room_id = $room->id;
-            $image->save();
     
             $room = new Room();
             $room->name = "Jr Suite";
@@ -72,25 +71,22 @@ class RoomSeeder extends Seeder
             $room->save();
     
             //imagenes de la habitacion
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_jr_suite_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+
+            $room->images()->create([
+                'url' => 'hotel_malecon_jr_suite_1.jpg'
+            ]); 
+           
+            $room->images()->create([
+                'url' => 'hotel_malecon_jr_suite_2.jpg'
+            ]); 
     
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_jr_suite_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+            $room->images()->create([
+                'url' => 'hotel_malecon_jr_suite_3.jpg'
+            ]); 
     
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_jr_suite_3.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_jr_suite_4.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+            $room->images()->create([
+                'url' => 'hotel_malecon_jr_suite_4.jpg'
+            ]); 
     
             ///////habitaciones Hotel 2
             $room = new Room();
@@ -102,292 +98,160 @@ class RoomSeeder extends Seeder
             $room->hotel_id = 1;
             $room->type_id = 4;
             $room->save();
+
+            $room->images()->create([
+                'url' => 'hotel_malecon_master_1.jpg'
+            ]); 
     
-            //imagenes de la habitacion
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_master_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_3.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_4.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_5.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_6.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_7.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_8.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_9.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_10.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_11.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_12.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_13.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_14.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_15.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_16.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_17.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_18.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_19.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_20.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_21.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_22.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_23.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_24.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_25.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_26.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_27.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_28.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_29.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_30.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_31.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_32.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_33.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_34.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_35.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_36.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_37.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_38.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_39.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_40.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_41.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_42.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_43.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_44.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_45.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_46.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_47.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_48.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_49.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_50.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_51.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_52.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_53.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_54.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_55.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_malecon_56.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+            $room->images()->create([
+                'url' => 'hotel_malecon_1.jpg'
+            ]); 
+            
+            $room->images()->create([
+                'url' => 'hotel_malecon_2.jpg'
+            ]); 
+            
+            $room->images()->create([
+                'url' => 'hotel_malecon_3.jpg'
+            ]); 
+            
+            $room->images()->create([
+                'url' => 'hotel_malecon_4.jpg'
+            ]); 
+            $room->images()->create([
+                'url' => 'hotel_malecon_5.jpg'
+            ]); 
+            $room->images()->create([
+                'url' => 'hotel_malecon_6.jpg'
+            ]); 
+            $room->images()->create([
+                'url' => 'hotel_malecon_7.jpg'
+            ]); 
+            $room->images()->create([
+                'url' => 'hotel_malecon_8.jpg'
+            ]);
+
+            $room->images()->create([
+                'url' => 'hotel_malecon_8.jpg'
+            ]);
+            
+            $room->images()->create([
+                'url' => 'hotel_malecon_9.jpg'
+            ]);
+            
+            $room->images()->create([
+                'url' => 'hotel_malecon_10.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_malecon_11.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_malecon_12.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_malecon_13.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_malecon_14.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_malecon_15.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_malecon_16.jpg'
+       ]);
+       $room->images()->create([
+                'url' => 'hotel_malecon_17.jpg'
+       ]);
+       $room->images()->create([
+                'url' => 'hotel_malecon_18.jpg'
+       ]);
+       $room->images()->create([
+                'url' => 'hotel_malecon_19.jpg'
+       ]);
+       $room->images()->create([
+                'url' => 'hotel_malecon_20.jpg'
+       ]);
+       $room->images()->create([
+                'url' => 'hotel_malecon_21.jpg'
+       ]);
+       $room->images()->create([
+                'url' => 'hotel_malecon_22.jpg'
+       ]);
+       $room->images()->create([
+                'url' => 'hotel_malecon_23.jpg'
+       ]);
+       $room->images()->create([
+                'url' => 'hotel_malecon_24.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_25.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_26.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_27.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_28.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_29.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_30.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_31.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_32.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_33.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_34.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_35.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_36.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_37.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_38.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_39.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_40.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_41.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_42.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_43.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_44.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_45.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_46.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_47.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_48.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_49.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_50.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_51.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_52.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_53.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_54.jpg'
+       ]);$room->images()->create([
+                'url' => 'hotel_malecon_55.jpg'
+       ]);
+       $room->images()->create([
+                'url' => 'hotel_malecon_56.jpg'
+       ]);
+
+  
+     
     
             //Habitaciones de hotel centro
             $room = new Room();
@@ -401,25 +265,23 @@ class RoomSeeder extends Seeder
             $room->save();
     
             //imagenes de la habitacion
-            $image = new RoomImage();
-            $image->url = "hotel_centro_sencilla_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_sencilla_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_sencilla_3.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_sencilla_4.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+
+            $room->images()->create([
+                'url' => 'hotel_centro_sencilla_1.jpg'
+            ]);
+
+            $room->images()->create([
+                'url' => 'hotel_centro_sencilla_2.jpg'
+            ]);
+
+            
+            $room->images()->create([
+                'url' => 'hotel_centro_sencilla_3.jpg'
+            ]);
+
+            $room->images()->create([
+                'url' => 'hotel_centro_sencilla_4.jpg'
+            ]);
     
             $room = new Room();
             $room->name = "Habitacion Doble";
@@ -432,15 +294,16 @@ class RoomSeeder extends Seeder
             $room->save();
     
             //imagenes de la habitacion
-            $image = new RoomImage();
-            $image->url = "hotel_centro_doble_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_doble_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+
+            
+            $room->images()->create([
+                'url' => 'hotel_centro_doble_1.jpg'
+            ]);
+
+            $room->images()->create([
+                'url' => 'hotel_centro_doble_2.jpg'
+            ]);
+       
             ///////habitaciones Hotel 2
     
             ///////habitaciones Hotel 3
@@ -455,10 +318,11 @@ class RoomSeeder extends Seeder
             $room->save();
     
             //imagenes de la habitacion
-            $image = new RoomImage();
-            $image->url = "hotel_centro_jr_suite_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+        
+
+            $room->images()->create([
+                'url' => 'hotel_centro_jr_suite_1.jpg'
+            ]);
     
             $room = new Room();
             $room->name = "Master Suite";
@@ -471,16 +335,14 @@ class RoomSeeder extends Seeder
             $room->save();
     
             //imagenes de la habitacion
-            $image = new RoomImage();
-            $image->url = "hotel_centro_master_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_master_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
+         
+            $room->images()->create([
+                'url' => 'hotel_centro_master_1.jpg'
+            ]);
+
+            $room->images()->create([
+                'url' => 'hotel_centro_master_2.jpg'
+            ]);
             $room = new Room();
             $room->name = "Jr Suite Love";
             $room->description = "Con la distinción de un amplio espacio romántico, equipada con una cama King Size , sala de estancia y Jacuzzi.";
@@ -492,85 +354,55 @@ class RoomSeeder extends Seeder
             $room->save();
     
             //imagenes de la habitacion
-            $image = new RoomImage();
-            $image->url = "hotel_centro_love_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+
+            $room->images()->create([
+                'url' => 'hotel_centro_love_1.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_1.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_2.jpg'
+            ]);
+            
     
-            $image = new RoomImage();
-            $image->url = "hotel_centro_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_3.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_4.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_5.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_6.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_7.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_8.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_9.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_10.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_11.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_12.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_13.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_14.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_centro_15.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+            $room->images()->create([
+                'url' => 'hotel_centro_3.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_4.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_5.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_6.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_7.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_8.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_9.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_10.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_11.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_12.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_13.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_centro_14.jpg'
+            ]);
+
     
             //Hotel cabo
             $room = new Room();
@@ -582,21 +414,18 @@ class RoomSeeder extends Seeder
             $room->hotel_id = 3;
             $room->type_id = 7;
             $room->save();
+
+            $room->images()->create([
+                'url' => 'hotel_cabo_sencilla_1.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_cabo_sencilla_2.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_cabo_sencilla_3.jpg'
+            ]);
     
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_sencilla_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_sencilla_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_sencilla_3.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+       
     
             $room = new Room();
             $room->name = "EXPRESS Doble";
@@ -607,22 +436,17 @@ class RoomSeeder extends Seeder
             $room->hotel_id = 3;
             $room->type_id = 6;
             $room->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_doble_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_doble_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_doble_3.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
+
+            $room->images()->create([
+                'url' => 'hotel_cabo_doble_1.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_cabo_doble_2.jpg'
+            ]);
+            $room->images()->create([
+                'url' => 'hotel_cabo_doble_3.jpg'
+            ]);
+     
             $room = new Room();
             $room->name = "Suite Sencilla";
             $room->description = "Cómoda Suite de 45 metros cuadrados, ubicada en área remodelada del Hotel, perfecta para hospedar hasta 4 adultos, con acceso al piso de la suite por elevador.";
@@ -632,12 +456,12 @@ class RoomSeeder extends Seeder
             $room->hotel_id = 3;
             $room->type_id = 8;
             $room->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_master_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
+
+            $room->images()->create([
+                'url' => 'hotel_cabo_master_1.jpg'
+            ]);
+
+
             $room = new Room();
             $room->name = "Suite Doble";
             $room->description = "Cómoda Suite de 45 metros cuadrados, ubicada en área remodelada del Hotel, acceso al piso de la suite por elevador.";
@@ -647,151 +471,101 @@ class RoomSeeder extends Seeder
             $room->hotel_id = 3;
             $room->type_id = 9;
             $room->save();
+
+
+            $room->images()->create([
+                'url' => 'hotel_cabo_jr_suite_1.jpg'
+            ]);
+
+            $room->images()->create([
+                'url' => 'hotel_cabo_1.jpg'
+            ]);
+
+            $room->images()->create([
+                'url' => 'hotel_cabo_2.jpg'
+            ]);
+     
     
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_jr_suite_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
     
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_1.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_2.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_3.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_4.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_5.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_6.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_7.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_8.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_9.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_10.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_11.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_12.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_13.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_14.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_15.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_16.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_17.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_18.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_19.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_20.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_21.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_22.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_23.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_24.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_25.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_26.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_27.jpg";
-            $image->room_id = $room->id;
-            $image->save();
-    
-            $image = new RoomImage();
-            $image->url = "hotel_cabo_28.jpg";
-            $image->room_id = $room->id;
-            $image->save();
+            $room->images()->create([
+                'url' => 'hotel_cabo_3.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_4.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_5.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_6.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_7.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_8.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_9.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_10.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_11.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_12.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_13.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_14.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_15.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_16.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_17.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_18.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_19.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_20.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_21.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_22.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_23.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_24.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_25.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_26.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_27.jpg'
+            ]);
+$room->images()->create([
+                'url' => 'hotel_cabo_28.jpg'
+            ]);
+
             ///////habitaciones Hotel 3
         //
     }

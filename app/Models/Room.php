@@ -30,7 +30,7 @@ class Room extends Model
 
     public function images()
     {
-        return $this->hasMany(RoomImage::class);
+        return $this->morphToMany(Image::class, 'imageable');
     }
 
     public function reservations()

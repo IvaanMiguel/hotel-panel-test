@@ -7,6 +7,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Hotel;
 use App\Models\HotelImage;
+use App\Models\Image;
+
 class HotelSeeder extends Seeder
 {
     /**
@@ -25,125 +27,103 @@ class HotelSeeder extends Seeder
         $hotel->save();
 
         //imagenes del hotel
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_1.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_2.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_1.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_3.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_2.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_4.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_3.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_5.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_4.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_6.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_5.jpg"
+        ]);
+ 
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_6.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_7.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_7.jpg"
+        ]);
+ 
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_8.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_8.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_9.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_9.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_10.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_10.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_11.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_11.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_12.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_12.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+    
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_13.jpg"
+        ]);
+    
+        
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_14.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_13.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_15.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_14.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_16.jpg"
+        ]);
+     
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_17.jpg"
+        ]);
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_18.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_15.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_19.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_16.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_20.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_17.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_21.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_18.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_22.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_19.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_23.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_20.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
-
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_21.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
-
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_22.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
-
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_23.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
-
-        $image = new HotelImage();
-        $image->url = "hotel_malecon_instalaciones_24.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_malecon_instalaciones_24.jpg"
+        ]);
 
         $hotel = new Hotel();
         $hotel->name = "Centro Histórico";
@@ -156,100 +136,83 @@ class HotelSeeder extends Seeder
         $hotel->save();
 
         //imagenes del hotel
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_1.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_2.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_1.jpg"
+        ]);
+     
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_3.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_2.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_4.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_3.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_5.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_4.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_6.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_5.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_7.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_6.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_8.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_7.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_9.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_8.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_10.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_9.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_11.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_10.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_12.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_11.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_13.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_12.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_14.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_13.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_15.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_14.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_16.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_15.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_17.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_16.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_18.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_17.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_centro_instalaciones_19.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_18.jpg"
+        ]);
+
+        $hotel->images()->create([
+            'url' => "hotel_centro_instalaciones_19.jpg"
+        ]);
 
         $hotel = new Hotel();
         $hotel->name = "Cabos San Lucas";
@@ -262,119 +225,96 @@ class HotelSeeder extends Seeder
         $hotel->save();
 
         //imagenes del hotel
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_1.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_1.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_2.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_2.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_3.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_3.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_4.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_4.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_5.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_5.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_6.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_6.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_7.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_7.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_8.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_8.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_9.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_9.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_10.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_10.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_11.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_11.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_12.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_12.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_13.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_13.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_14.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_14.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_15.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_15.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_16.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_16.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_17.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_17.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_18.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_18.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_19.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_19.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_20.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_20.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_21.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_21.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_22.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_22.jpg"
+        ]);
 
-        $image = new HotelImage();
-        $image->url = "hotel_cabo_instalaciones_23.jpg";
-        $image->hotel_id = $hotel->id;
-        $image->save();
+        $hotel->images()->create([
+            'url' => "hotel_cabo_instalaciones_23.jpg"
+        ]);
     }
 }

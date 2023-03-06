@@ -29,7 +29,7 @@ class Hotel extends Model
 
     public function images()
     {
-        return $this->hasMany(HotelImage::class);
+        return $this->morphToMany(Image::class, 'imageable');
     }
 
     public function rates()
