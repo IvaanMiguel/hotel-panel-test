@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class EventController extends Controller
 {
     /**
@@ -61,5 +61,24 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+    }
+
+
+     ///proceso inactivar eventos con 7 días de antiguedad
+    public static function update_status($status){
+        echo "._____________."."\n";
+        echo Carbon::now()->format('Y-m-d H:i:s').":"."\n";
+
+        $events = Event::where('status', 'activo')
+                ->where('end_date', '<', Carbon::now()->subDays(7))
+                ->get();
+
+        foreach($events as $event){
+            $event->status = $status;
+            $event->save();
+            echo $event->name_es." : ".$event->status."\n";
+        }
+
+        echo "._____________."."\n";
     }
 }

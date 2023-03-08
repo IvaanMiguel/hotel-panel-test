@@ -25,6 +25,7 @@ class ReservationSeeder extends Seeder
         $reservation->rate_id = 1;
         $reservation->client_id = 1;
         $reservation->billing = true;
+        $reservation->lang = array_rand(['fr', 'es' , 'en']);
         $reservation->save();
 
         $reservation = new Reservation();
@@ -40,6 +41,7 @@ class ReservationSeeder extends Seeder
         $reservation->rate_id = 2;
         $reservation->client_id = 3;
         $reservation->billing = true;
+        $reservation->lang = array_rand(['fr', 'es' , 'en']);
         $reservation->save();
 
         $reservation = new Reservation();
@@ -54,6 +56,7 @@ class ReservationSeeder extends Seeder
         $reservation->room_id = 8;
         $reservation->rate_id = 1;
         $reservation->client_id = 4;
+        $reservation->lang = array_rand(['fr', 'es' , 'en']);
         $reservation->save();
 
         $reservation = new Reservation();
@@ -70,6 +73,7 @@ class ReservationSeeder extends Seeder
         $reservation->client_id = 2;
         $reservation->billing = true;
         $reservation->status = "confirmada";
+        $reservation->lang = array_rand(['fr', 'es' , 'en']);
         $reservation->save();
 
         $reservation = new Reservation();
@@ -86,6 +90,7 @@ class ReservationSeeder extends Seeder
         $reservation->client_id = 3;
         $reservation->billing = true;
         $reservation->status = "cancelada";
+        $reservation->lang = array_rand(['fr', 'es' , 'en']);
         $reservation->save();
     }
 }

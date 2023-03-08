@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\contact;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class ContactController extends Controller
 {
     /**
@@ -61,5 +61,17 @@ class ContactController extends Controller
     public function destroy(contact $contact)
     {
         //
+    }
+
+    public static function update_status($status){
+        echo Carbon::now()->format('Y-m-d H:i:s').":"."\n";
+        $contacts = Contact::where('status','pendiente')
+        ->where('created_at', '<', Carbon::now()->subDays(40))->get();
+
+        foreach($contacts as $contact){
+            $contact->status = $status;
+            $contact->save();
+            echo 'id: '.$contact->id. ' '.$contact->created_at.'   :   '.$contact->status."\n";
+        }
     }
 }
