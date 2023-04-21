@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,7 @@ Route::get('/', function () {
 Route::get('e', function(){
     Artisan::call('questionnaires:email');
 });
+Route::get('rooms', [RoomController::class, 'index']);
+Route::post('rooms', [RoomController::class, 'store']);
+Route::get('rooms/{room_slug}/{hotel_slug}', [RoomController::class, 'show']);
+ 

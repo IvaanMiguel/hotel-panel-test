@@ -47,4 +47,8 @@ class Rate extends Model
     {
         return $this->hasMany(Coupon::class);
     }
+
+    public function rooms(){
+        return $this->belongsToMany(Room::class);
+    }
 }

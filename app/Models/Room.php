@@ -48,6 +48,9 @@ class Room extends Model
         return $this->belongsToMany(Promotion::class);
     }
 
+    public function rates(){
+        return $this->belongsToMany(Rate::class);
+    }
     public function scopeWithAndWhereHas($query, $relation, $constraint){
         return $query->whereHas($relation, $constraint)
                      ->with([$relation => $constraint]);
