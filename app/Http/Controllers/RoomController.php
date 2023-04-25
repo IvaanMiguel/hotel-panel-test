@@ -86,15 +86,17 @@ class RoomController extends Controller
                 }
 
                 $room->rates()->attach($request->rate_ids);
-                LogController::store(1, "Registrar",$room->id, "registro una nueva habitacion", "rooms" , "/rooms/".$room->slug);
+                LogController::store(1, "Registrar",$room->id, "registro una nueva habitacion", "rooms" , "/rooms/".$room->slug, $room);
                 
+                // return 'SUCCESS';
                 return redirect()->back()->with('success','ok');
             }
 
-            LogController::store(1, "Error",0, "error al registrar una habitacion", "rooms" , "/rooms");
-
-            return redirect()->back()->with('error','error servidor');
+            
         }
+        LogController::store(1, "Error",0, "error al registrar una habitacion", "rooms" , "/rooms");
+        return redirect()->back()->with('error','error servidor');
+        // return 'ERROR';
     }
 
     /**

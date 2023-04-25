@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HotelController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -25,13 +26,18 @@ Route::get('e', function(){
 
  
 // Route::middleware(['auth'])->group(function (){
+    // rutas rooms
     Route::get('rooms', [RoomController::class, 'index']);//->middleware('permission:rooms.get');
-    Route::post('rooms', [RoomController::class, 'store']);//->middleware('permission:rooms.add');
     Route::get('rooms/{room_slug}/{hotel_slug}', [RoomController::class, 'show']);//->middleware('permission:rooms.get');
-    Route::put('rooms/', [RoomController::class, 'update']);//->middleware('permission:rooms.edit');
-    Route::put('type/max_people/update/', [RoomController::class, 'update_max_people']);//->middleware('permission:rooms.edit');;
+    Route::post('rooms', [RoomController::class, 'store']);//->middleware('permission:rooms.add');
+    Route::put('rooms', [RoomController::class, 'update']);//->middleware('permission:rooms.edit');
+    Route::put('type/max_people/update', [RoomController::class, 'update_max_people']);//->middleware('permission:rooms.edit');;
 
+    // rutas hotels
+    Route::get('hotels', [HotelController::class, 'index']);
+    Route::post('hotels', [HotelController::class, 'store']);
+    Route::get('hotels/{slug}', [HotelController::class, 'show']);
+    Route::put('hotels', [HotelController::class, 'update']);
 
-    
   
 // });
