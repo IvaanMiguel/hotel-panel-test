@@ -22,7 +22,16 @@ Route::get('/', function () {
 Route::get('e', function(){
     Artisan::call('questionnaires:email');
 });
-Route::get('rooms', [RoomController::class, 'index']);
-Route::post('rooms', [RoomController::class, 'store']);
-Route::get('rooms/{room_slug}/{hotel_slug}', [RoomController::class, 'show']);
+
  
+// Route::middleware(['auth'])->group(function (){
+    Route::get('rooms', [RoomController::class, 'index']);//->middleware('permission:rooms.get');
+    Route::post('rooms', [RoomController::class, 'store']);//->middleware('permission:rooms.add');
+    Route::get('rooms/{room_slug}/{hotel_slug}', [RoomController::class, 'show']);//->middleware('permission:rooms.get');
+    Route::put('rooms/', [RoomController::class, 'update']);//->middleware('permission:rooms.edit');
+    Route::put('type/max_people/update/', [RoomController::class, 'update_max_people']);//->middleware('permission:rooms.edit');;
+
+
+    
+  
+// });

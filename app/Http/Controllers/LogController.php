@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
-    public static function store($user_id, $action, $second_id, $description, $module, $route)
+    public static function store($user_id, $action, $second_id, $description, $module, $route, $model = null)
     {
+        if(isset($model)) error_log($action. ' >>' . json_encode($model));
         $log = new Log;
         $log->user_id = $user_id;
         $log->action = $action;

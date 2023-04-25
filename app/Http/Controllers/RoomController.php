@@ -161,6 +161,15 @@ class RoomController extends Controller
      */
     public function update(Request $request)
     {
+/*          $request['id'] = 1;
+        $request['status'] = 0;
+        $request['type_id'] = 2;
+        $request['hotel_id'] = 2;
+        $request['extra_payment_per_person'] = 2;
+        $request['slug'] = 'AAAAAAAAAAAAAAAAAAAAAAAAA';
+        $request['max_people'] = '2';
+        $request['description'] = '2qS';
+        $request['name'] = 'name de asdasd';  */
         $room = Room::find($request->id);
 
         $room->load(['type' => function($q) use($room){
@@ -190,13 +199,16 @@ class RoomController extends Controller
                 $room->save();
             }
 
-            LogController::store(1, "Actualizar",$room->id, "actualizó una habitacion", "rooms" , "/rooms/".$room->slug);
+            LogController::store(1, "Actualizar",$room->id, "actualizó una habitacion", "rooms" , "/rooms/".$room->slug, $room);
 
+
+           //  return 'qweq';
             return redirect()->back()->with('success','ok');
         }
 
         LogController::store(1, "Error",0, "error al actualizar una habitacion", "rooms" , "/rooms/".$request->id);
 
+     //return 'error';
         return redirect()->back()->with('error','error servidor');
     }
 
@@ -281,6 +293,10 @@ class RoomController extends Controller
     public function update_max_people(Request $request)
     {
 
+  /*       $request['type_id'] = 1;
+        $request['max_people'] = 10;
+        $request['hotel_id'] = 1; */
+
         $type = Type::where('id',$request->type_id)
                 ->with(['hotels' => function($q) use($request){
                     $q->where('hotel_id', $request->hotel_id);
@@ -292,13 +308,15 @@ class RoomController extends Controller
             $type->hotels()->updateExistingPivot($request->hotel_id,['max_people' => $request->max_people]);
 
             $log = new LogController;
-            $log->store(Auth::user()->id, "Actualizar",$type->id, "actualizó una habitacion", "rooms" , "/rooms/".$type->id);
+            $log->store(1 , "Actualizar",1, "actualizó una habitacion", "rooms" , "/rooms/".$type->id);
 
+            // return 'SUCCESS';
             return redirect()->back()->with('success','ok');
         }
 
-        LogController::store(1,  "Error",0, "error al actualizar una habitacion", "rooms" , "/rooms/".$request->id);
 
+        LogController::store(1 ,  "Error",0, "error al actualizar una habitacion", "rooms" , "/rooms/".$request->id);        
+        // return 'NEL :v';
         return redirect()->back()->with('error','error servidor');
     }
 }
