@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
          $user->name = "Ventas centro";
          $user->email = "ventascentro@hotelsevencrown.com";
          $user->password = bcrypt("y#4XW7p4&L*H");
-         $user->role_id = 3;
+         $user->role_id = 2;
          $user->hotel_id = 2;
          $user->status = true;
          $user->save();
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
          $user->name = "Reservaciones centro";
          $user->email = "reservacionescentro@hotelsevencrown.com";
          $user->password = bcrypt("EBvvW*ZyDz3M");
-         $user->role_id = 3;
+         $user->role_id = 1;
          $user->hotel_id = 2;
          $user->status = true;
          $user->save();
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
          $user->name = "Ventas malecon";
          $user->email = "ventasmalecon@hotelsevencrown.com";
          $user->password = bcrypt("@Z@rKiD4FT^m");
-         $user->role_id = 3;
+         $user->role_id = 1;
          $user->hotel_id = 1;
          $user->status = true;
          $user->save(); 
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
          $user->name = "Ventas cabo";
          $user->email = "ventascabo@hotelsevencrown.com";
          $user->password = bcrypt("NxY^H0Q@ebZj");
-         $user->role_id = 3;
+         $user->role_id = 1;
          $user->hotel_id = 3;
          $user->status = true;
          $user->save(); 
@@ -71,7 +71,7 @@ class UserSeeder extends Seeder
          $user->name = "Api";
          $user->email = "service@hotelsevencrown.com";
          $user->password = bcrypt("V&RVYxt7hiv^EF*fhpZY");
-         $user->role_id = 4;
+         $user->role_id = 1;
          $user->status = true;
          $user->save();
  
@@ -79,7 +79,7 @@ class UserSeeder extends Seeder
          $user->name = "Reservaciones Malecón";
          $user->email = "reservacionesmalecon@hotelsevencrown.com";
          $user->password = bcrypt("Du#W!z&2vVFOM&H");
-         $user->role_id = 3;
+         $user->role_id = 1;
          $user->hotel_id = 1;
          $user->status = true;
          $user->save();
@@ -88,7 +88,7 @@ class UserSeeder extends Seeder
          $user->name = "Recepción Cabo";
          $user->email = "recepcioncabo@hotelsevencrown.com";
          $user->password = bcrypt("xtF18kSu@!#Ggk0");
-         $user->role_id = 3;
+         $user->role_id = 1;
          $user->hotel_id = 3;
          $user->status = true;
          $user->save();
@@ -97,7 +97,7 @@ class UserSeeder extends Seeder
          $user->name = "Publicaciones blogs";
          $user->email = "publicaciones@hotelsevencrown.com";
          $user->password = bcrypt("Stf58kSu-!yGgk2");
-         $user->role_id = 5; 
+         $user->role_id = 1; 
          $user->status = true;
          $user->save(); 
  
@@ -105,7 +105,7 @@ class UserSeeder extends Seeder
          $user->name = "Rivera Guadalupe";
          $user->email = "director@hotelsevencrown.com";
          $user->password = bcrypt("d2#jyi@rah%sEd");
-         $user->role_id = 6;
+         $user->role_id = 1;
          $user->status = true;
          $user->save();
  
@@ -113,7 +113,7 @@ class UserSeeder extends Seeder
          $user->name = "Capturas Cabo";
          $user->email = "ventas@pjsmarketingmexico.com";
          $user->password = bcrypt("Stf58kSu-!yGgk2");
-         $user->role_id = 7;
+         $user->role_id = 1;
          $user->hotel_id = 3;
          $user->status = true;
          $user->save();
