@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    {{$hotels}}
+    HOME 
+
+    <form action="{{ route('logout') }}" method="POST">
+    
+        <input type="submit" value="cerrar sesion">
+        @csrf
+    </form>
 </body>
 </html>

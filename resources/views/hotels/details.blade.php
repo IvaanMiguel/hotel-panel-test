@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>AAAAAAAAAAAAAA</h1>
+    <p>{{$hotel}}</p>
 </body>
 </html>

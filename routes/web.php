@@ -25,13 +25,15 @@ Route::get('e', function(){
 });
 
  
-// Route::middleware(['auth'])->group(function (){
+Route::middleware(['auth'])->group(function (){
+
+    Route::view('home', 'auth.home');
     // rutas rooms
-    Route::get('rooms', [RoomController::class, 'index']);//->middleware('permission:rooms.get');
-    Route::get('rooms/{room_slug}/{hotel_slug}', [RoomController::class, 'show']);//->middleware('permission:rooms.get');
-    Route::post('rooms', [RoomController::class, 'store']);//->middleware('permission:rooms.add');
-    Route::put('rooms', [RoomController::class, 'update']);//->middleware('permission:rooms.edit');
-    Route::put('type/max_people/update', [RoomController::class, 'update_max_people']);//->middleware('permission:rooms.edit');;
+    Route::get('rooms', [RoomController::class, 'index'])->middleware('permission:rooms.get');
+    Route::get('rooms/{room_slug}/{hotel_slug}', [RoomController::class, 'show'])->middleware('permission:rooms.get');
+    Route::post('rooms', [RoomController::class, 'store'])->middleware('permission:rooms.add');
+    Route::put('rooms', [RoomController::class, 'update'])->middleware('permission:rooms.edit');
+    Route::put('type/max_people/update', [RoomController::class, 'update_max_people'])->middleware('permission:rooms.edit');
 
     // rutas hotels
     Route::get('hotels', [HotelController::class, 'index']);
@@ -39,5 +41,4 @@ Route::get('e', function(){
     Route::get('hotels/{slug}', [HotelController::class, 'show']);
     Route::put('hotels', [HotelController::class, 'update']);
 
-  
-// });
+});
