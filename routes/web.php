@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('e', function(){
@@ -27,7 +27,7 @@ Route::get('e', function(){
  
 Route::middleware(['auth'])->group(function (){
 
-    Route::view('home', 'auth.home');
+    Route::view('home', 'admin.dashboard');
     // rutas rooms
     Route::get('rooms', [RoomController::class, 'index'])->middleware('permission:rooms.get');
     Route::get('rooms/{room_slug}/{hotel_slug}', [RoomController::class, 'show'])->middleware('permission:rooms.get');
