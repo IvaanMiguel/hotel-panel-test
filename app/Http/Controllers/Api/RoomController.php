@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Http\Controllers\LogController;
+use Illuminate\Support\Facades\Auth;
 class RoomController extends Controller
 {
     public function get($id){
@@ -15,7 +16,7 @@ class RoomController extends Controller
 
         if($room){
 
-            LogController::store(1, "Consultar",$room->id, "consulto una habitacion", "rooms" , "/rooms/".$room->slug);
+            LogController::store(Auth::user()->id, "Consultar",$room->id, "consulto una habitacion", "rooms" , "/rooms/".$room->slug);
 
             return response()->json([
                 'message' => "Registro consultado correctamente",
@@ -24,13 +25,13 @@ class RoomController extends Controller
             ], 200);
         }else{
 
-        // LogController::store(1, "Indevida",0, "intento obtener una habitacion", "rooms" , "/rooms");
+            LogController::store(Auth::user()->id, "Indevida",0, "intento obtener una habitacion", "rooms" , "/rooms");
 
-        return response()->json([
-            'message' => "Ha ocurrido un error",
-            'code' => -5,
-            'data' => null
-        ], 404);  
+            return response()->json([
+                'message' => "Ha ocurrido un error",
+                'code' => -5,
+                'data' => null
+            ], 404);  
         }
     }
 
@@ -43,7 +44,7 @@ class RoomController extends Controller
 
             if($room->save()){
 
-                LogController::store(1, "Eliminar",$room->id, "eliminó una habitacion", "rooms" , "/rooms/".$room->slug);
+                LogController::store(Auth::user()->id, "Eliminar",$room->id, "eliminó una habitacion", "rooms" , "/rooms/".$room->slug);
 
                 return response()->json([
                     'message' => "Registro Eliminado correctamente",
@@ -53,7 +54,7 @@ class RoomController extends Controller
             }
         }
 
-        LogController::store(1, "Error",$id, "no se pudo eliminar una habitacion", "rooms" , "/rooms");
+        LogController::store(Auth::user()->id, "Error",$id, "no se pudo eliminar una habitacion", "rooms" , "/rooms");
         
         return response()->json([
             'message' => "No se ha podido eliminar",

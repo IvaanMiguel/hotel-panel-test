@@ -41,7 +41,7 @@ class RoomController extends Controller
         $hotels = Hotel::where('status', true)->get();
         $types = Type::where('status', true)->get();
 
-        LogController::store(1, "Consultar",0, "consultar todas las habitaciones", "rooms" , "/rooms");
+        LogController::store(Auth::user()->id, "Consultar",0, "consultar todas las habitaciones", "rooms" , "/rooms");
 
         $breadcrum_info = $this->breadcrum_info;
         // return $rooms;
@@ -62,6 +62,13 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
+ /*       $request['name'] ='asdadad';
+        $request['description'] ='asdadad';
+        $request['max_people'] ='231';
+        $request['slug'] ='asdadad';
+        $request['hotel_id'] ='1';
+        $request['type_id'] ='1'; 
+        $request['type_id'] ='1';  */
         $validator = Validator::make($request->all(),
         [
             'slug' => 'unique:rooms'
@@ -86,17 +93,17 @@ class RoomController extends Controller
                 }
 
                 $room->rates()->attach($request->rate_ids);
-                LogController::store(1, "Registrar",$room->id, "registro una nueva habitacion", "rooms" , "/rooms/".$room->slug, $room);
+                LogController::store(Auth::user()->id, "Registrar",$room->id, "registro una nueva habitacion", "rooms" , "/rooms/".$room->slug, $room);
                 
-                // return 'SUCCESS';
+            // return 'SUCCESS';
                 return redirect()->back()->with('success','ok');
             }
 
             
         }
-        LogController::store(1, "Error",0, "error al registrar una habitacion", "rooms" , "/rooms");
-        return redirect()->back()->with('error','error servidor');
         // return 'ERROR';
+        LogController::store(Auth::user()->id, "Error",0, "error al registrar una habitacion", "rooms" , "/rooms");
+        return redirect()->back()->with('error','error servidor');
     }
 
     /**
@@ -143,7 +150,7 @@ class RoomController extends Controller
 
             #return $chartInfoMonths;
 
-            LogController::store(1, "Consultar",$room->id, "consultar una habitacion", "rooms" , "/hotel/".$hotel_slug."/".$room_slug);
+            LogController::store(Auth::user()->id, "Consultar",$room->id, "consultar una habitacion", "rooms" , "/hotel/".$hotel_slug."/".$room_slug);
 
             return view('rooms.details',compact('room','hotels','types','chartInfoMonths','chartInfoWeek','breadcrum_info'));
         }
@@ -305,20 +312,20 @@ class RoomController extends Controller
                 }])
                 ->first();
 
-        if($type->hotels != null){
-
-            $type->hotels()->updateExistingPivot($request->hotel_id,['max_people' => $request->max_people]);
-
-            $log = new LogController;
-            $log->store(1 , "Actualizar",1, "actualizó una habitacion", "rooms" , "/rooms/".$type->id);
-
-            // return 'SUCCESS';
-            return redirect()->back()->with('success','ok');
-        }
-
-
-        LogController::store(1 ,  "Error",0, "error al actualizar una habitacion", "rooms" , "/rooms/".$request->id);        
-        // return 'NEL :v';
+                if($type->hotels != null){
+                    
+                    $type->hotels()->updateExistingPivot($request->hotel_id,['max_people' => $request->max_people]);
+                    
+                    $log = new LogController;
+                    $log->store(Auth::user()->id, "Actualizar",$type->id, "actualizó una habitacion", "rooms" , "/rooms/".$type->id);
+                    
+                    
+                    // return 'SUCCESS';
+                    return redirect()->back()->with('success','ok');
+                }
+                
+        LogController::store(Auth::user()->id ,  "Error",0, "error al actualizar una habitacion", "rooms" , "/rooms/".$request->id);        
+        //  return 'NEL :v';
         return redirect()->back()->with('error','error servidor');
     }
 }

@@ -26,7 +26,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'rooms.delete']);
 
         $administrador->givePermissionTo([
-            'rooms.get'
+            'rooms.get',
+            'rooms.edit',
+            'rooms.add',
+            'rooms.delete'
         ]);
 
         $sistemas->givePermissionTo([
