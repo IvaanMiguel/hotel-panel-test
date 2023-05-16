@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Reservation;
+use Carbon\Carbon;
+
 class ReservationSeeder extends Seeder
 {
     /**
@@ -27,6 +29,7 @@ class ReservationSeeder extends Seeder
         $reservation->billing = true;
         $reservation->lang = array_rand(['fr', 'es' , 'en']);
         $reservation->save();
+        $reservation->questionnaires()->attach(1,[ 'count' => 1, 'last_send' => Carbon::now()]);
 
         $reservation = new Reservation();
         $reservation->code = "RES20200817";

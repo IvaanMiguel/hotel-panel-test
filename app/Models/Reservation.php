@@ -52,14 +52,13 @@ class Reservation extends Model
 
     public function facturacion_data()
     {
-        return $this->hasOne(FacturacionData::class);
+        return $this->hasOne(FacturationData::class);
     }
 
     public function card()
     {
         return $this->hasOne(Card::class);
     }
-
     public function reservations_rooms()
     {
         return $this->hasMany(ReservationRoom::class);
