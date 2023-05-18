@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
                     PromotionSeeder::class,
                     QuestionnaireSeeder::class,
                     ReservationSeeder::class,
+                    CardSeeder::class,
                     FacturationDataSeeder::class,
                     SettingsSeeder::class,
                     CommentSeeder::class,

@@ -62,4 +62,28 @@ class ScheduleController extends Controller
     {
         //
     }
+
+    // restaurar stock al cancelar
+    public static function regresarStock($reservation){
+        // restar un dia a end date
+
+        $last_day = date('Y-m-d', strtotime($reservation->check_out.' - 1 days'));
+       
+        $schedules = Schedule::where('status',true)
+        ->whereBetween('date',[$reservation->check_in,$last_day])
+        ->where('hotel_id',$reservation->room->hotel->id)
+        ->where('type_id',$reservation->room->type->id)
+        ->get();
+
+        if($schedules){
+            // regresar el stock y añadir a reserved 
+            foreach($schedules as $schedule){
+                $schedule->stock += $reservation->reservations_rooms_count;
+                $schedule->reserved -= $reservation->reservations_rooms_count;
+
+                $schedule->save();
+            }
+        }
+
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomController;
 use App\Mail\AdditionRequestedEmail;
 use App\Mail\ContactAnsweredEmail;
@@ -46,7 +47,7 @@ Route::get('e', function(){
 });
 
  
-Route::middleware(['auth'])->group(function (){
+// Route::middleware(['auth'])->group(function (){
 
     Route::view('home', 'admin.dashboard');
     // rutas rooms
@@ -62,7 +63,12 @@ Route::middleware(['auth'])->group(function (){
     Route::get('hotels/{slug}', [HotelController::class, 'show']);
     Route::put('hotels', [HotelController::class, 'update']);
 
-});
+    Route::get('reservations', [ReservationController::class, 'index']);
+    Route::post('reservations', [ReservationController::class, 'store']);
+    Route::get('reservations/{id}', [ReservationController::class, 'show']);
+
+    Route::put('reservations', [ReservationController::class, 'update']);
+// });
 
 Route::get('m', function () {
 
