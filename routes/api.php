@@ -32,11 +32,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get('hotels/comments/rates', [HotelController::class, 'get_comments_and_rates']);
     Route::get('hotels/comments', [HotelController::class, 'get_comments']);
 
+    Route::get('reservations/get/client', [ReservationController::class, 'get_reservation_client']);
+    Route::get('reservations/get', [ReservationController::class, 'get_reservation_by_id']);
     Route::get('reservations/{id}', [ReservationController::class, 'get']);
     Route::get('reservation_status/{id}/{status}', [ReservationController::class, 'change_status_reservation']);
-
     Route::get('reservations-card/{id}', [ReservationController::class, 'get_card']);
     Route::get('reservations-code/{code}', [ReservationController::class, 'getReservationCode']);
     Route::get('cards/encrypt', [ControllersReservationController::class, 'encrypt_cards']);
+    Route::post('reservations/create', [ReservationController::class, 'create_reservation']);
 
 // });
