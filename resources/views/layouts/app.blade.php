@@ -31,27 +31,28 @@
 
             <div class="page-content">
                 <div class="container-fluid">
+                    <div id="{{$vueActive}}">
 
-                    <!-- Breadcrumb -->
-                    <x-breadcrumb
-                        :breadcrumb="$breadcrumb"
-                    ></x-breadcrumb>
+                        <!-- Breadcrumb -->
+                        <x-breadcrumb
+                            :breadcrumb="$breadcrumb"
+                        ></x-breadcrumb>
 
-                    @if(session()->has('success'))
-                    <x-status-alert color="success" status="Hecho" 
-                        mensaje="Proceso completado correctamente."
-                        icono="ri-check-double-line"
-                    ></x-status-alert>
-                    @endif
-                    @if(session()->has('error'))
-                    <x-status-alert color="danger" status="Error"
-                        mensaje="El proceso no pudo ser completado correctamente."
-                        icono="ri-error-warning-line"
-                    ></x-status-alert>
-                    @endif
+                        @if(session()->has('success'))
+                        <x-status-alert color="success" status="Hecho" 
+                            mensaje="Proceso completado correctamente."
+                            icono="ri-check-double-line"
+                        ></x-status-alert>
+                        @endif
+                        @if(session()->has('error'))
+                        <x-status-alert color="danger" status="Error"
+                            mensaje="El proceso no pudo ser completado correctamente."
+                            icono="ri-error-warning-line"
+                        ></x-status-alert>
+                        @endif
 
-                    {{ $slot }}
-
+                        {{ $slot }}
+                    </div>
                 </div>
                 <!-- container-fluid -->
             </div>

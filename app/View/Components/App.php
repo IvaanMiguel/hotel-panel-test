@@ -9,13 +9,15 @@ use Illuminate\View\Component;
 class App extends Component
 {
     public $breadcrumb;
-    /**
-     * Create a new component instance.
-     */
-    public function __construct($breadcrumb = array("main_title" => "", "second_level" => "", "ref" => "users"))
+    public $vueActive;
+
+    public function __construct($breadcrumb = array("main_title" => "", "second_level" => "", "ref" => "rooms"), 
+    $vueActive = "app")
     {
-        $this->breadcrumb = $breadcrumb;
+        $this -> breadcrumb = $breadcrumb;
+        $this -> vueActive = $vueActive;
     }
+
 
     /**
      * Get the view / contents that represent the component.

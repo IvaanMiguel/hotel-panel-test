@@ -51,7 +51,7 @@ Route::get('e', function(){
 
     Route::view('home', 'admin.dashboard');
     // rutas rooms
-    Route::get('rooms', [RoomController::class, 'index'])->middleware('permission:rooms.get');
+    Route::get('rooms', [RoomController::class, 'index'])->middleware('permission:rooms.get')->name('rooms');
     Route::get('rooms/{room_slug}/{hotel_slug}', [RoomController::class, 'show'])->middleware('permission:rooms.get');
     Route::post('rooms', [RoomController::class, 'store'])->middleware('permission:rooms.add');
     Route::put('rooms', [RoomController::class, 'update'])->middleware('permission:rooms.edit');

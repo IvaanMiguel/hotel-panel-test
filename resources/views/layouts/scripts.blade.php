@@ -13,6 +13,21 @@
     </div>
 </div>
 
+<!--Rutas en vue-->
+@routes
+
+<!--Permisos en vue-->
+<script>
+    @auth
+        window.Permissions = @json(Auth::user()->allPermissions);
+    @else
+        window.Permissions = [];
+    @endauth
+</script>
+
+<!--VUE-->
+@vite('resources/js/app.js')
+
 <!-- JAVASCRIPT -->
 <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>

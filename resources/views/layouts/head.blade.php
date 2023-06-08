@@ -6,6 +6,7 @@
 <meta content="Themesbrand" name="author" />
 <!-- App favicon -->
 <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 {{ $slot }}
 
@@ -19,3 +20,5 @@
 <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- custom Css-->
 <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+
+<link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
