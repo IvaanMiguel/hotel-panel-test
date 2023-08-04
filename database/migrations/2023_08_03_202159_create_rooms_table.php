@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coupons', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('hotel_id')->references('id')->on('hotels')->onDelete('set null');
+            $table->foreignId('type_id')->references('id')->on('types')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('coupons');
+        Schema::dropIfExists('rooms');
     }
 };
