@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('rate_schedule', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('rate_id')->references('id')->on('rates')->onDelete('cascade');
-            $table->foreignId('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
+            $table->foreignId('rate_id')    ->references('id')->on('rates')    ->cascadeOnDelete();
+            $table->foreignId('schedule_id')->references('id')->on('schedules')->cascadeOnDelete();
             $table->timestamps();
         });
     }

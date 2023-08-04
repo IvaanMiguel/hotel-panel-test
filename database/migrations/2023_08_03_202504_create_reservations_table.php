@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('set null');
-            $table->foreignId('room_id')  ->references('id')->on('rooms')  ->onDelete('set null');
+            $table->foreignId('client_id')->references('id')->on('clients')->cascadeOnDelete();
+            $table->foreignId('room_id')  ->references('id')->on('rooms')  ->cascadeOnDelete();
             $table->timestamps();
         });
     }
