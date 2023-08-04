@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
+
+    public function coupons(){
+        return $this->hasMany(Coupon::class);
+    }
+
+    public function rooms(){
+        return $this->hasMany(Room::class);
+    }
 }

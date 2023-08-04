@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     use HasFactory;
+
+    public function rates(){
+        return $this->belongsToMany(Rate::class);
+    }
 }
