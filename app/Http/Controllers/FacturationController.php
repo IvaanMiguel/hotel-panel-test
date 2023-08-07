@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bill;
+use App\Models\Facturation;
 use Illuminate\Http\Request;
 
-class BillController extends Controller
+class FacturationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class BillController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bill $bill)
+    public function show(Facturation $facturation)
     {
         //
     }
@@ -42,7 +42,7 @@ class BillController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bill $bill)
+    public function edit(Facturation $facturation)
     {
         //
     }
@@ -50,7 +50,7 @@ class BillController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bill $bill)
+    public function update(Request $request, Facturation $facturation)
     {
         //
     }
@@ -58,7 +58,7 @@ class BillController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bill $bill)
+    public function destroy(Facturation $facturation)
     {
         //
     }

@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->longText('message');
+            $table->longText('response');
+            $table->foreignId('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('no action');
+            $table->set('status', ['atendido', 'pendiente', 'archivado']);
             $table->timestamps();
         });
     }
