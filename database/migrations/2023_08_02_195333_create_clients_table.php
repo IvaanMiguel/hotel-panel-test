@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('phone');
+            $table->string('phone_number');
             $table->string('password');
             $table->boolean('subscribed');
             $table->foreignId('country_id')->references('id')->on('countries')->onDelete('no action');
