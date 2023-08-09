@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('exp_month', 2);
             $table->string('exp_year', 4);
             $table->set('type_card', ['debit', 'credit']);
+
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });

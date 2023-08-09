@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -25,6 +26,10 @@ class ClientController extends Controller
         $clients_by_country = Client::with('country')
                     ->groupBy('contry.name')
                     ->get();
+
+        $countries = Country::all();
+
+
     }
 
     /**
