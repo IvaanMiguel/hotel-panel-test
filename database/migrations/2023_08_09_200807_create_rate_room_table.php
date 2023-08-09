@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::create('rate_room', function (Blueprint $table) {
             $table->id();
-            $table->string('action');
-            $table->string('module');
-            $table->integer('second_id');
-            $table->longText('description');
-            $table->string('route');
+            $table->double('default_price');
+            $table->double('default_extra_per_person');
 
-            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('rate_id')->references('id')->on('rates')->cascadeOnDelete();
+            $table->foreignId('room')->references('id')->on('rooms')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('logs');
+        Schema::dropIfExists('rate_room');
     }
 };

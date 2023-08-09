@@ -22,8 +22,15 @@ return new class extends Migration
             $table->set('exchange', ['MXN', 'USD', 'EUR']);
             $table->integer('min_nights')->nullable();
             $table->integer('min_amount')->nullable();
+            $table->integer('uses_count');
+            $table->integer('uses_limit')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
 
+            $table->foreignId('hotel_id')->nullable()->references('id')->on('hotels')->onDelete('cascade');
+            $table->foreignId('rate_id')->nullable()->references('id')->on('rates')->onDelete('cascade');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }
