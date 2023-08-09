@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->integer('stock');
+            $table->integer('reserved');
+
+            $table->foreignId('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

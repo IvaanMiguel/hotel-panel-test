@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->double('default_price');
+            $table->double('default_extra_per_person');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
