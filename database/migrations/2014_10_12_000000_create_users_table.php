@@ -20,6 +20,7 @@ return new class extends Migration
             $table->rememberToken();
 
             $table->foreignId('hotel_id')->nullable()->references('id')->on('hotels')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

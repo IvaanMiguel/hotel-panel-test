@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('type_id')->constrained()->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

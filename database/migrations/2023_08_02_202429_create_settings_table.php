@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('google_recaptcha_public_key');
+            $table->string('google_recaptcha_private_key');
+            $table->string('production_stripe_private_key');
+            $table->string('production_stripe_public_key');
+            $table->string('test_stripe_private_key');
+            $table->string('test_stripe_public_key');
+            $table->string('email');
+            $table->string('usd_value');
+            $table->string('eur_value');
+            $table->boolean('production');
             $table->timestamps();
         });
     }
