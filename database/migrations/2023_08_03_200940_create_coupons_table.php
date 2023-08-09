@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->longText('description');
+            $table->string('code');
+            $table->double('amount')->nullable();
+            $table->double('price_per_night')->nullable();
+            $table->set('type', ['amount', 'percentage']);
+            $table->set('exchange', ['MXN', 'USD', 'EUR']);
+            $table->integer('min_nights')->nullable();
+            $table->integer('min_amount')->nullable();
 
 
             $table->timestamps();
