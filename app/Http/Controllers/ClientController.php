@@ -7,12 +7,24 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    public $breadcrum_info = array(
+        "main_title" => "Clientes",
+        "second_level" => "",
+        "add_button" => false
+      );
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $clients = Client::with('country')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+
+        $clients_by_country = Client::with('country')
+                    ->groupBy('contry.name')
+                    ->get();
     }
 
     /**
