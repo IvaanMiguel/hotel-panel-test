@@ -26,9 +26,16 @@ class LogController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public static function store($user_id, $action, $second_id, $description, $module, $route)
     {
-        //
+        $log = new Log();
+        $log->user_id = $user_id;
+        $log->action = $action;
+        $log->second_id = $second_id;
+        $log->description = $description;
+        $log->module = $module;
+        $log->route = $route;
+        $log->save();
     }
 
     /**

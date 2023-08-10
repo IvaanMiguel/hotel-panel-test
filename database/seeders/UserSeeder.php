@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -17,11 +18,15 @@ class UserSeeder extends Seeder
         $values = json_decode(file_get_contents('database/jsons/users.json'), true);
 
         foreach($values as $user){
-            User::create([
+            $user_model = User::create([
                 'name' => $user['name'],
                 'email' => $user['email'],
-                'password' => Hash::make($user['password'])
+                'password' => Hash::make($user['password']),
+                // 'role_id' => $user['role_id']
             ]);
+
+            $role = Role::find($user['role_id']);
+            $user_model->assignRole($role);
         }
     }
 }
