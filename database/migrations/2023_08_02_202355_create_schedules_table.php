@@ -16,8 +16,6 @@ return new class extends Migration
             $table->date('date');
             $table->integer('stock');
             $table->integer('reserved');
-            $table->double('new_price')->nullable()->default(null);
-            $table->double('new_extra_per_person')->nullable()->default(null);
 
             $table->foreignId('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->softDeletes();
