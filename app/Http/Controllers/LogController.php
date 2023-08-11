@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Log;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\error;
+
 class LogController extends Controller
 {
     /**
@@ -35,6 +37,7 @@ class LogController extends Controller
         $log->description = $description;
         $log->module = $module;
         $log->route = $route;
+        error_log(json_encode($log));
         $log->save();
     }
 

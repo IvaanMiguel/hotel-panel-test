@@ -19,7 +19,18 @@ class PermissionSeeder extends Seeder
        $administrador = Role::create(['name' => 'Administrador']);
 
        Permission::create(['name' => 'users.get']);
-       $sistemas->givePermissionTo(['users.get']);
+       Permission::create(['name' => 'users.create']);
+       Permission::create(['name' => 'users.edit']);
+       Permission::create(['name' => 'users.delete']);
+
+       
+       $sistemas->givePermissionTo([
+        'users.get',
+        'users.create',
+        'users.edit',
+        'users.delete'
+    ]);
        $administrador->givePermissionTo(['users.get']);
+       
     }
 }

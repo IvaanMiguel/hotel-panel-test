@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,14 @@ Route::get('/', function () {
 // Auth::loginUsingId(1);
 // Auth::logout();
 Route::get('/home', [DashboardController::class, 'index']);
+
+Route::middleware('auth')->group(function(){    
+   
+    Route::controller(UserController::class)->prefix('/users')->group(function(){
+        Route::get('/', 'index')->middleware('permission:users.get');
+        Route::post('/', 'store')->middleware('permission:users.create');
+        Route::get('/pit', 'update')->middleware('permission:users.edit');
+        Route::get('/{email?}', 'show')->middleware('permission:users.get');  
+
+    });
+});
