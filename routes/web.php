@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\ClientController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -28,8 +29,16 @@ Route::middleware('auth')->group(function(){
     Route::controller(UserController::class)->prefix('/users')->group(function(){
         Route::get('/', 'index')->middleware('permission:users.get');
         Route::post('/', 'store')->middleware('permission:users.create');
-        Route::get('/pit', 'update')->middleware('permission:users.edit');
+        Route::get('/', 'update')->middleware('permission:users.edit');
         Route::get('/{email?}', 'show')->middleware('permission:users.get');  
 
+    });
+
+
+    Route::controller(ClientController::class)->prefix('/clients')->group(function(){
+        Route::get('/', 'index')->middleware('permission:clients.get');
+        Route::post('/', 'store')->middleware('permission:clients.add');
+        Route::get('/up' , 'update')->middleware('permission:clients.edit');
+        Route::get('/{email}', 'show')->middleware('permission:clients.get');
     });
 });

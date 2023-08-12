@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 
+use function Laravel\Prompts\error;
+
 class UserController extends Controller
 {
     public function destroy($id){

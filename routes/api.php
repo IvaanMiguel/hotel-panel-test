@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['auth:sanctum'])->group(function(){ 
     
-    Route::controller(UserController::class)->prefix('users')->group(function () {
+    Route::controller(UserController::class)->prefix('/users')->group(function () {
         Route::delete('/{id}','destroy')->middleware('permission:users.delete');
     });
+
+ 
+    Route::controller(ClientController::class)->prefix('/clients')->group(function(){
+        Route::get('/{email}', 'get')->middleware('permission:clients.get');
+        Route::delete('/{id}', 'destroy')->middleware('permission:clients.delete');
+    });
+
 });

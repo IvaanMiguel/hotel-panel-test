@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Daniel Perez",
+        "email": "daniel@test.com",
+        "phone_number": 6123123131,
+        "password": "165264336578854",
+        "subscribed": false,
+        "country_id": 1
+    },    
+    {
+        "name": "John Smith",
+        "email": "john@test.com",
+        "phone_number": 6124534555,
+        "password": "165264336578854",
+        "subscribed": false,
+        "country_id": 2
+    }
+    
+]

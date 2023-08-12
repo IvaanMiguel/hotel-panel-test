@@ -22,13 +22,22 @@ class PermissionSeeder extends Seeder
        Permission::create(['name' => 'users.create']);
        Permission::create(['name' => 'users.edit']);
        Permission::create(['name' => 'users.delete']);
-
+       
+       Permission::create(['name' => 'clients.get']);
+       Permission::create(['name' => 'clients.add']);
+       Permission::create(['name' => 'clients.edit']);
+       Permission::create(['name' => 'clients.delete']);
        
        $sistemas->givePermissionTo([
         'users.get',
         'users.create',
         'users.edit',
-        'users.delete'
+        'users.delete',
+
+        'clients.get',
+        'clients.add',
+        'clients.edit',
+        'clients.delete'
     ]);
        $administrador->givePermissionTo(['users.get']);
        
