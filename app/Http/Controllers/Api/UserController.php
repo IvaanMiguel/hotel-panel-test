@@ -13,28 +13,5 @@ use function Laravel\Prompts\error;
 
 class UserController extends Controller
 {
-    public function destroy($id){
-        
-        $user = User::find($id);
-        // return $user;
-        if($user){
-            LogController::store(Auth::user()->id, 'Eliminar',$id ,'Elimino un usuario', 'users', request()->route()->getPrefix().'/'.$user->email);
-            $user->delete();
-
-            return response()->json([
-                'message' => 'Registro eliminado correctamente',
-                'code' => 2,
-                'data' => null 
-            ]);
-        }
-
-        LogController::store(Auth::user()->id, 'Error', $id, 'Ha ourrido un error', 'users', request()->route()->getPrefix().'/'.$id);
-       
-        return response()->json([
-          'message' => 'Ha ocurrido un error',
-            'code' => -2,
-            'data' => $id 
-        ], 404);
-      
-    }
+   
 }

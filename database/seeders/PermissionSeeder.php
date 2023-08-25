@@ -24,9 +24,14 @@ class PermissionSeeder extends Seeder
        Permission::create(['name' => 'users.delete']);
        
        Permission::create(['name' => 'clients.get']);
-       Permission::create(['name' => 'clients.add']);
+       Permission::create(['name' => 'clients.create']);
        Permission::create(['name' => 'clients.edit']);
        Permission::create(['name' => 'clients.delete']);
+
+       Permission::create(['name' => 'hotels.get']);
+       Permission::create(['name' => 'hotels.create']);
+       Permission::create(['name' => 'hotels.edit']);
+       Permission::create(['name' => 'hotels.delete']);
        
        $sistemas->givePermissionTo([
         'users.get',
@@ -35,9 +40,15 @@ class PermissionSeeder extends Seeder
         'users.delete',
 
         'clients.get',
-        'clients.add',
+        'clients.create',
         'clients.edit',
-        'clients.delete'
+        'clients.delete',
+
+        'hotels.get',
+        'hotels.create',
+        'hotels.get',
+        'hotels.edit',
+        'hotels.delete'
     ]);
        $administrador->givePermissionTo(['users.get']);
        

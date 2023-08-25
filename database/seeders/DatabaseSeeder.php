@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class, 
             UserSeeder::class,
             CountrySeeder::class,
-            ClientSeeder::class
+            ClientSeeder::class,
+            HotelSeeder::class
         ]);
 
     }

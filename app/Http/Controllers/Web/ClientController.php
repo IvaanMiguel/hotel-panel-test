@@ -7,12 +7,14 @@ use App\Http\Controllers\LogController;
 use App\Models\Client;
 use App\Models\Country;
 use App\Models\User;
+use Faker\Guesser\Name;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Validator as ValidationValidator;
 
 use function Laravel\Prompts\error;
 
@@ -61,8 +63,18 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+
+   /*      $request->merge([
+            'name' => 'jeol',
+            'email' => 'jolle@golamil.com',
+            'phone_number' => '1231231323',
+            'password' => '23453412',
+            'password_confirmation' => '23453412',
+            'country_id' => '1'
+        ]); */
     
-        $request->validate([
+        // return $request->all();
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:clients,email',
             'phone_number' => 'required',
@@ -71,14 +83,19 @@ class ClientController extends Controller
 
         ]);
 
-       
-        $request['password'] = Hash::make($request['password']);
-        // return $request->all();
-        $client = Client::create($request->all());
+       if($validator->passes()){
 
-        LogController::store(Auth::user()->id, 'Crear', $client->id, 'Crear un nuevo cliente', 'clients', FacadesRequest::getRequestUri());
+           $request['password'] = Hash::make($request['password']);
+           // return $request->all();
+           $client = Client::create($request->all());
+           
+           LogController::store(Auth::user()->id, 'Crear', $client->id, 'Crear un nuevo cliente', 'clients', FacadesRequest::getRequestUri());
         
-        return back()->with('success', 'ok');
+           return back()->with('success', 'ok');
+        }
+
+
+        return back()->withErrors($validator->errors());
         
     }
 
@@ -87,7 +104,7 @@ class ClientController extends Controller
      */
     public function show($email = null)
     {
-
+    
         $breadcrum_info = $this->breadcrum_info;
         $breadcrum_info['second_level'] = 'Detalles de cliente';
         $breadcrum_info['abb_button'] = false;
@@ -104,7 +121,6 @@ class ClientController extends Controller
         if($client){
 
             LogController::store(Auth::user()->id, 'Consultar', $client->id, 'Consultar un cliente', 'clients', FacadesRequest::getRequestUri());
-
             return view('clients.show', get_defined_vars());
         }
         LogController::store(Auth::user()->id, 'Error', 0, 'No se encontro al cliente', 'clients', FacadesRequest::getRequestUri());
@@ -125,32 +141,88 @@ class ClientController extends Controller
      */
     public function update(Request $request)
     {
+
+
+      /*    $request->merge([
+            'id' => 3,
+            'name' => 'jeol',
+            'email' => 'jolle@golamil.com',
+            'phone_number' => '1231231323',
+            'password' => '23453412',
+            'password_confirmation' => '23453412',
+            'country_id' => '2'
+        ]); */
         $client = Client::find($request->id);
         
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:clients,email,'.$request->id,
             'phone_number' => 'required',
             'password' => 'required|confirmed',
             'country_id' => 'required|exists:countries,id'
         ]);
+        if ($validator->passes()){
 
-        if($client->update($request->all())){
-            LogController::store(Auth::user()->id, 'Actualizar' ,$client->id, 'Actualizar cliente', 'clients', FacadesRequest::getRequestUri());
+            $client = Client::find($request->id);
+
+            if($client && $client->update($request->all())){
+                LogController::store(Auth::user()->id, 'Actualizar' ,$client->id, 'Actualizar cliente', 'clients', FacadesRequest::getRequestUri());
         
-            return back()->with('success','ok');
+                return back()->with('success','ok');
+            }
         }
         
         LogController::store(Auth::user()->id, 'Error', 0, 'Error al actualizar un cliente', 'clients', FacadesRequest::getRequestUri());
     
-        return back()->with('error', 'ha ocurrido un error');
+        return back()->withErrors($validator->errors());
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //api
+    public function destroy($id){
+        
+        $user = User::find($id);
+     
+        if($user){
+            LogController::store(Auth::user()->id, 'Eliminar',$id ,'Elimino un usuario', 'users', request()->route()->getPrefix().'/'.$user->email);
+            $user->delete();
+
+            return response()->json([
+                'message' => 'Registro eliminado correctamente',
+                'code' => 1,
+                'data' => $id 
+            ]);
+        }
+
+        LogController::store(Auth::user()->id, 'Error', $id, 'Ha ourrido un error', 'users', request()->route()->getPrefix().'/'.$id);
+       
+        return response()->json([
+          'message' => 'Ha ocurrido un error',
+            'code' => -1,
+            'data' => $id 
+        ], 404);
+      
     }
+    
+    public function get($id){
+        $client = Client::with('country')
+                        ->find($id);
+
+        if($client){
+
+            return response()->json([
+                'message' => 'Registro consultado correctamente',
+                'code' => 1,
+                'data' => $client
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Ha ocurrido un error',
+            'code' => -1,
+            'data' => $id
+        ]);
+    }
+ 
 }

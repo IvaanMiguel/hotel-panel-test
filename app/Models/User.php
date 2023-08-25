@@ -25,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'hotel_id'
     ];
     
     /**
@@ -58,5 +59,9 @@ class User extends Authenticatable
 
     public function isPublicador(){
         return $this->roles()->whereIn('name', ['Publicador'])->exists();
+    }
+
+    public function hotel(){
+        return $this->belongsTo(Hotel::class);
     }
 }
