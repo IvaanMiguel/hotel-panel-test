@@ -43,14 +43,14 @@ class HotelController extends Controller
     public function store(Request $request){
 
 
-         $request->merge([
+ /*         $request->merge([
             'name' => 'asad',
             'email' => 'qweqweew'.time(),
             'slug' => 'aeqweqweqwe'.time(),
             'address' => 'qweqwe',
             'url_address' => 'qweqe',
             'phone_number' => '123123'
-        ]); 
+        ]);  */
         
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -81,7 +81,8 @@ class HotelController extends Controller
                     'url' => $name_file,
                     'type' => 'cover',
                     'imageable_type' => Hotel::class,
-                    'imageable_id' => $hotel->id
+                    'imageable_id' => $hotel->id,
+                    'is_cover' => true
                 ]);
 
             }
@@ -98,15 +99,14 @@ class HotelController extends Controller
 
     }
 
-    public function show($slug){
+    public function show($id){
         $breadcrumb_info = $this->breadcrumb_info;
 
         $breadcrumb_info['second_level'] = 'Detalles';
         $breadcrumb_info['add_button'] = false;
 
-        $hotel = Hotel::where('slug', $slug)
-                        ->with('images')
-                        ->first();
+        $hotel = Hotel::with('images')
+                        ->find($id);
 
         if($hotel){
             LogController::store(Auth::user()->id, 'Consultar', $hotel->id, 'consultar un hotel', 'hotels', FacadesRequest::getRequestUri());
@@ -206,5 +206,26 @@ class HotelController extends Controller
             'code' => -1, 
             'data' => $id
         ]);
-    } 
+    }
+    
+    
+    public function get($id){
+
+        $hotel = Hotel::find($id);
+
+        if($hotel){
+
+            return response()->json([
+                'message' => 'Registro consultado correctamente',
+                'code' => 1, 
+                'data' => $hotel
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Ha ocurrido un error',
+            'code' => -1,
+            'data' => $id
+        ]);
+    }
 }

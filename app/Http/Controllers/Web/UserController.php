@@ -83,19 +83,19 @@ class UserController extends Controller
 
     }
 
-    public function show($email = null){
+    public function show($id = null){
         
    
         $breadcrum_info = $this->breadcrum_info;
         $breadcrum_info['second_level'] = 'Perfil de usuario';
         $breadcrum_info['add_buttin'] = false;
         
-        if(is_null($email)){
-            $email = Auth::user()->email;
+        if(is_null($id)){
+            $email = Auth::user()->id;
         }
 
         
-        $user = User::where('email', $email)->first();
+        $user = User::find($id);
 
         if($user){
 

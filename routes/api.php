@@ -36,17 +36,17 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::delete('/{id}', 'destroy')->middleware('permission:clients.delete');
     }); */
 
-    Route::controller(HotelController::class)->prefix('/hotels')->group(function(){
+ /*    Route::controller(HotelController::class)->prefix('/hotels')->group(function(){
         Route::get('/{slug}', 'get')->middleware('permission:hotels.get');
-    });
+    }); */
 });
 
 env('APP_DEBUG') && Route::post('/test', function(Request $request){
     Auth::loginUsingId(1);
-    $res = (new App\Http\Controllers\Web\UserController)->destroy(1 );
+    $res = (new App\Http\Controllers\Web\HotelController)->get(1);
    
  
-    // return $res; 
+    return $res; 
     
     return [
         'res' => $res,

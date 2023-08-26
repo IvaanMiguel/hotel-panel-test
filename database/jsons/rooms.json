@@ -1,0 +1,31 @@
+[
+    {
+        "name": "Habitacion sencilla",
+        "description": "Habitación ejecutiva equipada para el viajero de negocios, con bellas vistas a la ciudad desde su amplio ventanal, para el confort que necesita. Consta de una cama King Size, cómodo escritorio, portamaletas, Kit de cafetera y amplio closet.",
+        "max_people": 2,
+        "cover": "hotel_malecon_sencilla_2.jpg",
+        "slug": "hotel_malecon_sencilla_2.jpg",
+        "hotel_id" : 1,
+        "type_id": 1,
+        "images": [
+             "hotel_malecon_sencilla_1.jp",
+             "hotel_malecon_sencilla_2.jpg"
+
+        ]
+    },
+    {
+        "name": "Habitacion Doble",
+        "description": "Habitación sugerida para el viajero de negocios que aprovecha su estancia para incluir a su familia. Equipada con dos camas, practico escritorio y balcón desde donde logrará apreciar la bella vista a la ciudad.",
+        "max_people": 4,
+        "cover": "hotel_malecon_doble_1.jpg",
+        "slug": "estandar-doble",
+        "hotel_id": 1, 
+        "type_id": 2,
+        "images":[
+            "hotel_malecon_doble_1.jpg",
+            "hotel_malecon_doble_2.jpg",
+            "hotel_malecon_doble_3.jpg"
+        ]
+
+    }
+]
