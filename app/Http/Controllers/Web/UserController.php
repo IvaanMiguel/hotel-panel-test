@@ -43,7 +43,7 @@ class UserController extends Controller
    }
 /*tinker >>  (new App\Http\Controllers\Web\UserController)->store((new Illuminate\Http\Request)->merge(['name' => 'joel', 'email' => 'test@tet.com', 'password' => '123', 'password_confirmation' => '123'])) */
    public function store(Request $request){
-
+/* 
       $request->merge([
             'name' => 'qeqwe',
             'email' => 'joel@mail.com'.time(),
@@ -51,7 +51,7 @@ class UserController extends Controller
             'role_id' => 1,
             'password' => '123',
             'password_confirmation' => '123'
-        ]); 
+        ]);  */
 
         $validator = Validator::make($request->all(), [
                 'name' => 'required',
@@ -111,7 +111,7 @@ class UserController extends Controller
     }
     
     public function update(Request $request){
-
+/* 
         $request->merge([
             'id' => 1,
             'name' => 'qeqwe',
@@ -121,7 +121,7 @@ class UserController extends Controller
             'password' => '123',
             'password_confirmation' => '123'
         ]); 
-       
+        */
         
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -161,7 +161,7 @@ class UserController extends Controller
 
         if($user){
             
-            error_log($user->delete());
+            $user->delete();
 
             return response()->json([
                 'message' => 'Registro eliminado correctamente',
