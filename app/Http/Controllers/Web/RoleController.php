@@ -61,11 +61,12 @@ class RoleController extends Controller
             if($request->has('permissions')){
                 $role->givePermissionTo($request->permissions);
             }
-            LogController::store(Auth::user()->id, 'Crear', 0, 'Creacion de un nuevo perfil', 'roles',  FacadesRequest::getRequestUri());
+            LogController::store(Auth::user()->id, 'Crear', 0, 'Creacion de un nuevo perfil', 'roles', request()->url());
 
             return back()->with('stauts', 'ok');
         }
 
+        LogController::store(Auth::user()->id, 'error', 0, 'error al registrar rol', 'roles', request()->url());
         return back()->withErrors($validator->errors()); 
        }
 
@@ -78,11 +79,11 @@ class RoleController extends Controller
         
         if($role){
 
-            LogController::store(Auth::user()->id, 'Consultar', $role->id, 'consultar un rol', 'roles', FacadesRequest::getRequestUri());
+            LogController::store(Auth::user()->id, 'Consultar', $role->id, 'consultar un rol', 'roles', request()->url());
             return view('roles.show', get_defined_vars());
         }
 
-        LogController::store(Auth::user()->id,'Error', $id ,'intento consultar un rol', 'roles', FacadesRequest::getBaseUrl());
+        LogController::store(Auth::user()->id,'Error', $id ,'intento consultar un rol', 'roles', request()->url());
 
         return back()->with('status', 'error');
     }
@@ -125,14 +126,14 @@ class RoleController extends Controller
                 }
 
 
-                LogController::store(Auth::user()->id, 'Actualizar', $role->id, 'Actualizo un rol', 'roles', FacadesRequest::getRequestUri());
+                LogController::store(Auth::user()->id, 'Actualizar', $role->id, 'Actualizo un rol', 'roles', request()->url());
              
                 // return $role;
                 return back()->with('status', 'ok');
             }
         }
 
-        LogController::store(Auth::user()->id, 'error', $request->id, 'intento actualizar un rol', 'roles', FacadesRequest::getRequestUri());
+        LogController::store(Auth::user()->id, 'error', $request->id, 'intento actualizar un rol', 'roles', request()->url());
 
 
         return back()->withErrors($validator->errors());
@@ -153,6 +154,7 @@ class RoleController extends Controller
 
             $role->delete();
         
+            LogController::store(Auth::user()->id, 'eliminar', $id, 'Eliminar un rol', 'roles', request()->url());
             return response()->json([
                 'message' => 'Registro eliminado correctamente',
                 'code' => 1,
@@ -160,6 +162,7 @@ class RoleController extends Controller
             ]);
         }
 
+        LogController::store(Auth::user()->id, 'error', $id, 'error al eliminar un rol', 'roles', request()->url());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'code' => -1,
@@ -172,6 +175,8 @@ class RoleController extends Controller
         $role = Role::find($id);
 
         if($role){
+
+            LogController::store(Auth::user()->id, 'consultar', $id, 'consultar un rol', 'roles', request()->url());
             return response()->json([
                 'message' => 'Registro consultado correctamente',
                 'code' => 1,
@@ -179,7 +184,7 @@ class RoleController extends Controller
             ]);
         }
 
-
+        LogController::store(Auth::user()->id, 'error', $id, 'Error al consultar rol', 'roles', request()->url());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'code' => -1,

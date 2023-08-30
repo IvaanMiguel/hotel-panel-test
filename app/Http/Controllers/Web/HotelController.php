@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
 use App\Models\Hotel;
 use App\Models\Image;
+use App\Models\Log;
 use Database\Seeders\HotelSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,9 @@ class HotelController extends Controller
 
         $breadcrumb_info['add_button'] = ($is_admin);
 
-        $hotels = Hotel::with('images')->get(); 
+        $hotels = Hotel::with('images')->get();
+
+        LogController::store(Auth::user()->id, 'consultar', 0, 'consultar hoteles', 'hotels', request()->url());
         
         return view('hotels.index', get_defined_vars());    
     }
@@ -86,15 +89,14 @@ class HotelController extends Controller
                 ]);
 
             }
-            LogController::store(Auth::user()->id, 'Registrar', $hotel->id, 'registro de un nuevo hotel', 'hotels', FacadesRequest::getRequestUri());
+            LogController::store(Auth::user()->id, 'Registrar', $hotel->id, 'registro de un nuevo hotel', 'hotels', request()->url());
 
             return back()->with('success', 'ok');
             
         }
 
-    return $validator->errors();
 
-        LogController::store(Auth::user()->id, 'Error', 0, 'Error al registrar un hotel', 'hotels', FacadesRequest::getRequestUri());
+        LogController::store(Auth::user()->id, 'Error', 0, 'Error al registrar un hotel', 'hotels', request()->url());
         return back()->with('status', 'error');
 
     }
@@ -109,12 +111,12 @@ class HotelController extends Controller
                         ->find($id);
 
         if($hotel){
-            LogController::store(Auth::user()->id, 'Consultar', $hotel->id, 'consultar un hotel', 'hotels', FacadesRequest::getRequestUri());
+            LogController::store(Auth::user()->id, 'Consultar', $hotel->id, 'consultar un hotel', 'hotels', request()->url());
             
             return view('hotels.show', get_defined_vars());
         }
 
-        LogController::store(Auth::user()->id, 'Error', 0, 'Error en el servidor', 'hotels', FacadesRequest::getRequestUri());
+        LogController::store(Auth::user()->id, 'Error', 0, 'Error en el servidor', 'hotels', request()->url());
     
         return back()->with('error', 'Error en el servidor');
     }
@@ -178,11 +180,12 @@ class HotelController extends Controller
                     
                 }
 
+                LogController::store(Auth::user()->id, 'Actualizar', $hotel->id, 'Actualizar un hotel', 'hotels', request()->url());
                 return back()->with('status', 'ok');
             }
             
         }
-
+        LogController::store(Auth::user()->id, 'Error', $request->id, 'Error al actualizar un hotel', 'hotels', request()->url());
         return back()->withErrors($validator->errors());
     }
 
@@ -192,8 +195,9 @@ class HotelController extends Controller
 
         if($hotel){
 
-            error_log($hotel->delete());
+            $hotel->delete();
 
+            LogController::store(Auth::user()->id, 'eliminar', $hotel->id, 'eliminar un hotel', 'hotels', request()->url());
             return response()->json([
                 'message' => 'Registro eliminado correctamente',
                 'code' => 1,
@@ -201,6 +205,7 @@ class HotelController extends Controller
             ]);
         }
 
+        LogController::store(Auth::user()->id, 'Error', $id, 'error al eliminar un hotel', 'hotels', request()->url());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'code' => -1, 
@@ -215,6 +220,7 @@ class HotelController extends Controller
 
         if($hotel){
 
+            LogController::store(Auth::user()->id, 'consultar', $id, 'consultar un hotel', 'hotels', request()->url());
             return response()->json([
                 'message' => 'Registro consultado correctamente',
                 'code' => 1, 
@@ -222,6 +228,7 @@ class HotelController extends Controller
             ]);
         }
 
+        LogController::store(Auth::user()->id, 'error', $id, 'Error al obtener hotel', 'hotels', request()->url());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'code' => -1,

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\LogController;
 use App\Models\Image;
 use App\Models\Room;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Validator as ValidationValidator;
 
@@ -18,6 +20,8 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Room::get();
+
+        LogController::store(Auth::user()->id, 'consultar', 0, 'consultar habitaciones', 'rooms', request()->url());
 
         return view('rooms.index', get_defined_vars());
     }
@@ -72,15 +76,12 @@ class RoomController extends Controller
                         'type' => 'cover'
                     ]);
                 }
-                
+                LogController::store(Auth::user()->id, 'registrar', 0, 'registrar habitaciones', 'rooms', request()->url());       
                 return back()->with('status', 'ok');                
             }
         }
 
-
-        return $validator->errors();
-
-
+        LogController::store(Auth::user()->id, 'error', 0, 'error al registrar habitacion', 'rooms', request()->url());
         return back()->withErrors($validator->errors());
     }
 
@@ -92,9 +93,10 @@ class RoomController extends Controller
         $room = Room::find($id);
         
         if($room){
+            LogController::store(Auth::user()->id, 'consultar',0, 'consultar una habitacion', 'rooms', request()->url());
             return view('rooms.show', get_defined_vars());
         }
-
+        LogController::store(Auth::user()->id, 'error', $id, 'error al obtener habitacion', 'rooms', request()->url());
         return back()->with('status', 'error');
     }
 
@@ -164,10 +166,12 @@ class RoomController extends Controller
                     }
                 }
 
+                LogController::store(Auth::user()->id, 'actualizar', $room->id, 'actualizar una habitacion', 'rooms', request()->url());
                 return back()->with('status', 'ok');
             }
         }
 
+        LogController::store(Auth::user()->id, 'actualizar', $request->id, 'actualizar una habitacion', 'rooms', request()->url());
         return back()->withErrors($validator->errors());
     }
 
@@ -181,10 +185,12 @@ class RoomController extends Controller
         if($room && $room->delete()){
             //  return 'ok';
 
+            LogController::store(Auth::user()->id, 'eliminar', $id, 'eliminar una habitacion', 'rooms', request()->url());
             return back()->with('status', 'ok');
         }
 
 
+        LogController::store(Auth::user()->id, 'error', $id, 'error al eliminar una habitacion', 'rooms', request()->url());
         return back()->with('status', 'error');
     }
 
@@ -194,6 +200,7 @@ class RoomController extends Controller
 
         if($room){
 
+            LogController::store(Auth::user()->id, 'consultar', $id, 'consultar una habitacion', 'rooms', request()->url());
             return response()->json([
                 'message' => 'Registro consultado correctamente',
                 'code' => 1, 
@@ -202,6 +209,7 @@ class RoomController extends Controller
         }
 
 
+        LogController::store(Auth::user()->id, 'error', $id, 'error al consultar una habitacion', 'rooms', request()->url());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'code' => -1,

@@ -94,7 +94,7 @@ class ClientController extends Controller
            return back()->with('success', 'ok');
         }
 
-
+        LogController::store(Auth::user()->id, 'Error', 0, 'Error al crear cliente', 'clients', FacadesRequest::getRequestUri());
         return back()->withErrors($validator->errors());
         
     }
@@ -182,11 +182,11 @@ class ClientController extends Controller
      */
     public function destroy($id){
         
-        $user = User::find($id);
+        $client = Client::find($id);
      
-        if($user){
-            LogController::store(Auth::user()->id, 'Eliminar',$id ,'Elimino un usuario', 'users', request()->route()->getPrefix().'/'.$user->email);
-            $user->delete();
+        if($client){
+            LogController::store(Auth::user()->id, 'Eliminar',$id ,'Elimino un cliente', 'users', request()->url().'/'.$client->email);
+            $client->delete();
 
             return response()->json([
                 'message' => 'Registro eliminado correctamente',
@@ -195,7 +195,7 @@ class ClientController extends Controller
             ]);
         }
 
-        LogController::store(Auth::user()->id, 'Error', $id, 'Ha ourrido un error', 'users', request()->route()->getPrefix().'/'.$id);
+        LogController::store(Auth::user()->id, 'Error', $id, 'Ha ourrido un error', 'users', request()->url().'/'.$id);
        
         return response()->json([
           'message' => 'Ha ocurrido un error',
@@ -211,6 +211,7 @@ class ClientController extends Controller
 
         if($client){
 
+            LogController::store(Auth::user()->id, 'Obtener', $id, 'obtener un cliente', 'clients', request()->url());
             return response()->json([
                 'message' => 'Registro consultado correctamente',
                 'code' => 1,
@@ -218,6 +219,7 @@ class ClientController extends Controller
             ]);
         }
 
+        LogController::store(Auth::user()->id, 'Error', $id, 'Error al obtener cliente', 'clients', request()->url());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'code' => -1,

@@ -131,12 +131,14 @@ class SettingController extends Controller
                     }
                     // return $setting->cover;
 
+                    LogController::store(Auth::user()->id, 'actualizar', $request->id, 'actualizar configuracion', 'settings', request()->url());
                     return back()->with('status', 'ok');
                 }
             }
         }
 
 
+        LogController::store(Auth::user()->id, 'error', $request->id, 'Error al actualizar confguracion', 'settings', request()->url());
         return back()->withErrors($validator->errors());
  
     }
@@ -154,6 +156,7 @@ class SettingController extends Controller
         $setting = Setting::find($id);
 
         if($setting){
+            LogController::store(Auth::user()->id, 'consultar', $id, 'consultar configuracion', 'settings', request()->route());
             return response()->json([
                 'message' => 'Registro consultado correctamente',
                 'data' => $setting,
@@ -162,6 +165,7 @@ class SettingController extends Controller
         }
 
 
+        LogController::store(Auth::user()->id, 'error', $id, 'error la consultar configuracion' ,'settings', request()->route());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'data' => $id,

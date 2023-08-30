@@ -163,6 +163,7 @@ class UserController extends Controller
             
             $user->delete();
 
+            LogController::store(Auth::user()->id, 'eliminar', $id, 'eliminar un usuario', 'users', request()->url());
             return response()->json([
                 'message' => 'Registro eliminado correctamente',
                 'code' => 1,
@@ -171,6 +172,7 @@ class UserController extends Controller
 
         }
 
+        LogController::store(Auth::user()->id, 'error', $id, 'error al emimiar un usuario', 'users', request()->url());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'code' => -1,
@@ -182,6 +184,8 @@ class UserController extends Controller
         $user = User::find($id);
 
         if($user){
+
+            LogController::store(Auth::user()->id, 'consulrar', $id, 'consultar un usuario', 'users', request()->url());
             return response()->json([
                 'message' => 'Registro consultado correctamente',
                 'code' => 1,
@@ -189,6 +193,7 @@ class UserController extends Controller
             ]);
         }
 
+        LogController::store(Auth::user()->id, 'error', $id, 'error al consultar un usuario', 'users', request()->url());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'code' => -1,
