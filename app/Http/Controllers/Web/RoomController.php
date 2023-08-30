@@ -144,12 +144,10 @@ class RoomController extends Controller
 
                     $path = $request->file('cover')->storeAs('public/rooms/', $new_file_name);
 
-                    return $path;
-
                     $original_cover = $room->cover;
 
                     if($original_cover && File::exists(public_path().'/storage/rooms/'.$original_cover->url)){
-                       error_log(File::delete(public_path().'/storage/rooms/'.$original_cover->url));
+                       File::delete(public_path().'/storage/rooms/'.$original_cover->url);
                     }
 
                     if($original_cover){

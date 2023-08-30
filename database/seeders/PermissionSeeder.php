@@ -42,6 +42,11 @@ class PermissionSeeder extends Seeder
        Permission::create(['name' => 'roles.create']);
        Permission::create(['name' => 'roles.edit']);
        Permission::create(['name' => 'roles.delete']);
+
+       Permission::create(['name' => 'settings.get']);
+       Permission::create(['name' => 'settings.edit']);
+    //    Permission::create(['name' => 'settings.create']);
+    //    Permission::create(['name' => 'settings.delete']);
        
        $sistemas->givePermissionTo([
         'users.get',
@@ -68,6 +73,11 @@ class PermissionSeeder extends Seeder
         'roles.create',
         'roles.edit',
         'roles.delete',
+
+        'settings.get',
+        'settings.create',
+        'settings.edit',
+        'settings.delete',
     ]);
        $administrador->givePermissionTo(['users.get']);
        

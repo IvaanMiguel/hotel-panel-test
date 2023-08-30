@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             ClientSeeder::class,
             HotelSeeder::class,
-            RoomSeeder::class
+            RoomSeeder::class,
+            SettingSeeder::class
         ]);
 
     }

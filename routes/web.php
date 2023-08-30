@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\HotelController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\RoomController;
+use App\Http\Controllers\Web\SettingController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -70,11 +71,17 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::controller(RoleController::class)->prefix('/roles')->group(function(){
-        Route::get('/', 'index')->middleware('permission:roles.create')->name('roles');
+        Route::get('/', 'index')->middleware('permission:roles.get')->name('roles');
         Route::post('/', 'store')->middleware('permission:roles.create')->name('roles.store');
         Route::put('/', 'update')->middleware('permission:roles.edit')->name('roles.edit');
         Route::delete('/{id}', 'destroy')->middleware('permission:roles.delete')->name('roles.delete');
         Route::get('get/{id}', 'get')->middleware('permission:roles.get')->name('roles.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:roles.get')->name('roles.get');
+    });
+
+    Route::controller(SettingController::class)->prefix('/settings')->group(function(){
+        Route::get('/', 'index')->middleware('permission:settings.get')->name('settings');
+        Route::get('/get/{id}', 'get')->middleware('permission:settings.get')->name('settings.get');
+        Route::post('/', 'update')->middleware('permission:settings.edit')->name('settings.update');
     });
 });
