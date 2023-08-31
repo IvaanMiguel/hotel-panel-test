@@ -16,12 +16,19 @@ use function Ramsey\Uuid\v1;
 
 class RoleController extends Controller
 {
+    public $breadcrumb_info = [
+        'main_title' => 'Roles',
+        'second_level' => '',
+        'add_button' => false
+    ];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $roles = Role::get();
+
+        $breadcrumb_info = $this->breadcrumb_info;
 
         LogController::store(Auth::user()->id, 'Consultar',0, 'Contular todos los perfiles', 'roles' , FacadesRequest::getRequestUri());
 
@@ -79,7 +86,10 @@ class RoleController extends Controller
         
         if($role){
 
+            $breadcrumb_info = $this->breadcrumb_info;
+
             LogController::store(Auth::user()->id, 'Consultar', $role->id, 'consultar un rol', 'roles', request()->url());
+            
             return view('roles.show', get_defined_vars());
         }
 

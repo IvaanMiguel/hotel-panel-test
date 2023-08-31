@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             ClientSeeder::class,
             HotelSeeder::class,
             RoomSeeder::class,
-            SettingSeeder::class
+            SettingSeeder::class,
+            ContactSeeder::class
         ]);
 
     }

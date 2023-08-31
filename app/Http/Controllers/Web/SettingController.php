@@ -14,12 +14,19 @@ use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
+    public $breadcrumb_info = [
+        "main_title" => "Roles",
+        "second_level" => "",
+        "add_button" => false
+    ];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $settings = Setting::first();
+
+        $breadcrumb_info = $this->breadcrumb_info;        
 
         LogController::store(Auth::user()->id, 'Consultar', 0, 'consultar configuracion', 'settings', FacadesRequest::getRequestUri());
 

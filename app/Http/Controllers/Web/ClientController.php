@@ -22,12 +22,11 @@ class ClientController extends Controller
 {
 
     
-    public $breadcrum_info = array(
-      "main_title" => "Clientes",
-      "second_level" => "",
-      "add_button" => false
-    );
-
+    public $breadcrumb_info = [
+        "main_title" => "Clientes",
+        "second_level" => "",
+        "add_button" => false
+    ];
     /**
      * Display a listing of the resource.
      */
@@ -105,9 +104,9 @@ class ClientController extends Controller
     public function show($email = null)
     {
     
-        $breadcrum_info = $this->breadcrum_info;
-        $breadcrum_info['second_level'] = 'Detalles de cliente';
-        $breadcrum_info['abb_button'] = false;
+        $breadcrumb_info = $this->breadcrumb_info;
+        $breadcrumb_info['second_level'] = 'Detalles de cliente';
+        $breadcrumb_info['abb_button'] = false;
 
         $client = Client::where('email', $email)
             ->with('country')

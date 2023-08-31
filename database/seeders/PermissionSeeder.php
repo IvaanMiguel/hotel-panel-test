@@ -47,6 +47,11 @@ class PermissionSeeder extends Seeder
        Permission::create(['name' => 'settings.edit']);
     //    Permission::create(['name' => 'settings.create']);
     //    Permission::create(['name' => 'settings.delete']);
+
+      Permission::create(['name' => 'contacts.get']);
+      Permission::create(['name' => 'contacts.create']);
+      Permission::create(['name' => 'contacts.edit']);
+      Permission::create(['name' => 'contacts.delete']);
        
        $sistemas->givePermissionTo([
         'users.get',
@@ -78,7 +83,14 @@ class PermissionSeeder extends Seeder
         'settings.edit',
         //   'settings.create',
       //   'settings.delete',
-    ]);
+
+         'contacts.get',
+         'contacts.create',
+         'contacts.edit',
+         'contacts.delete',
+
+
+   ]);
        $administrador->givePermissionTo(['users.get']);
        
     }

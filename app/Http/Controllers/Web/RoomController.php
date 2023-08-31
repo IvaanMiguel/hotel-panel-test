@@ -14,12 +14,20 @@ use Illuminate\Validation\Validator as ValidationValidator;
 
 class RoomController extends Controller
 {
+
+     public $breadcrumb_info = [
+        "main_title" => "Roles",
+        "second_level" => "",
+        "add_button" => false
+    ];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $rooms = Room::get();
+
+        $breadcrumb_info = $this->breadcrumb_info;
 
         LogController::store(Auth::user()->id, 'consultar', 0, 'consultar habitaciones', 'rooms', request()->url());
 
@@ -93,10 +101,14 @@ class RoomController extends Controller
         $room = Room::find($id);
         
         if($room){
+            $breadcrumb_info = $this->breadcrumb_info;
+
             LogController::store(Auth::user()->id, 'consultar',0, 'consultar una habitacion', 'rooms', request()->url());
+            
             return view('rooms.show', get_defined_vars());
         }
         LogController::store(Auth::user()->id, 'error', $id, 'error al obtener habitacion', 'rooms', request()->url());
+      
         return back()->with('status', 'error');
     }
 

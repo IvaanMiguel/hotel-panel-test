@@ -37,7 +37,7 @@ class RoomSeeder extends Seeder
                     'type' => 'cover'
                 ]);
 
-                error_log('cover');
+                // error_log('cover');
             }
 
 

@@ -19,19 +19,19 @@ class Hotel extends Model
     ];
 
     public function contacts(){
-        $this->hasMany(Contact::class);
+       return $this->hasMany(Contact::class);
+       // xd
     }
-
     public function rooms(){
-        $this->hasMany(Room::class);
+        return $this->hasMany(Room::class);
     }
 
     public function users(){
-        $this->hasMany(User::class);
+        return $this->hasMany(User::class);
     }
 
     public function reservations(){
-        $this->hasManyThrough(Reservation::class, Room::class);
+        return $this->hasManyThrough(Reservation::class, Room::class);
     }
 
     public function images(){

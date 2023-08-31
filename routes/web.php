@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\ClientController;
+use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\HotelController;
 use App\Http\Controllers\Web\RoleController;
@@ -81,7 +82,16 @@ Route::middleware('auth')->group(function(){
 
     Route::controller(SettingController::class)->prefix('/settings')->group(function(){
         Route::get('/', 'index')->middleware('permission:settings.get')->name('settings');
-        Route::get('/get/{id}', 'get')->middleware('permission:settings.get')->name('settings.get');
+        Route::get('/get/{id}', 'get')->middleware('permission:settings.get')->name('settings.get.by.id');
         Route::post('/', 'update')->middleware('permission:settings.edit')->name('settings.update');
+    });
+
+    Route::controller(ContactController::class)->prefix('/contacts')->group(function(){
+        Route::get('/', 'index')->middleware('permission:contacts.get')->name('contacts');
+        Route::post('/', 'store')->middleware('permission:contacts.create')->name('contacts.store');
+        Route::put('/', 'update')->middleware('permission:contacts.edit')->name('contacts.update');
+        Route::delete('/{id}', 'destroy')->middleware('permission:contacts.delete')->name('contacts.delete');
+        Route::get('/get/{id}', 'get')->middleware('permission:contacts.get')->name('contacts.get.by.id');
+        Route::get('/{id}', 'show')->middleware('permission:contacts.get')->name('contacts.get');
     });
 });
