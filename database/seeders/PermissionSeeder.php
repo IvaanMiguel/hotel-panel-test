@@ -75,9 +75,9 @@ class PermissionSeeder extends Seeder
         'roles.delete',
 
         'settings.get',
-        'settings.create',
         'settings.edit',
-        'settings.delete',
+        //   'settings.create',
+      //   'settings.delete',
     ]);
        $administrador->givePermissionTo(['users.get']);
        
