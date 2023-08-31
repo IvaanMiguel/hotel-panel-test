@@ -2,13 +2,13 @@ import './bootstrap';
 
 import { createApp } from "vue/dist/vue.esm-bundler";
 
-import AdminHotelsIndex from "./Pages/Admin/Hotels/Index.vue";
+import HotelsIndex from "./Pages/Hotels/Index.vue";
 
-import { provide } from 'vue';
+import { provide, ref } from 'vue';
 
 const app = createApp({
     components: {
-        AdminHotelsIndex,
+        HotelsIndex,
     },
     setup() {
         provide(
@@ -17,6 +17,13 @@ const app = createApp({
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content")
         );
+        provide("trigger", 
+            ref({
+                id: '',
+                method: '',
+                params: {}
+            })
+        );
     },
 });
 app.mixin(
@@ -24,7 +31,7 @@ app.mixin(
         methods:{
             route,
             can(permissionName) {
-                return Permissions.indexOf(permissionName) !== -1;
+                return Permissions?.indexOf(permissionName) !== -1;
             },
             getAvatar(name){
                 return `https://ui-avatars.com/api/?name=${name}`;
@@ -35,6 +42,19 @@ app.mixin(
             getStoragePath(path){
                 return path ? `assets/storage/${path}` : "#";
             },
+            previewImageInput(img_id, input_id) {
+                var img = document.querySelector(`#${img_id}`),
+                input = document.querySelector(`#${input_id}`)?.files[0],
+                o = new FileReader();
+                o.addEventListener(
+                "load",
+                function () {
+                    img.src = o.result;
+                },
+                !1
+                ),
+                input && o.readAsDataURL(input);
+            }
         }
     }
 );

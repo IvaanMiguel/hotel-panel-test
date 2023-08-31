@@ -11,7 +11,7 @@ class App extends Component
     public $breadcrumb;
     public $vueActive;
 
-    public function __construct($breadcrumb = array("main_title" => "", "second_level" => "", "ref" => "businesses"), 
+    public function __construct($breadcrumb = array("main_title" => "", "second_level" => "", "ref" => "users"), 
     $vueActive = "app")
     {
         $this -> breadcrumb = $breadcrumb;

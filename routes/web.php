@@ -28,7 +28,7 @@ Route::get('/', function () {
 });
 // Auth::logout();
 // Auth::loginUsingId(1);
-Route::get('/home', [DashboardController::class, 'index']);
+Route::get('/home', [DashboardController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function(){ 
     
