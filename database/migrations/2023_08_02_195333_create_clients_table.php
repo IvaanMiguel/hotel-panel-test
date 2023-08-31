@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('password');
             $table->boolean('subscribed')->default(false);
-            $table->foreignId('country_id')->references('id')->on('countries')->onDelete('no action');
+            $table->foreignId('country_id')->nullable()->constrained()->nullOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

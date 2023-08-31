@@ -52,6 +52,11 @@ class PermissionSeeder extends Seeder
       Permission::create(['name' => 'contacts.create']);
       Permission::create(['name' => 'contacts.edit']);
       Permission::create(['name' => 'contacts.delete']);
+
+      Permission::create(['name' => 'countries.get']);
+      Permission::create(['name' => 'countries.create']);
+      Permission::create(['name' => 'countries.edit']);
+      Permission::create(['name' => 'countries.delete']);
        
        $sistemas->givePermissionTo([
         'users.get',
@@ -88,6 +93,11 @@ class PermissionSeeder extends Seeder
          'contacts.create',
          'contacts.edit',
          'contacts.delete',
+
+         'countries.get',
+         'countries.create',
+         'countries.edit',
+         'countries.delete',
 
 
    ]);

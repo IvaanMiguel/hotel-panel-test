@@ -30,7 +30,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
 env('APP_DEBUG') && Route::post('/test', function(Request $request){
     Auth::loginUsingId(1);
-    $res = (new App\Http\Controllers\Web\ContactController)->destroy(1);
+    $res = (new App\Http\Controllers\Web\CountryController)->get(1);
 
    
  

@@ -30,7 +30,7 @@ class RoleController extends Controller
 
         $breadcrumb_info = $this->breadcrumb_info;
 
-        LogController::store(Auth::user()->id, 'Consultar',0, 'Contular todos los perfiles', 'roles' , FacadesRequest::getRequestUri());
+        LogController::store(Auth::user()->id, 'Consultar',0, 'Contular todos los perfiles', 'roles' , request()->url());
 
         return view('roles.index', get_defined_vars());
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\ClientController;
 use App\Http\Controllers\Web\ContactController;
+use App\Http\Controllers\Web\CountryController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\HotelController;
 use App\Http\Controllers\Web\RoleController;
@@ -93,5 +94,14 @@ Route::middleware('auth')->group(function(){
         Route::delete('/{id}', 'destroy')->middleware('permission:contacts.delete')->name('contacts.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:contacts.get')->name('contacts.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:contacts.get')->name('contacts.get');
+    });
+
+    Route::controller(CountryController::class)->prefix('/countries')->group(function(){
+        Route::get('/', 'index')->middleware('permission:countries.get')->name('countries');
+        Route::post('/', 'store')->middleware('permission:countries.create')->name('countries.store');
+        Route::put('/', 'update')->middleware('permission:countries.edit')->name('countries.update');  
+        Route::delete('/{id}', 'destroy')->middleware('permission:countries.delete')->name('countries.delete');
+        Route::get('/get/{id}', 'get')->middleware('permission:countries.get')->name('countries.get.by.id');
+        Route::get('/{id}', 'show')->middleware('permission:countries.get')->name('countries.get');
     });
 });

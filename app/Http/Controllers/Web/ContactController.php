@@ -82,6 +82,8 @@ class ContactController extends Controller
 
         $breadcrumb_info = $this->breadcrumb_info;
 
+        LogController::store(Auth::user()->id, 'consultar', 0, 'consultar contactos', 'contacts', request()->url());
+
         return view('contacts.show', get_defined_vars());   
     }
 
@@ -165,13 +167,16 @@ class ContactController extends Controller
 
         if($contact){
             
+            LogController::store(Auth::user()->id, 'consultar', $id, 'consultar un contacto', 'contacts', request()->url());
+            
             return response()->json([
                 'message' => 'Registro eliminado correctamente',
                 'code' => 1,
                 'data' => $contact
             ]);
         }
-
+        
+        LogController::store(Auth::user()->id, 'error', $id, 'error al consultar un contacto', 'contacts', request()->url());
         return response()->json([
             'message' => 'Ha ocurrido un error',
             'code' => -1,

@@ -9,7 +9,14 @@ class Country extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'code'
+    ];
+
     public function clients(){
         return $this->hasMany(Client::class);
     }
+
+
 }
