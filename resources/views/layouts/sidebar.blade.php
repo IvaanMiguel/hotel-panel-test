@@ -36,6 +36,13 @@
                         <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
                     </a>
                 </li>
+                @if (Auth::user()->hasPermissionTo('hotels.get'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is('hotels*') ? 'active' : '' }}" href="{{ route('hotels')}}" role="button">
+                        <i class="ri-building-4-line"></i> <span>Hoteles</span>
+                    </a>
+                </li>
+                @endif
                 @if(Auth::check())
                     <li class="nav-item">
                         <a class="nav-link menu-link" href="{{route('logout')}}" role="button">
