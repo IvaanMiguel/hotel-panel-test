@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Card;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,11 +16,10 @@ return new class extends Migration
             $table->id();
             $table->string('name_card');
             $table->string('number');
-            $table->string('cvv', 3);
-            $table->string('exp_month', 2);
-            $table->string('exp_year', 4);
-            $table->set('type_card', ['debit', 'credit']);
-
+            $table->string('cvv');
+            $table->string('exp_month');
+            $table->string('exp_year');
+            $table->set('type_card', Card::$types);
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });

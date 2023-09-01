@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\CardController;
 use App\Http\Controllers\Web\ClientController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\CountryController;
@@ -29,7 +30,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 // Auth::logout();
-// Auth::loginUsingId(1);
+Auth::loginUsingId(1);
 Route::get('/home', [DashboardController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function(){ 
@@ -103,5 +104,12 @@ Route::middleware('auth')->group(function(){
         Route::delete('/{id}', 'destroy')->middleware('permission:countries.delete')->name('countries.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:countries.get')->name('countries.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:countries.get')->name('countries.get');
+    });
+
+    Route::controller(CardController::class)->prefix('/cards')->group(function(){
+        Route::get('/', 'index')->middleware('permission:cards.get')->name('cards');
+        Route::post('/', 'store')->middleware('permission:cards.create')->name('cards.create');
+        Route::put('/', 'update')->middleware('permission:cards.edit')->name('cards.update');
+        Route::delete('/{id}', 'destroy')->middleware('permission:cards.delete')->name('cards.delete');
     });
 });

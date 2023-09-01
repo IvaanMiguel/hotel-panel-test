@@ -57,6 +57,11 @@ class PermissionSeeder extends Seeder
       Permission::create(['name' => 'countries.create']);
       Permission::create(['name' => 'countries.edit']);
       Permission::create(['name' => 'countries.delete']);
+
+      Permission::create(['name' => 'cards.get']);
+      Permission::create(['name' => 'cards.create']);
+      Permission::create(['name' => 'cards.edit']);
+      Permission::create(['name' => 'cards.delete']);
        
        $sistemas->givePermissionTo([
         'users.get',
@@ -99,6 +104,10 @@ class PermissionSeeder extends Seeder
          'countries.edit',
          'countries.delete',
 
+         'cards.get',
+         'cards.create',
+         'cards.edit',
+         'cards.delete'
 
    ]);
        $administrador->givePermissionTo(['users.get']);

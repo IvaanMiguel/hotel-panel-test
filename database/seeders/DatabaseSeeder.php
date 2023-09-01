@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             HotelSeeder::class,
             RoomSeeder::class,
             SettingSeeder::class,
-            ContactSeeder::class
+            ContactSeeder::class,
+            CardSeeder::class
         ]);
 
     }
