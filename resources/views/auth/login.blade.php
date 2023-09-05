@@ -4,10 +4,12 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Hotel</title>
+    <title>
+        SevenCrown Hotel Panel administrativo
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="Panel administrativo" name="description" />
+    <meta content="Devcobaja" name="author" />
 
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
@@ -25,6 +27,9 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="googlebot" content="noindex,nofollow" />
 
 </head>
 
@@ -69,9 +74,11 @@
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
                                     <h5 class="text-primary">
-                                        Hotel
+                                        Sevencrown
                                     </h5>
-                                    <p class="text-muted">Acceso a la plataforma</p>
+                                    <p class="text-muted">
+                                        Accede a la plataforma administrativa
+                                    </p>
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form class="needs-validation" method="POST" action="{{ route('login') }}">
@@ -129,7 +136,7 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <p class="mb-0 text-muted">&copy;
-                                <script>document.write(new Date().getFullYear())</script> © Hotel
+                                <script>document.write(new Date().getFullYear())</script> © Hotel develop by <a href="devcobaja"> DevcoBaja</a>
                             </p>
                         </div>
                     </div>

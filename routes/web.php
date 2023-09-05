@@ -27,10 +27,11 @@ use Whoops\Run;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
+
 });
 // Auth::logout();
-Auth::loginUsingId(1);
+//Auth::loginUsingId(1);
 Route::get('/home', [DashboardController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function(){ 
