@@ -21,8 +21,8 @@ class UserSeeder extends Seeder
             $user_model = User::create([
                 'name' => $user['name'],
                 'email' => $user['email'],
-                'password' => Hash::make($user['password']),
-                // 'role_id' => $user['role_id']
+                'password' => $user['password'],
+                'hotel_id' => $user['hotel_id']
             ]);
 
             $role = Role::find($user['role_id']);

@@ -1,31 +1,117 @@
 [
     {
-        "name": "Habitacion sencilla",
-        "description": "Habitación ejecutiva equipada para el viajero de negocios, con bellas vistas a la ciudad desde su amplio ventanal, para el confort que necesita. Consta de una cama King Size, cómodo escritorio, portamaletas, Kit de cafetera y amplio closet.",
-        "max_people": 2,
-        "cover": "hotel_malecon_sencilla_2.jpg",
-        "slug": "hotel_malecon_sencilla_2.jpg",
-        "hotel_id" : 1,
-        "type_id": 1,
-        "images": [
-             "hotel_malecon_sencilla_1.jp",
-             "hotel_malecon_sencilla_2.jpg"
-
-        ]
+        "name":"Habitacion Sencilla",
+        "description":"Habitación ejecutiva equipada para el viajero de negocios, con bellas vistas a la ciudad desde su amplio ventanal, para el confort que necesita. Consta de una cama King Size, cómodo escritorio, portamaletas, Kit de cafetera y amplio closet.",
+        "max_people":"2",
+        "cover":"hotel_malecon_sencilla_2.jpg",
+        "slug":"estandar-sencilla",
+        "extra_payment_per_person":null,
+        "hotel_id":"1",
+        "type_id":"1",
+        "created_at":"2021-03-19 21:05:18",
+        "updated_at":"2021-03-19 21:05:18"
     },
-    {
-        "name": "Habitacion Doble",
-        "description": "Habitación sugerida para el viajero de negocios que aprovecha su estancia para incluir a su familia. Equipada con dos camas, practico escritorio y balcón desde donde logrará apreciar la bella vista a la ciudad.",
-        "max_people": 4,
-        "cover": "hotel_malecon_doble_1.jpg",
-        "slug": "estandar-doble",
-        "hotel_id": 1, 
-        "type_id": 2,
-        "images":[
-            "hotel_malecon_doble_1.jpg",
-            "hotel_malecon_doble_2.jpg",
-            "hotel_malecon_doble_3.jpg"
-        ]
 
-    }
+    {
+        "name":"Habitacion Doble",
+        "description":"Habitación sugerida para el viajero de negocios que aprovecha su estancia para incluir a su familia. Equipada con dos camas, practico escritorio y balcón desde donde logrará apreciar la bella vista a la ciudad.",
+        "max_people":"2",
+        "cover":"hotel_malecon_doble_1.jpg",
+        "slug":"estandar-doble",
+        "extra_payment_per_person":null,
+        "hotel_id":"1",
+        "type_id":"2",
+        "created_at":"2021-03-19 21:05:18",
+        "updated_at":"2022-04-20 13:09:14"
+    },
+
+    {
+        "name":"Jr Suite",
+        "description":"Amplia y cómoda habitación con hermosa vista desde su balcón y hacia la tranquilidad de nuestra bahía de la Paz, con sus hermosos atardeceres. Cuenta con 2 camas matrimoniales o 1 cama King Size, mini bar, cómoda, amplio escritorio y closet.",
+        "max_people":"2",
+        "cover":"hotel_malecon_jr_suite_2.jpg",
+        "slug":"jr-suite",
+        "extra_payment_per_person":null,
+        "hotel_id":"1",
+        "type_id":"3",
+        "created_at":"2021-03-19 21:05:18",
+        "updated_at":"2021-03-19 21:05:18"
+    },
+
+    {
+        "name":"Master Suite",
+        "description":"Habitación ideal para el descanso y relax de las parejas que gustan de la vista dominante y profunda del mar. Cualquier atardecer robará suspiros en este tipo de habitación, la cual cuenta con una amplia terraza, minibar, escritorio y encantadoras amenidades para su completa estadía.",
+        "max_people":"6",
+        "cover":"hotel_malecon_master_1.jpg",
+        "slug":"master-suite",
+        "extra_payment_per_person":null,
+        "hotel_id":"1",
+        "type_id":"4",
+        "created_at":"2021-03-19 21:05:18",
+        "updated_at":"2021-03-19 21:05:18"
+    },
+
+    {
+        "name":"Habitacion Sencilla",
+        "description":"Acogedora y amplia habitación estándar con 1 cama Queen, perfecta para parejas.",
+        "max_people":"2",
+        "cover":"hotel_centro_sencilla_3.jpg",
+        "slug":"estandar-sencilla",
+        "extra_payment_per_person":null,
+        "hotel_id":"2",
+        "type_id":"1",
+        "created_at":"2021-03-19 21:05:18",
+        "updated_at":"2021-03-19 21:05:18"
+    },
+
+    {
+        "name":"Habitacion Doble",
+        "description":"Cómoda habitación estándar, perfecta para hospedar familias. Equipada con 2 camas matrimoniales, baño privado con amenidades, además de contar con escritorio, lámpara, silla para el área de trabajo y un sillón personal.",
+        "max_people":"4",
+        "cover":"hotel_centro_doble_1.jpg",
+        "slug":"estandar-doble",
+        "extra_payment_per_person":null,
+        "hotel_id":"2",
+        "type_id":"2",
+        "created_at":"2021-03-19 21:05:18",
+        "updated_at":"2021-03-19 21:05:18"
+    },
+
+    {
+        "name":"Jr Suite",
+        "description":"Exclusiva suite que le hará probar las ventajas de un hospedaje superior, al incluir modernas pero cómodas amenidades. Equipada con una cama king, sala de estar con sofá cama, cocineta equipada, comedor y baño privado con amenidades.",
+        "max_people":"2",
+        "cover":"hotel_centro_jr_suite_1.jpg",
+        "slug":"jr-suite",
+        "extra_payment_per_person":null,
+        "hotel_id":"2",
+        "type_id":"3",
+        "created_at":"2021-03-19 21:05:18",
+        "updated_at":"2021-03-19 21:05:18"
+    },
+
+    {
+        "name":"Master Suite",
+        "description":"Amplia habitación, ideal para una estancia grupal o familiar. Elija su Master Suite y disfrute de dos habitaciones que incluyen una cama King y 2 camas matrimoniales, para alojar fácilmente a 6 personas. Cuenta con entrada independiente por habitación.",
+        "max_people":"6",
+        "cover":"hotel_centro_master_2.jpg",
+        "slug":"master-suite",
+        "extra_payment_per_person":null,
+        "hotel_id":"2",
+        "type_id":"4",
+        "created_at":"2021-03-19 21:05:18",
+        "updated_at":"2021-03-19 21:05:18"
+    },
+
+    {
+        "name":"Jr Suite Love",
+        "description":"Con la distinción de un amplio espacio romántico, equipada con una cama King Size , sala de estancia y Jacuzzi.",
+        "max_people":"2",
+        "cover":"hotel_centro_love_1.jpg",
+        "slug":"jr-suite-love",
+        "extra_payment_per_person":null,
+        "hotel_id":"2",
+        "type_id":"5",
+        "created_at":"2021-03-19 21:05:18",
+        "updated_at":"2021-03-19 21:05:18"}
 ]

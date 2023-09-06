@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('phone_number');
-            $table->string('password');
+            $table->string('phone_number')->nullable();
+            $table->string('password')->nullable();
             $table->boolean('subscribed')->default(false);
             $table->foreignId('country_id')->nullable()->constrained()->nullOnDelete();
             $table->softDeletes();

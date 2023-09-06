@@ -22,10 +22,10 @@ class ClientSeeder extends Seeder
                 'name' => $values['name'],
                 'phone_number' => $values['phone_number'],
                 'email' => $values['email'],
-                'password' => Hash::make($values['password']),
+                'password' => $values['password'],
                 'subscribed' => $values['subscribed'],
                 'country_id' => $values['country_id']
             ]);
-        } 
+        }
     }
 }
