@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\RoomController;
 use App\Http\Controllers\Web\SettingController;
 use App\Http\Controllers\Web\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
@@ -33,7 +34,10 @@ Route::get('/', function () {
 // Auth::logout();
 //Auth::loginUsingId(1);
 Route::get('/home', [DashboardController::class, 'index'])->name('home');
-
+Route::view('forgot-password', 'auth.forgot-password')->name('password.request'); //1-  vista donde se pone el correo
+Route::post('password-recover-email', [UserController::class, 'recover_email'])->name('forgot.password.email'); //2- manda el correo
+Route::view('password-recover/{token}/{email}', 'auth.recover-password')->name('recover.password'); // 3-  vista donde se reinicia la contraseña
+Route::post('password-update', [UserController::class, 'password_update'])->name('password.update'); // 4- actualiza la contraseña 
 Route::middleware('auth')->group(function(){ 
     
     Route::controller(HotelController::class)->prefix('/hotels')->group(function(){

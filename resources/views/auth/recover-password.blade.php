@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="{{ route('password.update') }} " method="POST">
+        @csrf
+
+        <input type="hidden" value="{{ request()->email }}" name="email">
+       {{--   @error('token')
+            <p> {{ $message }} </p>
+        @enderror --}}
+        <input type="hidden" value="{{ request()->token }}" name="token">
+   
+     {{--     @error('token')
+            <p> {{ $message }} </p>
+        @enderror --}}
+        <input type="password" name="password">
+        @error('password')
+            <p> {{ $message }} </p>
+        @enderror
+        <input type="password" name="password_confirmation">
+         @error('password_confirmation')
+            <p> {{ $message }} </p>
+        @enderror
+    
+
+        <input type="submit">
+    </form>
+</body>
+</html>

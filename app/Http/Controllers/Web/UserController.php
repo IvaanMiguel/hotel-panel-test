@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Validator as ValidationValidator;
@@ -202,4 +203,58 @@ class UserController extends Controller
             'data' => $id
         ]);
     }
+
+    public function recover_email(Request $request){
+        $request->validate([
+            'email' => 'required|exists:users,email'
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        // $token = Hash::make(uniqid())
+        if($user){
+            $status =  Password::sendResetLink($request->only('email'));
+
+            if($status == Password::RESET_LINK_SENT) {
+                // error_log('ok');
+                return redirect()->back()->with('success', 'ok');
+            }
+        }
+
+        // error_log('error');
+        return redirect()->back()->with('status', 'error');
+
+        
+    }
+
+     public function password_update(Request $request){
+
+        // return $request->all();
+    
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function(User $user, string $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ]);
+
+                // error_log('updated');
+                $user->save();
+            }
+        );
+
+
+        
+        // error_log($status); 
+        return ($status == Password::PASSWORD_RESET) ?
+                                        redirect()->back()->with('status', 'ok'): 
+                                        redirect()->back()->with('status', 'error');
+                                
+    }
+
 }
