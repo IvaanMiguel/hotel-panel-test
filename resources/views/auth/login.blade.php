@@ -55,13 +55,10 @@
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
                                 <a href="index.html" class="d-inline-block auth-logo">
-                                    <img src="{{ asset('assets/assets/images/logo-sm.png') }}"
-                                    alt="">
+                                    <img src="{{ asset('assets/images/seven_crown_logo.png') }}"
+                                    alt="" height="100">
                                 </a>
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">
-                                Hotel
-                            </p>
                         </div>
                     </div>
                 </div>
