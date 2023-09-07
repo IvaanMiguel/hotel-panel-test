@@ -61,7 +61,7 @@ export default function useBasicCRUD({titleBase, form, method_create, cleanFormD
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                    .delete(route(`${destroyRoute}.destroy`, id))
+                    .delete(route(`${destroyRoute}.delete`, id))
                     .then(() => {
                         Swal.fire(
                             "Hecho",

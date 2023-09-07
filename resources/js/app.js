@@ -3,12 +3,14 @@ import './bootstrap';
 import { createApp } from "vue/dist/vue.esm-bundler";
 
 import HotelsIndex from "./Pages/Hotels/Index.vue";
+import UsersIndex from "./Pages/Users/Index.vue";
 
 import { provide, ref } from 'vue';
 
 const app = createApp({
     components: {
         HotelsIndex,
+        UsersIndex
     },
     setup() {
         provide(
