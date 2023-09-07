@@ -79,7 +79,7 @@ Route::middleware('auth')->group(function(){
         Route::get('/', 'index')->middleware('permission:users.get')->name('users');
         Route::post('/', 'store')->middleware('permission:users.create')->name('users.create');
         Route::put('/', 'update')->middleware('permission:users.edit')->name('users.edit');
-        Route::get('/get/{id}', 'get')->middleware('permission:users.get')->name('user.get.by.id');
+        Route::get('/get/{id}', 'get')->middleware('permission:users.get')->name('users.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:users.get')->name('users.show');
         Route::delete('/{id}', 'destroy')->middleware('permission:users.delete')->name('users.delete');
     
