@@ -1,5 +1,22 @@
 [
     {
+        "name": "test",
+        "email": "test@test.com",
+        "password": "test",
+        "role_id": 1,
+        "hotel_id": null
+    },
+
+    {
+        "name": "grivera",
+        "email": "griv@test.com",
+        "password": 1243,
+        "role_id": 2,
+        "hotel_id": null
+    },
+
+
+    {
         "name":"Rivera Guadalupe",
         "email":"grivera@hotelsevencrown.com",
         "role_id":"1",

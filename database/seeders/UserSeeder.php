@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             $user_model = User::create([
                 'name' => $user['name'],
                 'email' => $user['email'],
-                'password' => $user['password'],
+                'password' => Hash::make($user['password']), //quitar hash cuando ya no se usen los usuarios de prueba
                 'hotel_id' => $user['hotel_id']
             ]);
 
