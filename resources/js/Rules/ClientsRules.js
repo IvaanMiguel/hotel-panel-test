@@ -18,12 +18,6 @@ export default function HotelsRules() {
                 required
             ),
         },
-        slug: {
-            required: helpers.withMessage(
-                "Este campo es obligatorio.",
-                required
-            ),
-        },
         phone_number: {
             numeric: helpers.withMessage(
                 "Este campo debe ser numérico.",

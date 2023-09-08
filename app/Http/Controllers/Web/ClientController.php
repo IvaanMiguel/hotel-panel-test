@@ -33,6 +33,7 @@ class ClientController extends Controller
     public function index()
     {
 
+        $breadcrum_info = $this->breadcrumb_info;
         $clients = Client::with('country')       
         ->orderBy('created_at','DESC')
         ->get();

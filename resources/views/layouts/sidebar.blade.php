@@ -50,6 +50,13 @@
                     </a>
                 </li>
                 @endif
+                @if (Auth::user()->hasPermissionTo('clients.get'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is('clients*') ? 'active' : '' }}" href="{{ route('clients')}}" role="button">
+                        <i class="ri-building-4-line"></i> <span>Clientes</span>
+                    </a>
+                </li>
+                @endif
                 @if(Auth::check())
                     <li class="nav-item">
                         <a class="nav-link menu-link" href="{{route('logout')}}" role="button">
