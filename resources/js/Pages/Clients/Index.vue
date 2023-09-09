@@ -1,5 +1,5 @@
 <template>
-    <basic-table
+    <basic-table-new
         :data="variables.clients"
         :tableHeaders="[
             {
@@ -61,18 +61,18 @@
                 v-if="can('clients.get')"
             ></btn-option>
         </template>
-    </basic-table>
+    </basic-table-new>
 
     <clients-add-edit />
 </template>
 
 <script>
-import BasicTable from '@/Components/BasicTable.vue'
+import BasicTableNew from '@/Components/BasicTableNew.vue'
 import BtnOption from '@/Components/BtnOption.vue'
 import ClientsAddEdit from '@/Components/Clients/ClientsAddEdit.vue'
 export default {
     components: {
-        BasicTable,
+        BasicTableNew,
         BtnOption,
         ClientsAddEdit,
     },

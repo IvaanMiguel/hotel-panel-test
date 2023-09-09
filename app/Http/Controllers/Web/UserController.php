@@ -44,8 +44,7 @@ class UserController extends Controller
    }
 /*tinker >>  (new App\Http\Controllers\Web\UserController)->store((new Illuminate\Http\Request)->merge(['name' => 'joel', 'email' => 'test@tet.com', 'password' => '123', 'password_confirmation' => '123'])) */
    public function store(Request $request){
-    
-    return redirect('/login');
+ 
 /* 
       $request->merge([
             'name' => 'qeqwe',

@@ -1,5 +1,5 @@
 <template>
-    <app-modal
+    <app-modal-new
       :modal_id="modal_id"
       base_route="clients"
       :form="form"
@@ -37,11 +37,11 @@
           :required="(validator.phone_number?.required != undefined)"
         ></basic-input>
       </template>
-    </app-modal>
+    </app-modal-new>
 </template>
 
 <script>
-import AppModal from "@/Components/AppModal.vue";
+import AppModalNew from "@/Components/AppModalNew.vue";
 import useValidation from "@/Composables/useValidation.js";
 import useBasicCrud from "@/Composables/useBasicCrud.js";
 import useRules from "@/Rules/ClientsRules.js";
@@ -49,7 +49,7 @@ import BasicInput from '@/Components/BasicInput.vue'
 import { inject, ref, watch, reactive } from 'vue';
 export default {
   components: {
-    AppModal,
+    AppModalNew,
     BasicInput,
   },
   props: {

@@ -51,10 +51,18 @@
                 @endif
                 @endif
                 @if (Auth::user()->hasPermissionTo('users.get'))
-                <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('users*') ? 'active' : '' }}" href="{{ route('users')}}" role="button">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->is('users*') || request()->is('roles*') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="ri-building-4-line"></i> <span>Usuarios</span>
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item {{ request()->is('users*') ? 'active' : '' }}" href="{{ route('users') }}">
+                            Usuarios
+                        </a>
+                        <a class="dropdown-item {{ request()->is('roles*') ? 'active' : '' }}" href="{{ route('roles') }}">
+                            Roles
+                        </a>
+                    </div>
                 </li>
                 @endif
                 @if (Auth::user()->hasPermissionTo('clients.get'))

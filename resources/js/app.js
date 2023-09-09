@@ -7,6 +7,7 @@ import UsersIndex from "./Pages/Users/Index.vue";
 import ClientsIndex from "./Pages/Clients/Index.vue";
 import ContactsIndex from "./Pages/Contacts/Index.vue";
 
+// import RolesIndex from "./Pages/Roles/Index.vue";
 import { provide, ref } from 'vue';
 
 const app = createApp({
@@ -14,7 +15,9 @@ const app = createApp({
         HotelsIndex,
         UsersIndex,
         ClientsIndex,
-        ContactsIndex
+        ContactsIndex,
+
+        // RolesIndex
     },
     setup() {
         provide(
