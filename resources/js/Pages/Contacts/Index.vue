@@ -6,10 +6,6 @@
                 title: 'Nombre',
                 key: 'name',
             },
-            {    
-                title: 'Correo',
-                key: 'email',
-            },
             
         ]"
         table_id="contactsTable"
