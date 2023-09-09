@@ -42,6 +42,13 @@
                         <i class="ri-building-4-line"></i> <span>Hoteles</span>
                     </a>
                 </li>
+                @if (Auth::user()->hasPermissionTo('contacts.get'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is('contacts*') ? 'active' : '' }}" href="{{ route('contacts')}}" role="button">
+                        <i class="ri-building-4-line"></i> <span>Contactos</span>
+                    </a>
+                </li>
+                @endif
                 @endif
                 @if (Auth::user()->hasPermissionTo('users.get'))
                 <li class="nav-item">
