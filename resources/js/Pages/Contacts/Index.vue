@@ -14,12 +14,6 @@
     >
         <template #name="element">
             <div class="d-flex align-items-center">
-                <div class="flex-shrink-0 me-3">
-                    <div class="avatar-sm bg-light rounded p-1" style="overflow: hidden;">
-                        <img :src="element.cover?.full_path ?? getAvatar(element.name)" 
-                        alt="" class="img-fluid d-block">
-                    </div>
-                </div>
                 <div class="flex-grow-1">
                     <h5 class="fs-14 mb-1">
                         {{ element.name }}
