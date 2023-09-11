@@ -1,10 +1,11 @@
 <template>
-    <app-modal-new
+    <app-modal
       :modal_id="modal_id"
       base_route="users"
       :form="form"
       :validator="validator"
       :title="title_modal"
+      :method_put="!method_create"
       :method_create="method_create"
       @onSubmit="methods.submitForm($event)"
     >
@@ -28,14 +29,28 @@
           :errors="validator.email?.$errors"
           :required="(validator.email?.required != undefined)"
         ></basic-input>
+<!--         
+        <basic-input
+          v-model:keyValue="form.role"
+          title="Correo"
+          inputName="role"
+          type="select"
+          :catalog = "roles"
+          catalogKey ="id"
+          catalogLabel ="name"
+          :cols="6"
+          :errors="validator.role?.$errors"
+          :required="(validator.role?.required != undefined)"
+        ></basic-input> -->
+
 
       </template>
-    </app-modal-new>
+    </app-modal>
 </template>
 
 
 <script>
-import AppModalNew from "@/Components/AppModalNew.vue";
+import AppModal from "@/Components/AppModal.vue";
 import useValidation from "@/Composables/useValidation.js";
 import useBasicCrud from "@/Composables/useBasicCrud.js";
 import useRules from "@/Rules/UsersRules.js";
@@ -43,7 +58,7 @@ import BasicInput from '@/Components/BasicInput.vue'
 import { inject, ref, watch, reactive } from 'vue';
 export default {
   components: {
-    AppModalNew,
+    AppModal,
     BasicInput,
   },
   props: {
@@ -51,6 +66,7 @@ export default {
         type: String,
         default: 'modalAddUsers'
     },
+    roles: Array
   },
   setup(props){
 

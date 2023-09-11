@@ -1,5 +1,5 @@
 <template>
-    <basic-table-new
+    <basic-table
         :data="variables.clients"
         :tableHeaders="[
             {
@@ -17,7 +17,7 @@
         ]"
         table_id="clientsTable"
         moduleName="clients"
-        detailsBtn
+        
     >
         <template #name="element">
             <div class="d-flex align-items-center">
@@ -51,28 +51,18 @@
                 {{ element.address }}
             </div>
         </template>
-        <template #tableActions="element">
-            <btn-option
-                :btnRoute="element.url_address"
-                type="listButton"
-                color="info"
-                text="Url de dirección"
-                icon="ri-map-pin-2-fill"
-                v-if="can('clients.get')"
-            ></btn-option>
-        </template>
-    </basic-table-new>
+    </basic-table>
 
     <clients-add-edit />
 </template>
 
 <script>
-import BasicTableNew from '@/Components/BasicTableNew.vue'
+import BasicTable from '@/Components/BasicTable.vue'
 import BtnOption from '@/Components/BtnOption.vue'
 import ClientsAddEdit from '@/Components/Clients/ClientsAddEdit.vue'
 export default {
     components: {
-        BasicTableNew,
+        BasicTable,
         BtnOption,
         ClientsAddEdit,
     },

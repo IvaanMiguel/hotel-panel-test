@@ -1,5 +1,5 @@
 <template>
-    <basic-table-new
+    <basic-table
         :data="variables.users"
         :tableHeaders="[
             {
@@ -14,7 +14,7 @@
         ]"
         table_id="usersTable"
         moduleName="users"
-        detailsBtn
+       
     >
         <template #name="element">
             <div class="d-flex align-items-center">
@@ -48,28 +48,18 @@
                 {{ element.address }}
             </div>
         </template>
-        <template #tableActions="element">
-            <btn-option
-                :btnRoute="element.url_address"
-                type="listButton"
-                color="info"
-                text="Url de dirección"
-                icon="ri-map-pin-2-fill"
-                v-if="can('users.get')"
-            ></btn-option>
-        </template>
-    </basic-table-new>
-
-    <users-add-edit />
+    </basic-table>
+    <!-- :roles = "variables.roles" -->
+    <users-add-edit  />
 </template>
 
 <script>
-import BasicTableNew from '@/Components/BasicTableNew.vue'
+import BasicTable from '@/Components/BasicTable.vue'
 import BtnOption from '@/Components/BtnOption.vue'
 import UsersAddEdit from '@/Components/Users/UsersAddEdit.vue'
 export default {
     components: {
-        BasicTableNew,
+        BasicTable,
         BtnOption,
         UsersAddEdit,
     },
