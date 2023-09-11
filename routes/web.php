@@ -112,7 +112,7 @@ Route::middleware('auth')->group(function(){
         Route::put('/', 'update')->middleware('permission:contacts.edit')->name('contacts.update');
         Route::delete('/{id}', 'destroy')->middleware('permission:contacts.delete')->name('contacts.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:contacts.get')->name('contacts.get.by.id');
-        Route::get('/{id}', 'show')->middleware('permission:contacts.get')->name('contacts.get');
+        Route::get('/{id}', 'show')->middleware('permission:contacts.get')->name('contacts.show');
     });
 
     //configuraciones
