@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Recuérdame mi contraseña... <a href="auth-signin-basic.html" class="fw-semibold text-primary text-decoration-underline">Haz clic aquí</a></p>
+                            <p class="mb-0"><a href="/" class="fw-semibold text-primary text-decoration-underline">Volver</a></p>
                         </div>
                     </div>
                 </div>
