@@ -6,7 +6,7 @@ import HotelsIndex from "./Pages/Hotels/Index.vue";
 import UsersIndex from "./Pages/Users/Index.vue";
 import ClientsIndex from "./Pages/Clients/Index.vue";
 import ContactsIndex from "./Pages/Contacts/Index.vue";
-import SettingsIndex  from "./Pages/Contacts/index.vue";
+import SettingsIndex  from "./Pages/Settings/index.vue";
 
 // import RolesIndex from "./Pages/Roles/Index.vue";
 import { provide, ref } from 'vue';
