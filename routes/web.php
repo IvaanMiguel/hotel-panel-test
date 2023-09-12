@@ -29,16 +29,23 @@ use Whoops\Run;
 
 Route::get('/', function () {
     return view('auth.login');
-
 });
 // Auth::logout();
 //Auth::loginUsingId(1);
-Route::get('/home', [DashboardController::class, 'index'])->name('home');
-Route::view('forgot-password', 'auth.forgot-password')->name('password.request'); //1-  vista donde se pone el correo
-Route::post('password-recover-email', [UserController::class, 'recover_email'])->name('forgot.password.email'); //2- manda el correo
-Route::view('password-recover/{token}/{email}', 'auth.recover-password')->name('recover.password'); // 3-  vista donde se reinicia la contraseña
-Route::post('password-update', [UserController::class, 'password_update'])->name('password.update'); // 4- actualiza la contraseña 
-Route::middleware('auth')->group(function(){ 
+
+Route::view('forgot-password', 'auth.forgot-password')->name('password.request'); 
+//1-  vista donde se pone el correo
+Route::post('password-recover-email', [UserController::class, 'recover_email'])->name('forgot.password.email'); 
+//2- manda el correo
+Route::view('password-recover/{token}/{email}', 'auth.recover-password')->name('recover.password'); 
+// 3-  vista donde se reinicia la contraseña
+Route::post('password-update', [UserController::class, 'password_update'])->name('password.update'); 
+// 4- actualiza la contraseña 
+
+
+Route::middleware('auth')->group(function(){
+
+    Route::get('/home', [DashboardController::class, 'index'])->name('home'); 
     
     Route::controller(HotelController::class)->prefix('/hotels')->group(function(){
         Route::get('/', 'index')->middleware('permission:hotels.get')->name('hotels');
