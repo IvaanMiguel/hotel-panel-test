@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Helpers\Helpers;
 use App\Mail\RecoverPasswordEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,6 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -70,6 +72,19 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token){
         Mail::to($this->email)->send(new RecoverPasswordEmail($token, $this->email));
+    }
 
+    public function images(){
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function avatar(){
+        return $this->images()->where('type', 'avatar')->first();
+    }
+
+    public function getAvatarPathAttribute(){
+        return $this->avatar()? 
+            URL::to('/public/users/'. $this->avatar()->url): 
+            null;
     }
 }

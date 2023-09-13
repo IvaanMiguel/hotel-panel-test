@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
+use App\Models\Image;
 use App\Models\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Request as FacadesRequest;
@@ -47,9 +49,8 @@ class UserController extends Controller
    }
 /*tinker >>  (new App\Http\Controllers\Web\UserController)->store((new Illuminate\Http\Request)->merge(['name' => 'joel', 'email' => 'test@tet.com', 'password' => '123', 'password_confirmation' => '123'])) */
    public function store(Request $request){
- 
-/* 
-      $request->merge([
+/*  
+    $request->merge([
             'name' => 'qeqwe',
             'email' => 'joel@mail.com'.time(),
             'hotel_id' => 1,
@@ -57,13 +58,16 @@ class UserController extends Controller
             'password' => '123',
             'password_confirmation' => '123'
         ]);  */
+        // + 'avatar' => {archivo avatar}
+      
 
         $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'email' => 'required|unique:users',
                 'password' => 'required|confirmed',
                 'hotel_id' => 'sometimes|exists:hotels,id',
-                'role_id' => 'sometimes|exists:roles,id'
+                'role_id' => 'sometimes|exists:roles,id',
+                'avatar' => 'sometimes|image'
             ]);
         
 
@@ -77,7 +81,26 @@ class UserController extends Controller
                 $user->assignRole($request->role_id);
             }
 
-            #va
+            if($request->hasFile('avatar')){
+
+                $file = $request->file('avatar');
+                
+                $name_file = $user->name.'_'.time().'_avatar.'.$file->getClientOriginalExtension();
+
+                $path = $request->file('avatar')->storeAs(
+                    'public/users/',
+                    $name_file
+                );
+
+                $image = Image::create([
+                    'url' => $name_file,
+                    'type' => 'avatar',
+                    'imageable_type' => User::class,
+                    'imageable_id' => $user->id,
+    
+                ]);
+           
+            }
     
             LogController::store(Auth::user()->id, 'Registrar', $user->id, 'registro de un nuevo usuario','users',FacadesRequest::getRequestUri());
             return back()->with('success', 'ok');
@@ -116,24 +139,25 @@ class UserController extends Controller
     }
     
     public function update(Request $request){
-/* 
-        $request->merge([
-            'id' => 1,
+
+    /*     $request->merge([
+            'id' => 49,
             'name' => 'qeqwe',
             'email' => 'joel@mail.com'.time(),
             'hotel_id' => 1,
             'role_id' => 1,
             'password' => '123',
             'password_confirmation' => '123'
-        ]); 
-        */
+        ]);  */
+            // + 'avatar' => {archivo avatar}
         
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|unique:users,email,'.$request->id,
             'hotel_id' => 'sometimes|exists:hotels,id',
             'role_id' => 'sometimes|exists:roles,id',
-            'password' => 'sometimes|confirmed'
+            'password' => 'sometimes|confirmed',
+            'avatar' => 'sometimes|image'
         ]);
 
         if($validator->passes()){
@@ -148,7 +172,37 @@ class UserController extends Controller
                 
                 LogController::store(Auth::user()->id, 'Actualizar', $user->id, 'Actualizo un usuario', 'users', FacadesRequest::getRequestUri().'/'.$user->email);
                 // error_log($user);
-                // return $user->hotel;       
+                // return $user->hotel;     
+                if($request->hasFile('avatar')){
+
+                    $avatar_anterior = $user->avatar();
+
+                    if($avatar_anterior){
+                     // delete   
+                        if(File::exists(public_path().'/storage/users/'.$avatar_anterior->url)){
+                            File::delete(public_path().'/storage/users/'.$avatar_anterior->url);
+                        }
+
+                        $avatar_anterior->delete();
+                    }
+
+                    $file = $request->file('avatar');
+
+                    $name_file = $user->name.'_'.time().'_avatar.'.$file->getClientOriginalExtension();
+
+                    $path = $request->file('avatar')->storeAs(
+                        'public/users/',
+                        $name_file
+                    ); 
+
+                  
+                    $image = Image::create([
+                        'url' => $name_file,
+                        'type' => 'avatar',
+                        'imageable_type' => User::class,
+                        'imageable_id' => $user->id,
+                    ]); 
+                }
                 return back()->with('success', 'ok');
             }
             

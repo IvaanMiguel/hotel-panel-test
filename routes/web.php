@@ -30,8 +30,8 @@ use Whoops\Run;
 Route::get('/', function () {
     return view('auth.login');
 });
-// Auth::logout();
-//Auth::loginUsingId(1);
+//  Auth::logout();
+// Auth::loginUsingId(1);
 
 Route::view('forgot-password', 'auth.forgot-password')->name('password.request'); 
 //1-  vista donde se pone el correo
