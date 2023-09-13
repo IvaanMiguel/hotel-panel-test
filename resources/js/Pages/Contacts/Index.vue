@@ -1,21 +1,44 @@
 <template>
     <div class="row">
-        <div class="col-md-2">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <button class="btn btn-primary" @click="filterContacts('pendiente')">Pendientes</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn btn-success" @click="filterContacts('atendido')">Atendidos</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn btn-warning" @click="filterContacts('archivado')">Archivados</button>
-                </li>
-                <li class="list-group-item">
-                    <button class="btn btn-secondary" @click="filterContacts('all')">Limpiar Filtros</button>
-                </li>
-            </ul>
-        </div>
+        <div class="col-md-2 mb-3">
+            <div class="card bg-white">
+              <div class="card-body">
+                <h4 class="fw-medium">Filtros</h4>
+                <ul class="list-unstyled">
+                  <li
+                    class="fw-medium p-2 cursor-pointer"
+                    @click="filterContacts('pendiente')"
+                    :class="{ 'disabled': selectedStatus === 'pendiente', 'selected': selectedStatus === 'pendiente' }"
+                  >
+                    Pendientes
+                  </li>
+                  <li
+                    class="fw-medium p-2 cursor-pointer"
+                    @click="filterContacts('atendido')"
+                    :class="{ 'disabled': selectedStatus === 'atendido', 'selected': selectedStatus === 'atendido' }"
+                  >
+                    Atendidos
+                  </li>
+                  <li
+                    class="fw-medium p-2 cursor-pointer"
+                    @click="filterContacts('archivado')"
+                    :class="{ 'disabled': selectedStatus === 'archivado', 'selected': selectedStatus === 'archivado' }"
+                  >
+                    Archivados
+                  </li>
+                  <li
+                    class="fw-medium p-2 cursor-pointer"
+                    @click="filterContacts('all')"
+                    :class="{ 'disabled': selectedStatus === 'all' }"
+                  >
+                    Limpiar Filtros
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      
+        
         <div class="col-md-10">
             <basic-table
                 :data="filteredContacts"
@@ -78,59 +101,59 @@
   
 
   <script>
-import BasicTable from '@/Components/BasicTable.vue';
-import BtnOption from '@/Components/BtnOption.vue';
-import ContactsAddEdit from '@/Components/Contacts/ContactsAddEdit.vue'
-
-import { ref, watch, onMounted } from 'vue';
-
-export default {
-  components: {
-    BasicTable,
-    BtnOption,
-    ContactsAddEdit,
-  },
-  props: {
-    variables: Object,
-  },
-  setup(props) {
-    const filteredContacts = ref([]);
-    const selectedStatus = ref('all');
-
-    const filterContacts = (status) => {
-      if (props.variables?.contacts) {
-        if (status === 'all') {
-          filteredContacts.value = props.variables.contacts; // Mostrar todos los contactos
-        } else {
-          filteredContacts.value = props.variables.contacts.filter(
-            (contact) => contact.status === status
-          );
-        }
-      }
-    };
-
-    // Función para limpiar los filtros y mostrar todos los contactos
-
-
-    // Observar cambios en variables.contacts y actualizar los contactos filtrados
-    watch(() => props.variables.contacts, () => {
-      filterContacts(selectedStatus.value);
-    });
-
-    // Ejecutar filterContacts al cargar la página
-    onMounted(() => {
-      filterContacts(selectedStatus.value);
-    });
-
-    return {
-      filteredContacts,
-      selectedStatus,
-      filterContacts,
+  import BasicTable from '@/Components/BasicTable.vue';
+  import BtnOption from '@/Components/BtnOption.vue';
+  import ContactsAddEdit from '@/Components/Contacts/ContactsAddEdit.vue'
+  
+  import { ref, watch, onMounted } from 'vue';
+  
+  export default {
+    components: {
+      BasicTable,
+      BtnOption,
       ContactsAddEdit,
-    };
-  },
-};
-</script>
-
-<style scoped>
-</style>
+    },
+    props: {
+      variables: Object,
+    },
+    setup(props) {
+      const filteredContacts = ref([]);
+      const selectedStatus = ref('all');
+  
+      const filterContacts = (status) => {
+        if (props.variables?.contacts) {
+          if (status === 'all') {
+            filteredContacts.value = props.variables.contacts;
+          } else {
+            filteredContacts.value = props.variables.contacts.filter(
+              (contact) => contact.status === status
+            );
+          }
+          selectedStatus.value = status;
+        }
+      };
+  
+      watch(() => props.variables.contacts, () => {
+        filterContacts(selectedStatus.value);
+      });
+  
+      onMounted(() => {
+        filterContacts(selectedStatus.value);
+      });
+  
+      return {
+        filteredContacts,
+        selectedStatus,
+        filterContacts,
+        ContactsAddEdit,
+      };
+    },
+  };
+  </script>
+  
+  <style scoped>
+  .selected {
+    background-color: black;
+    color: white;
+  }
+  </style>
