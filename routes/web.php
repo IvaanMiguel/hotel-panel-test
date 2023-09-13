@@ -115,8 +115,8 @@ Route::middleware('auth')->group(function(){
     //contactos 
     Route::controller(ContactController::class)->prefix('/contacts')->group(function(){
         Route::get('/', 'index')->middleware('permission:contacts.get')->name('contacts');
-        Route::post('/', 'store')->middleware('permission:contacts.create')->name('contacts.store');
-        Route::put('/', 'update')->middleware('permission:contacts.edit')->name('contacts.update');
+        Route::post('/', 'store')->middleware('permission:contacts.create')->name('contacts.create');
+        Route::put('/', 'update')->middleware('permission:contacts.edit')->name('contacts.edit');
         Route::delete('/{id}', 'destroy')->middleware('permission:contacts.delete')->name('contacts.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:contacts.get')->name('contacts.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:contacts.get')->name('contacts.show');

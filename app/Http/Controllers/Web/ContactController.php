@@ -13,7 +13,7 @@ use PHPUnit\TextUI\Configuration\LoggingNotConfiguredException;
 class ContactController extends Controller
 {
     public $breadcrumb_info = [
-        "main_title" => "Roles",
+        "main_title" => "Contactos",
         "second_level" => "",
         "add_button" => false
     ];
