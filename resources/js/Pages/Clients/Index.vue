@@ -1,6 +1,6 @@
 <template>
     <basic-table
-        :data="variables.clients"
+        :data="clientsWithCountryName"
         :tableHeaders="[
             {
                 title: 'Nombre',
@@ -9,6 +9,10 @@
             {    
                 title: 'Correo',
                 key: 'email',
+            },
+            {    
+                title: 'País',
+                key: 'countryName',
             },
             {    
                 title: 'Teléfono',
@@ -60,16 +64,25 @@
 import BasicTable from '@/Components/BasicTable.vue'
 import BtnOption from '@/Components/BtnOption.vue'
 import ClientsAddEdit from '@/Components/Clients/ClientsAddEdit.vue'
+
 export default {
-    components: {
-        BasicTable,
-        BtnOption,
-        ClientsAddEdit,
-    },
-    props:{
-        variables: Object,
-    },
-    setup(props){
-    }
-}
+  components: {
+    BasicTable,
+    BtnOption,
+    ClientsAddEdit,
+  },
+  props: {
+    variables: Object,
+  },
+  setup(props) {
+    const clientsWithCountryName = props.variables.clients.map(client => ({
+      ...client,
+      countryName: client.country ? client.country.name : '',
+    }));
+
+    return {
+      clientsWithCountryName,
+    };
+  },
+};
 </script>
