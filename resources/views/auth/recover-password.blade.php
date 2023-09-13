@@ -71,10 +71,10 @@
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
                                     <h5 class="text-primary">
-                                        Sevencrown
+                                        SevenCrown
                                     </h5>
                                     <p class="text-muted">
-                                        Accede a la plataforma administrativa
+                                        Proceso de recuperación de contraseña
                                     </p>
                                 </div>
                                 <div class="p-2 mt-4">
@@ -91,21 +91,21 @@
                                             <p> {{ $message }} </p>
                                         @enderror --}}
                                         <div class="mb-3">
-                                            <label class="form-label" for="password">Password</label>
+                                            <label class="form-label" for="password">Contraseña</label>
                                             <div class="position-relative auth-pass-inputgroup">
-                                                <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Enter password" id="password" name="password" required>
+                                                <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Ingresar Contraseña" id="password" name="password" required>
                                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
-                                            <div id="passwordInput" class="form-text">Must be at least 8 characters.</div>
+                                            <div id="passwordInput" class="form-text">Debe contener al menos 8 caracteres.</div>
                                             @error('password')
                                                 <p class="text-danger"> {{ $message }} </p>
                                             @enderror
                                         </div>
                                     
                                         <div class="mb-3">
-                                            <label class="form-label" for="password_confirmation">Confirm Password</label>
+                                            <label class="form-label" for="password_confirmation">Confirmar Contraseña</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Confirm password" id="password_confirmation" name="password_confirmation" required>
+                                                <input type="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Confirmar Contraseña" id="password_confirmation" name="password_confirmation" required>
                                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="confirm-password-input"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                             @error('password_confirmation')
@@ -113,7 +113,7 @@
                                             @enderror
                                         </div>
                                     
-                                        <input type="submit" class="btn btn-success w-100" value="Reset Password">
+                                        <input type="submit" class="btn btn-success w-100" value="Restablecer Contraseña">
                                     </form>
                                                                                   
                                 </div>
