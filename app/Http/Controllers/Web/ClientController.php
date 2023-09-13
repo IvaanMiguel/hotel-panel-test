@@ -42,6 +42,8 @@ class ClientController extends Controller
 
         $countries = Country::all();
 
+        $widgets = $this->get_widgets();
+
         LogController::store(Auth::user()->id, 'Cosultar', 0, 'Consutar todos los usuarios', 'users', FacadesRequest::getRequestUri());
 
         // return $clients_by_countries;
@@ -224,6 +226,16 @@ class ClientController extends Controller
             'message' => 'Ha ocurrido un error',
             'code' => -1,
             'data' => $id
+        ]);
+    }
+
+    public function get_widgets(){
+        $max_clients_countryies = Country::withCount('clients')->orderBy('clients_count', 'DESC')->latest()->take(3)->get();
+        return collect([
+            'client_count' => Client::count(),
+            'max_clients_country' => $max_clients_countryies->get(0),
+            'second_max_clients_country' => $max_clients_countryies->get(1),
+            'third_max_clients_country' => $max_clients_countryies->get(2)
         ]);
     }
  
