@@ -313,4 +313,54 @@ class UserController extends Controller
                                 
     }
 
+    public function update_avatar(Request $request){
+
+    /*     $request->merge([
+            'user_id' => 1
+        ]); */
+        // + 'avatar' => {avatar file}
+        
+        $validator = Validator::make($request->all(),[
+            'avatar' => 'required|file',
+            'user_id' => 'required|exists:users,id' 
+        ]);
+
+        if($validator->passes()){
+            $user = User::find($request->user_id);
+               
+            $avatar_anterior = $user->avatar();
+
+            if($avatar_anterior){
+                // delete   
+                if(File::exists(public_path().'/storage/users/'.$avatar_anterior->url)){
+                    File::delete(public_path().'/storage/users/'.$avatar_anterior->url);
+                }
+
+                $avatar_anterior->delete();
+            }
+
+            $file = $request->file('avatar');
+
+            $name_file = $user->name.'_'.time().'_avatar.'.$file->getClientOriginalExtension();
+
+            $path = $request->file('avatar')->storeAs(
+                'public/users/',
+                $name_file
+            ); 
+
+            
+            $image = Image::create([
+                'url' => $name_file,
+                'type' => 'avatar',
+                'imageable_type' => User::class,
+                'imageable_id' => $user->id,
+            ]); 
+
+
+            return back()->with('status', 'ok');
+        }
+
+        return back()->with('status', 'error');
+    }
+
 }

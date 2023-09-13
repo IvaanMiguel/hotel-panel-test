@@ -30,8 +30,8 @@ use Whoops\Run;
 Route::get('/', function () {
     return view('auth.login');
 });
-//  Auth::logout();
-// Auth::loginUsingId(1);
+//   Auth::logout();
+ Auth::loginUsingId(1);
 
 Route::view('forgot-password', 'auth.forgot-password')->name('password.request'); 
 //1-  vista donde se pone el correo
@@ -83,6 +83,8 @@ Route::middleware('auth')->group(function(){
 
     //usuarios 
     Route::controller(UserController::class)->prefix('/users')->group(function(){
+        Route::post('/update-avatar', 'update_avatar')->permission('users.edit')->name('users.update.avatar');
+
         Route::get('/', 'index')->middleware('permission:users.get')->name('users');
         Route::post('/', 'store')->middleware('permission:users.create')->name('users.create');
         Route::put('/', 'update')->middleware('permission:users.edit')->name('users.edit');
