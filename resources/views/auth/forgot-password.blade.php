@@ -43,10 +43,17 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card mt-4">
+
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
-                                    <h5 class="text-primary">Olvidé mi contraseña</h5>
-                                    <p class="text-muted">Por favor, ingrese su dirección de correo electrónico para restablecer su contraseña.</p>
+                                    <h5 class="text-primary">¿Olvidaste tu contraseña?</h5>
+
+                                    <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" colors="primary:#0ab39c" class="avatar-xl"></lord-icon>
+
+                                </div>
+
+                                <div class="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
+                                    Ingresa tu correo electrónico para enviar las instrcciones.
                                 </div>
                                 <div class="p-2">
                                     <form action="{{ route('forgot.password.email') }}" method="POST">
@@ -58,13 +65,17 @@
                                         <div class="mt-4">
                                             <button class="btn btn-success w-100" type="submit">Restablecer Contraseña</button>
                                         </div>
-                                    </form>
+                                    </form><!-- end form -->
                                 </div>
                             </div>
+                            <!-- end card body -->
                         </div>
+                        <!-- end card -->
+
                         <div class="mt-4 text-center">
                             <p class="mb-0"><a href="/" class="fw-semibold text-primary text-decoration-underline">Volver</a></p>
                         </div>
+
                     </div>
                 </div>
             </div>
