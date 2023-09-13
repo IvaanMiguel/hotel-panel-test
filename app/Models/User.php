@@ -53,6 +53,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $appends = [
+        'avatar_path'
+    ];
+
     public function isAdmin(){
         return $this->roles()->whereIn('name', 
         [
@@ -86,5 +90,9 @@ class User extends Authenticatable
         return $this->avatar()? 
             URL::to('/public/users/'. $this->avatar()->url): 
             null;
+    }
+
+    public function logs(){
+        return $this->hasMany(Log::class)->orderBy('created_at', 'DESC');
     }
 }

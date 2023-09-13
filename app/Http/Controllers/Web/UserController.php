@@ -123,9 +123,15 @@ class UserController extends Controller
         }
 
         
-        $user = User::find($id);
+        $user = User::with(['logs','hotel'])->find($id);
 
         if($user){
+            
+            if(!$user->logs->isEmpty()){
+
+                $logs = $user->logs->toQuery();
+                $user->setRelation('logs', $logs->paginate(10));
+            }
 
             LogController::store(Auth::user()->id, 'Consultar', $user->id, 'consultar un usuario', 'users', FacadesRequest::getRequestUri());
 

@@ -32,11 +32,11 @@ class LogController extends Controller
     {
         $log = new Log();
         $log->user_id = $user_id;
-        $log->action = $action;
+        $log->action = strtoupper($action);
         $log->second_id = $second_id;
-        $log->description = $description;
-        $log->module = $module;
-        $log->route = $route;
+        $log->description = strtoupper($description);
+        $log->module = strtoupper($module);
+        $log->route = strtoupper($route);
         error_log(json_encode($log));
         $log->save();
     }
