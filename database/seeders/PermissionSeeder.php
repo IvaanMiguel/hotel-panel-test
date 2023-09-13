@@ -16,6 +16,7 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
        $sistemas = Role::create(['name' => 'Sistemas']);
+       $user = Role::create(['name' => 'User']);
        $administrador = Role::create(['name' => 'Administrador']);
 
        Permission::create(['name' => 'users.get']);
@@ -112,5 +113,6 @@ class PermissionSeeder extends Seeder
    ]);
        $administrador->givePermissionTo(['users.get']);
        
+       $user->givePermissionTo(['users.get']);
     }
 }

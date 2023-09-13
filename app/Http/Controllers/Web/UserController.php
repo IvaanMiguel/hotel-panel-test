@@ -17,7 +17,7 @@ use Illuminate\Validation\Validator as ValidationValidator;
 use Spatie\Backtrace\Arguments\ReduceArgumentsAction;
 use Spatie\Permission\Models\Role;
 
-
+use function Laravel\Prompts\error;
 
 class UserController extends Controller
 {
@@ -32,9 +32,12 @@ class UserController extends Controller
         
         $breadcrum_info = $this->breadcrum_info;
 
-        $users = User::whereHas('roles', function($q){
-            $q->where('name', 'Sistemas');
-        })->get();
+        $users = User::when(!is_null(Auth::user()->hotel_id), function($q){
+            $q->where('hotel_id', Auth::user()->hotel_id);
+        })/* ->whereHas('roles', function($q){
+            $q->where('name', 'Sistemas')
+        }) */
+        ->get();
 
         $roles = Role::all();
 
