@@ -81,8 +81,10 @@
                 @endif
                 @if(Auth::check())
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{route('logout')}}" role="button">
+                    <form action="{{ route('logout') }}" method="POST" style="display: none;" id="logout-form">
                         @csrf
+                    </form>
+                    <a class="nav-link menu-link" href="#" role="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="ri-logout-box-r-line"></i>
                         <span>Cerrar Sesion</span>
                     </a>
