@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
+use function Laravel\Prompts\error;
+
 class PermissionSeeder extends Seeder
 {
     /**
@@ -19,100 +21,23 @@ class PermissionSeeder extends Seeder
        $user = Role::create(['name' => 'User']);
        $administrador = Role::create(['name' => 'Administrador']);
 
-       Permission::create(['name' => 'users.get']);
-       Permission::create(['name' => 'users.create']);
-       Permission::create(['name' => 'users.edit']);
-       Permission::create(['name' => 'users.delete']);
-       
-       Permission::create(['name' => 'clients.get']);
-       Permission::create(['name' => 'clients.create']);
-       Permission::create(['name' => 'clients.edit']);
-       Permission::create(['name' => 'clients.delete']);
+       $data = json_decode(file_get_contents('database/jsons/permissions.json'), true);
 
-       Permission::create(['name' => 'hotels.get']);
-       Permission::create(['name' => 'hotels.create']);
-       Permission::create(['name' => 'hotels.edit']);
-       Permission::create(['name' => 'hotels.delete']);
+       foreach($data as $item){
 
-       Permission::create(['name' => 'rooms.get']);
-       Permission::create(['name' => 'rooms.create']);
-       Permission::create(['name' => 'rooms.edit']);
-       Permission::create(['name' => 'rooms.delete']);
+         $permission = Permission::create([
+            'name' => $item['name'],
+            'modulo' => $item['module'],
+            'description' => $item['description'],
+         ]);
 
-       Permission::create(['name' => 'roles.get']);
-       Permission::create(['name' => 'roles.create']);
-       Permission::create(['name' => 'roles.edit']);
-       Permission::create(['name' => 'roles.delete']);
+         foreach($item['roles'] as $role){
+            $permission->assignRole($role);
+         }
 
-       Permission::create(['name' => 'settings.get']);
-       Permission::create(['name' => 'settings.edit']);
-    //    Permission::create(['name' => 'settings.create']);
-    //    Permission::create(['name' => 'settings.delete']);
-
-      Permission::create(['name' => 'contacts.get']);
-      Permission::create(['name' => 'contacts.create']);
-      Permission::create(['name' => 'contacts.edit']);
-      Permission::create(['name' => 'contacts.delete']);
-
-      Permission::create(['name' => 'countries.get']);
-      Permission::create(['name' => 'countries.create']);
-      Permission::create(['name' => 'countries.edit']);
-      Permission::create(['name' => 'countries.delete']);
-
-      Permission::create(['name' => 'cards.get']);
-      Permission::create(['name' => 'cards.create']);
-      Permission::create(['name' => 'cards.edit']);
-      Permission::create(['name' => 'cards.delete']);
-       
-       $sistemas->givePermissionTo([
-        'users.get',
-        'users.create',
-        'users.edit',
-        'users.delete',
-
-        'clients.get',
-        'clients.create',
-        'clients.edit',
-        'clients.delete',
-
-        'hotels.get',
-        'hotels.create',
-        'hotels.edit',
-        'hotels.delete',
-
-        'rooms.get',
-        'rooms.create',
-        'rooms.edit',
-        'rooms.delete',
-
-        'roles.get',
-        'roles.create',
-        'roles.edit',
-        'roles.delete',
-
-        'settings.get',
-        'settings.edit',
-        //   'settings.create',
-      //   'settings.delete',
-
-         'contacts.get',
-         'contacts.create',
-         'contacts.edit',
-         'contacts.delete',
-
-         'countries.get',
-         'countries.create',
-         'countries.edit',
-         'countries.delete',
-
-         'cards.get',
-         'cards.create',
-         'cards.edit',
-         'cards.delete'
-
-   ]);
-       $administrador->givePermissionTo(['users.get']);
-       
-       $user->givePermissionTo(['users.get']);
-    }
+         foreach(User::get() as $user){
+            $user->assignRole($user->role_id);
+         }
+       }
+ } 
 }

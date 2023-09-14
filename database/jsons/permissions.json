@@ -1,0 +1,327 @@
+[
+    {
+        "name": "users.get",
+        "description": "Obtener usuarios",
+        "module": "users",
+        "roles": [
+            "Sistemas"
+        ] 
+    },
+    {
+        "name": "users.create",
+        "description": "Agregar usuarios",
+        "module": "users",
+        "roles": [
+            "Sistemas"
+        ] 
+    },
+    {
+        "name": "users.edit",
+        "description": "Editar usuarios",
+        "module": "users",
+        "roles": [
+            "Sistemas"
+        ] 
+    },
+    {
+        "name": "users.delete",
+        "description": "Eliminar usuarios",
+        "module": "users",
+        "roles": [
+            "Sistemas"
+        ] 
+    },
+
+        {
+        "name": "clients.get",
+        "description": "Obtener clientes",
+        "module": "clients",
+        "roles": [
+            "Sistemas"
+        ] 
+    },
+    {
+        "name": "clients.create",
+        "description": "Agregar clientes",
+        "module": "clients",
+        "roles": [
+            "Sistemas"
+        ] 
+    },
+    {
+        "name": "clients.edit",
+        "description": "Editar clientes",
+        "module": "clients",
+        "roles": [
+            "Sistemas"
+        ] 
+    },
+    {
+        "name": "clients.delete",
+        "description": "Eliminar clientes",
+        "module": "clients",
+        "roles": [
+            "Sistemas"
+        ] 
+    },
+
+
+    {
+        "name": "hotels.get",
+        "description": "Obtener hoteles",
+        "module": "hotels",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "hotels.create",
+        "description": "Agregar hoteles",
+        "module": "hotels",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+     {
+        "name": "hotels.edit",
+        "description": "Editar hoteles",
+        "module": "hotels",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "hotels.delete",
+        "description": "Eliminar hoteles",
+        "module": "hotels",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+
+
+    {
+        "name": "rooms.get",
+        "description":"Obtener Habiaciones",
+        "module": "rooms",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "rooms.create",
+        "description":"Agregar Habiaciones",
+        "module": "rooms",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+        {
+        "name": "rooms.edit",
+        "description":"Editar Habiaciones",
+        "module": "rooms",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "rooms.delete",
+        "description":"Eliminar Habiaciones",
+        "module": "rooms",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+
+
+    {
+        "name": "roles.get",
+        "description": "Obtener roles",
+        "module": "roles",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "roles.create",
+        "description": "Agregar roles",
+        "module": "roles",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+     {
+        "name": "roles.edit",
+        "description": "Editar roles",
+        "module": "roles",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "roles.delete",
+        "description": "Eliminar roles",
+        "module": "roles",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+
+
+
+    {
+        "name": "settings.get",
+        "description": "Obtener configuracion",
+        "module": "settings",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "settings.edit",
+        "description": "Editar configuracion",
+        "module": "settings",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+
+
+    {
+        "name": "contacts.get",
+        "description":"Obtener contactos",
+        "module": "contacts",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "contacts.create",
+        "description":"Agregar contactos",
+        "module": "contacts",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+        {
+        "name": "contacts.edit",
+        "description":"Editar contactos",
+        "module": "contacts",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "contacts.delete",
+        "description":"Eliminar contactos",
+        "module": "contacts",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+
+
+    {
+        "name": "countries.get",
+        "description": "Obtener paises",
+        "module":"countries",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "countries.create",
+        "description": "Agregar paises",
+        "module": "countries",
+        "roles":[
+            "Sistemas"
+        ]
+    },
+     {
+        "name": "countries.edit",
+        "description": "Editar paises",
+        "module":"countries",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "countries.delete",
+        "description": "Eliminar paises",
+        "module": "countries",
+        "roles":[
+            "Sistemas"
+        ]
+    },
+    
+    
+
+    {
+        "name": "cards.get",
+        "description": "Obtener tarjetas",
+        "module":"cards",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "cards.create",
+        "description": "Agregar tarjetas",
+        "module": "cards",
+        "roles":[
+            "Sistemas"
+        ]
+    },
+     {
+        "name": "cards.edit",
+        "description": "Editar tarjetas",
+        "module":"cards",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "cards.delete",
+        "description": "Eliminar cards",
+        "module": "cards",
+        "roles":[
+            "Sistemas"
+        ]
+    },
+
+
+    {
+        "name": "coupons.get",
+        "description": "Obtener cupones",
+        "module": "coupons",
+        "roles":[
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "coupons.create",
+        "description": "Agrecar cupones",
+        "module": "coupons",
+        "roles":[
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "coupons.edit",
+        "description": "Actualizar cupones",
+        "module": "coupons",
+        "roles":[
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "coupons.delete",
+        "description": "Eliminar cupones",
+        "module": "coupons",
+        "roles": [
+            "Sistemas"
+        ]
+    }
+
+    
+]

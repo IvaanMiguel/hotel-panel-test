@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             RoomSeeder::class,
             SettingSeeder::class,
             ContactSeeder::class,
-            CardSeeder::class
+            CardSeeder::class,
+            CouponSeeder::class
         ]);
 
     }

@@ -198,7 +198,7 @@ class HotelController extends Controller
 
             $hotel->delete();
 
-            LogController::store(Auth::user()->id, 'eliminar', $hotel->id, 'eliminar un hotel', 'hotels', request()->url());
+            LogController::store(Auth::user()->id, 'eliminar', $id, 'eliminar un hotel', 'hotels', request()->url());
             return response()->json([
                 'message' => 'Registro eliminado correctamente',
                 'code' => 1,

@@ -30,7 +30,8 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
 env('APP_DEBUG') && Route::post('/test', function(Request $request){
     Auth::loginUsingId(1);
-    $res = (new App\Http\Controllers\Web\UserController)->update_avatar($request);
+    $res = (new App\Http\Controllers\Web\CouponController)->update($request);
+
 
 
    

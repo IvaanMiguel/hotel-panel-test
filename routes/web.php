@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\CardController;
 use App\Http\Controllers\Web\ClientController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\CountryController;
+use App\Http\Controllers\Web\CouponController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\HotelController;
 use App\Http\Controllers\Web\RoleController;
@@ -31,7 +32,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 //   Auth::logout();
-//  Auth::loginUsingId(1);
+//   Auth::loginUsingId(1);
 
 Route::view('forgot-password', 'auth.forgot-password')->name('password.request'); 
 //1-  vista donde se pone el correo
@@ -129,5 +130,14 @@ Route::middleware('auth')->group(function(){
         Route::get('/', 'index')->middleware('permission:settings.get')->name('settings');
         Route::get('/get/{id}', 'get')->middleware('permission:settings.get')->name('settings.get.by.id');
         Route::post('/', 'update')->middleware('permission:settings.edit')->name('settings.update');
+    });
+
+    Route::controller(CouponController::class)->prefix('/coupons')->group(function(){
+        Route::get('/', 'index')->middleware('permission:coupons.get')->name('coupons');
+        Route::post('/', 'store')->middleware('permission:coupons.create')->name('coupons.create');
+        Route::post('/update', 'update')->middleware('permission:coupons.edit')->name('coupons.edit');
+        Route::delete('/{id}','destroy')->middleware('permission:coupons.delete')->name('coupons.delete');
+        Route::get('/get/{id}', 'get')->middleware('permission:coupons.get')->name('coupons.get.by.id');
+        Route::get('/{id}', 'show')->middleware('permission:coupons.get')->name('coupons.show');
     });
 });

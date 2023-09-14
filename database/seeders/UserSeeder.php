@@ -22,7 +22,8 @@ class UserSeeder extends Seeder
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'password' => Hash::make($user['password']), //quitar hash cuando ya no se usen los usuarios de prueba
-                'hotel_id' => $user['hotel_id']
+                'hotel_id' => $user['hotel_id'],
+                'role_id' => $user['role_id']
             ]);
 
             $role = Role::find($user['role_id']);
