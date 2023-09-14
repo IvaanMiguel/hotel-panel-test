@@ -45,7 +45,7 @@
                 @if (Auth::user()->hasPermissionTo('contacts.get'))
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->is('contacts*') ? 'active' : '' }}" href="{{ route('contacts')}}" role="button">
-                        <i class="ri-building-4-line"></i> <span>Contactos</span>
+                        <i class="ri-phone-line"></i> <span>Contactos</span>
                     </a>
                 </li>
                 @endif
@@ -53,14 +53,14 @@
                 @if (Auth::user()->hasPermissionTo('users.get'))
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {{ request()->is('users*') || request()->is('roles*') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="ri-building-4-line"></i> <span>Usuarios</span>
+                        <i class="ri-user-3-line"></i> <span>Usuarios</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item {{ request()->is('users*') ? 'active' : '' }}" href="{{ route('users') }}">
-                            Usuarios
+                            <i class="ri-user-3-line"></i> Usuarios
                         </a>
                         <a class="dropdown-item {{ request()->is('roles*') ? 'active' : '' }}" href="{{ route('roles') }}">
-                            Roles
+                            <i class="ri-remote-control-2-line"></i> Roles
                         </a>
                     </div>
                 </li>
@@ -68,25 +68,25 @@
                 @if (Auth::user()->hasPermissionTo('clients.get'))
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->is('clients*') ? 'active' : '' }}" href="{{ route('clients')}}" role="button">
-                        <i class="ri-building-4-line"></i> <span>Clientes</span>
+                        <i class="ri-service-line"></i><span>Clientes</span>
                     </a>
                 </li>
                 @endif
                 @if (Auth::user()->hasPermissionTo('settings.get'))
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->is('settings*') ? 'active' : '' }}" href="{{ route('settings')}}" role="button">
-                        <i class="ri-building-4-line"></i> <span>Configuracion</span>
+                        <i class="ri-settings-3-line"></i> <span>Configuracion</span>
                     </a>
                 </li>
                 @endif
                 @if(Auth::check())
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="{{route('logout')}}" role="button">
-                            @csrf
-                            <i class="ri-logout-box-r-line"></i> 
-                            <span>Cerrar Sesion</span>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('logout')}}" role="button">
+                        @csrf
+                        <i class="ri-logout-box-r-line"></i>
+                        <span>Cerrar Sesion</span>
+                    </a>
+                </li>
                 @endif
             </ul>
         </div>
@@ -97,21 +97,21 @@
 </div>
 
 <script>
-            function submitForm() {
-                let form = document.getElementById("logoutForm");
+    function submitForm() {
+        let form = document.getElementById("logoutForm");
 
-                Swal.fire({
-                    title: "¿Estas seguro?",
-                    text: "Se cerrará la sesión.",
-                    icon: "warning",
-                    showCancelButton: true,
-                    cancelButtonText: `Cancelar`,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
+        Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Se cerrará la sesión.",
+            icon: "warning",
+            showCancelButton: true,
+            cancelButtonText: `Cancelar`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
             }
-        </script>
+        });
+    }
+</script>
 
-        <!-- Left Sidebar End -->
+<!-- Left Sidebar End -->

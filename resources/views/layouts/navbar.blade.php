@@ -7,19 +7,19 @@
                 <div class="navbar-brand-box horizontal-logo">
                     <a href="index.html" class="logo logo-dark">
                         <span class="logo-sm">
-                            <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="22">
+                            <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="45">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="17">
+                            <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="45">
                         </span>
                     </a>
 
                     <a href="index.html" class="logo logo-light">
                         <span class="logo-sm">
-                            <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="22">
+                            <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="45">
                         </span>
                         <span class="logo-lg">
-                            <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="17">
+                            <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="45">
                         </span>
                     </a>
                 </div>
