@@ -31,6 +31,14 @@
             "Sistemas"
         ] 
     },
+    {
+        "name": "users.acceder",
+        "description": "Login a cuenta de otro usuario",
+        "module": "users",
+        "roles":[
+            "Sistemas"
+        ]
+    },
 
         {
         "name": "clients.get",

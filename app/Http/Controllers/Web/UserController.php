@@ -369,4 +369,18 @@ class UserController extends Controller
         return back()->with('status', 'error');
     }
 
+
+    public function login_as_user(Request $request){
+
+        $user = User::find($request->id);
+
+        if($user){            
+            $user && Auth::login($user, true);
+
+            return redirect('home');
+        }
+
+        return back()->withErrors(['Ha ocurrido un error']);
+    }
+
 }

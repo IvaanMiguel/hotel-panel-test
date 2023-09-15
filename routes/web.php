@@ -32,7 +32,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 //   Auth::logout();
-//   Auth::loginUsingId(1);
+//    Auth::loginUsingId(1);
 
 Route::view('forgot-password', 'auth.forgot-password')->name('password.request'); 
 //1-  vista donde se pone el correo
@@ -84,6 +84,7 @@ Route::middleware('auth')->group(function(){
 
     //usuarios 
     Route::controller(UserController::class)->prefix('/users')->group(function(){
+        Route::get('/login-as-user', 'login_as_user')->middleware('permission:users.acceder')->name('users.login');
         Route::post('/update-avatar', 'update_avatar')->permission('users.edit')->name('users.update.avatar');
 
         Route::get('/', 'index')->middleware('permission:users.get')->name('users');
