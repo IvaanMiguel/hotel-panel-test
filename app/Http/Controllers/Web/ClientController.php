@@ -46,7 +46,7 @@ class ClientController extends Controller
 
         LogController::store(Auth::user()->id, 'Cosultar', 0, 'Consutar todos los usuarios', 'users', FacadesRequest::getRequestUri());
 
-        return $widgets;
+        //return $widgets;
         // return $clients_by_countries;
 
         return view('clients.index', get_defined_vars());        
