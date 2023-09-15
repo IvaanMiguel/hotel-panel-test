@@ -4,7 +4,8 @@
         "description": "Obtener usuarios",
         "module": "users",
         "roles": [
-            "Sistemas"
+            "Sistemas",
+            "Administrador"
         ] 
     },
     {

@@ -17,9 +17,9 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-       $sistemas = Role::create(['name' => 'Sistemas']);
-       $user = Role::create(['name' => 'User']);
+       $sistemas = Role::create(['name' => 'Sistemas']); 
        $administrador = Role::create(['name' => 'Administrador']);
+       $user = Role::create(['name' => 'User']);
 
        $data = json_decode(file_get_contents('database/jsons/permissions.json'), true);
 
