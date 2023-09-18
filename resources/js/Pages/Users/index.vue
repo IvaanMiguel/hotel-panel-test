@@ -14,6 +14,7 @@
         ]"
         table_id="usersTable"
         moduleName="users"
+        detailsBtn
        
     >
         <template #name="element">
