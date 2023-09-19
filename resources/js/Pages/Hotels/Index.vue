@@ -62,13 +62,14 @@
         <template #tableActions="element">
             <btn-option
                 :btnRoute="element.url_address"
+                :target="_blank"
                 type="listButton"
                 color="info"
                 text="Url de dirección"
                 icon="ri-map-pin-2-fill"
                 v-if="can('hotels.get')"
             ></btn-option>
-        </template>
+        </template>        
     </basic-table>
 
     <hotels-add-edit />
@@ -78,6 +79,7 @@
 import BasicTable from '@/Components/BasicTable.vue'
 import BtnOption from '@/Components/BtnOption.vue'
 import HotelsAddEdit from '@/Components/Hotels/HotelsAddEdit.vue'
+
 export default {
     components: {
         BasicTable,
