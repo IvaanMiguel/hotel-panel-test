@@ -80,7 +80,6 @@
                 </li>
                 @endif
                 @if(Auth::check())
-                <li class="nav-item">
                     <form action="{{ route('logout') }}" method="POST" style="display: none;" id="logout-form">
                         @csrf
                     </form>
@@ -88,7 +87,6 @@
                         <i class="ri-logout-box-r-line"></i>
                         <span>Cerrar Sesion</span>
                     </a>
-                </li>
                 @endif
             </ul>
         </div>
@@ -100,7 +98,7 @@
 
 <script>
     function submitForm() {
-        let form = document.getElementById("logoutForm");
+        let form = document.getElementById("logout-form");
 
         Swal.fire({
             title: "¿Estas seguro?",

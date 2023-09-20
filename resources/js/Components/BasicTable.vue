@@ -2,28 +2,23 @@
     <div class="card" :id="`${table_id}List`">
         <template v-if="title">
             <div class="card-header  border-0">
-            <div class="d-flex align-items-center">
-                <h5 class="card-title mb-0 flex-grow-1">{{ title }}</h5>
-                <div class="col-md-auto ms-auto d-flex" v-if="!read_only">
-                    <slot name="headerActions" />
-                    <btn-option
-                        :action="{id: moduleName, method: 'create'}"
-                        type="button"
-                        color="success"
-                        text="Agregar"
-                        icon="ri-add-line"
-                        v-if="(can(moduleName + '.create') && createBtn)"
-                    ></btn-option>
+                <div class="d-flex align-items-center">
+                    <h5 class="card-title mb-0 flex-grow-1">{{ title }}</h5>
+                    <div class="col-md-auto ms-auto d-flex" v-if="!read_only">
+                        <slot name="headerActions" />
+                        <btn-option :action="{ id: moduleName, method: 'create' }" type="button" color="success"
+                            text="Agregar" icon="ri-add-line"
+                            v-if="(can(moduleName + '.create') && createBtn)"></btn-option>
+                    </div>
                 </div>
             </div>
-        </div>
             <div class="card-body border border-dashed border-end-0 border-start-0">
                 <form>
                     <div class="row g-3">
                         <div class="col-12">
                             <div class="search-box">
                                 <input type="text" class="form-control search" placeholder="Buscar..."
-                                v-model="searchString">
+                                    v-model="searchString">
                                 <i class="ri-search-line search-icon"></i>
                             </div>
                         </div>
@@ -40,26 +35,20 @@
                     </div>
                 </div>
                 <div class="col-md-auto ms-auto d-flex" v-if="!read_only">
-                    <slot name="headerActions"/>
-                    <btn-option
-                        :action="{id: moduleName, method: 'create'}"
-                        type="button"
-                        color="success"
-                        text="Agregar"
-                        icon="ri-add-line"
-                        v-if="(can(moduleName + '.create') && createBtn)"
-                    ></btn-option>
+                    <slot name="headerActions" />
+                    <btn-option :action="{ id: moduleName, method: 'create' }" type="button" color="success" text="Agregar"
+                        icon="ri-add-line" v-if="(can(moduleName + '.create') && createBtn)"></btn-option>
                 </div>
             </div>
         </div>
         <div class="card-body pt-0">
-            <div> 
+            <div>
                 <div class="table-responsive table-card my-3">
                     <table class="table table-nowrap align-middle" id="orderTable">
                         <thead class="text-muted table-light">
                             <tr class="text-uppercase">
-                                <th v-for="header in tableHeaders" :key="header.key"
-                                    class="sort" :data-sort="header.key">{{ header.title }}
+                                <th v-for="header in tableHeaders" :key="header.key" class="sort" :data-sort="header.key">{{
+                                    header.title }}
                                 </th>
                                 <th class="sort" style="width: 100px;" v-if="!read_only">Acciones</th>
                             </tr>
@@ -72,10 +61,7 @@
                                         <template v-if="header.key === 'created_at'">
                                             {{ formatDateHourTextFull(element[header.key]) }}
                                         </template>
-                                        <slot :name="header.key"
-                                            v-bind="element"
-                                            v-else
-                                        >
+                                        <slot :name="header.key" v-bind="element" v-else>
                                             <span :class="(header.dataStyle ? header.dataStyle(element) : '')">
                                                 {{ (header.dataFormat ? header.dataFormat(element) : element[header.key]) }}
                                             </span>
@@ -83,38 +69,32 @@
                                     </td>
                                 </template>
                                 <td v-if="!read_only">
+                                    <btn-option :btnRoute="`/users/login-as-user?id=${element.id}`" type="listButton"
+                                        color="primary" text="Cambiar Usuario" icon="ri-swap-line"
+                                       v-if="createBtnpermissions"></btn-option>
+<!-- 
+                                    <btn-option :btnRoute="route(moduleName + '.login', element.id)" type="listButton"
+                                        color="primary" text="Cambiar Usuario" icon="ri-swap-line"
+                                        v-if="(can(moduleName + '.get') && createBtnpermissions)"></btn-option> -->
+                                    <btn-option :btnRoute="route(moduleName + '.show', element.id)" type="listButton"
+                                        color="primary" text="Detalles" icon="ri-eye-fill"
+                                        v-if="(can(moduleName + '.get') && detailsBtn)"></btn-option>
+                                    <btn-option :action="{ id: moduleName, method: 'edit', params: { id: element.id } }"
+                                        type="listButton" color="success" text="Editar" icon="ri-pencil-fill"
+                                        v-if="(can(moduleName + '.update') && editBtn)"></btn-option>
+                                    <slot name="tableActions" v-bind="element" />
                                     <btn-option
-                                        :btnRoute="route(moduleName +'.show', element.id)"
-                                        type="listButton"
-                                        color="primary"
-                                        text="Detalles"
-                                        icon="ri-eye-fill"
-                                        v-if="(can(moduleName +'.get') && detailsBtn)"
-                                    ></btn-option>
-                                    <btn-option
-                                        :action="{id: moduleName, method: 'edit', params: {id: element.id}}"
-                                        type="listButton"
-                                        color="success"
-                                        text="Editar"
-                                        icon="ri-pencil-fill"
-                                        v-if="(can(moduleName +'.update') && editBtn)"
-                                    ></btn-option>
-                                    <slot name="tableActions" v-bind="element"/>
-                                    <btn-option
-                                        :action="{id: moduleName +'', method: 'destroy', params: {id: element.id}}"
-                                        type="listButton"
-                                        color="danger"
-                                        text="Eliminar"
-                                        icon="ri-delete-bin-5-fill"
-                                        v-if="(can(moduleName +'.destroy') && destroyBtn)"
-                                    ></btn-option>
+                                        :action="{ id: moduleName + '', method: 'destroy', params: { id: element.id } }"
+                                        type="listButton" color="danger" text="Eliminar" icon="ri-delete-bin-5-fill"
+                                        v-if="(can(moduleName + '.destroy') && destroyBtn)"></btn-option>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div :class="`noResult-${table_id}`" style="display: none">
                         <div class="text-center">
-                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
+                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                                colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px"></lord-icon>
                             <h5 class="mt-2">Sin resultados</h5>
                             <p class="text-muted mb-0">Ningún registro coincide con la busqueda</p>
                         </div>
@@ -138,6 +118,9 @@ export default {
     components: {
         BtnOption
     },
+    methods: {
+     
+    },
     props: {
         data: Array,
         tableHeaders: Array,
@@ -154,6 +137,10 @@ export default {
         createBtn: {
             type: Boolean,
             default: true
+        },
+        createBtnpermissions: {
+            type: Boolean,
+            default: false
         },
         detailsBtn: {
             type: Boolean,
@@ -177,9 +164,9 @@ export default {
     setup(props) {
 
         onMounted(() => {
-            if(props.data.length > 0){
+            if (props.data.length > 0) {
                 var options = {
-                    valueNames: props.tableHeaders.map((header) => { return header.key}),
+                    valueNames: props.tableHeaders.map((header) => { return header.key }),
                     page: 10,
                     pagination: true,
                     plugins: [ListPagination({ left: 2, right: 2 })],
@@ -187,15 +174,15 @@ export default {
 
                 new List(`${props.table_id}List`, options).on("updated", function (e) {
                     0 == e.matchingItems.length
-                    ? (document.getElementsByClassName(`noResult-${props.table_id}`)[0].style.display = "block")
-                    : (document.getElementsByClassName(`noResult-${props.table_id}`)[0].style.display = "none");
+                        ? (document.getElementsByClassName(`noResult-${props.table_id}`)[0].style.display = "block")
+                        : (document.getElementsByClassName(`noResult-${props.table_id}`)[0].style.display = "none");
                 });
             }
         });
 
         const { formatDateHourTextFull } = useFormat();
 
-        return{
+        return {
             formatDateHourTextFull,
         }
     },

@@ -1,17 +1,17 @@
 <template>
     <a @click="triggerAction(action)" role="button" :class="`btn btn-${color} m-1`" v-if="type === 'button'"
-        :href="btnRoute" :target="target">
+        :href="btnRoute" >
         <i :class="`${icon} align-bottom me-1`"></i> {{text}} 
     </a>
     <li class="list-inline-item" data-bs-toggle="tooltip"  v-if="type === 'listButton'" 
         data-bs-trigger="hover" data-bs-placement="top" :title="text" @click="triggerAction(action)"
     >
-        <a :class="`text-${color} d-inline-block`" role="button" :href="btnRoute" :target="target">
+        <a :class="`text-${color} d-inline-block`" role="button" :href="btnRoute" >
             <i :class="`${icon} fs-16`"></i>
         </a>
     </li>
     <a  @click="triggerAction(action)" role="button" class="dropdown-item" v-if="type === 'dropdownButton'"
-       :href="btnRoute" :target="target">
+       :href="btnRoute" >
         <i :class="`text-${color} ${icon} align-bottom me-2`"></i> {{text}}
     </a>  
     <form role="button" class="dropdown-item" :action="btnRoute" method="POST" v-if="type === 'dropdownFormButton'">
@@ -28,7 +28,7 @@
         <input type="hidden" name="_token" :value="csrf" /> 
         <input type="hidden" name="_method" value="PUT" v-if="putMethod"/>  
     </form>                                      
-    <form :action="btnRoute" method="POST" v-if="type === 'formButton'" :target="target">
+    <form :action="btnRoute" method="POST" v-if="type === 'formButton'">
         <button type="submit" :class="`m-1 btn btn-${color}`">
             <i :class="`${icon} align-bottom me-1`"></i> {{ text }}
         </button>

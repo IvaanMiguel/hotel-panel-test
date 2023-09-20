@@ -15,7 +15,7 @@
         table_id="usersTable"
         moduleName="users"
         detailsBtn
-       
+        :createBtnpermissions="true"
     >
         <template #name="element">
             <div class="d-flex align-items-center">
