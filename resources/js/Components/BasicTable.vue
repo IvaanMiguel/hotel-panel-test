@@ -69,7 +69,7 @@
                                     </td>
                                 </template>
                                 <td v-if="!read_only">
-                                    <btn-option :btnRoute="`/users/login-as-user?id=${element.id}`" type="listButton"
+                                    <btn-option :btnRoute="route(moduleName + '.login', element.id)" type="listButton"
                                         color="primary" text="Cambiar Usuario" icon="ri-swap-line"
                                        v-if="createBtnpermissions"></btn-option>
 <!-- 
