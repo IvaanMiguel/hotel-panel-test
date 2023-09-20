@@ -2,6 +2,8 @@ import {
     required,
     helpers,
     numeric,
+    email,
+    
 } from "@vuelidate/validators";
 
 export default function HotelsRules() {
@@ -17,6 +19,10 @@ export default function HotelsRules() {
                 "Este campo es obligatorio.",
                 required
             ),
+            email: helpers.withMessage(
+                "Ingrese dirección de correo valida.",
+                email 
+            ),
         },
         slug: {
             required: helpers.withMessage(
@@ -26,9 +32,13 @@ export default function HotelsRules() {
         },
         phone_number: {
             numeric: helpers.withMessage(
-                "Este campo debe ser numérico.",
+                "Este campo es obligatorio.",
                 required
             ), 
+            customValidation: helpers.withMessage(
+                "Este campo debe contener exactamente 10 números.",
+                (value) => /^[0-9]{10}$/.test(value) // Valida que haya exactamente 10 números
+            ),
         }
     };
 
