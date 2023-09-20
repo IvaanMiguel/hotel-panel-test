@@ -6,7 +6,7 @@
     <li class="list-inline-item" data-bs-toggle="tooltip"  v-if="type === 'listButton'" 
         data-bs-trigger="hover" data-bs-placement="top" :title="text" @click="triggerAction(action)"
     >
-        <a :class="`text-${color} d-inline-block`" role="button" :href="btnRoute" >
+        <a :class="`text-${color} d-inline-block`" role="button" :href="btnRoute" :target="target">
             <i :class="`${icon} fs-16`"></i>
         </a>
     </li>
@@ -75,7 +75,7 @@ export default {
         action: Object,
         target: {
             type: String,
-            default: '_blank'
+            default: ''
         },
     },
     setup(props){

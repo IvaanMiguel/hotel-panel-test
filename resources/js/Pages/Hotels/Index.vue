@@ -62,7 +62,7 @@
         <template #tableActions="element">
             <btn-option
                 :btnRoute="element.url_address"
-                :target="_blank"
+                :target='"_blank"'
                 type="listButton"
                 color="info"
                 text="Url de dirección"
