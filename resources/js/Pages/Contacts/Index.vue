@@ -60,6 +60,7 @@
                 table_id="contactsTable"
                 moduleName="contacts"
                 detailsBtn
+                :createBtn="false"
             >
                 <template #name="element">
                     <div class="d-flex align-items-center">
@@ -79,17 +80,6 @@
                             {{ element.slug }}
                             </p>
                         </div>
-                    </div>
-                </template>
-                <template #address="element">
-                    <div 
-                        style="
-                            min-width: 160px;
-                            max-width: 160px;
-                            white-space:normal;
-                        "
-                    >
-                        {{ element.address }}
                     </div>
                 </template>
             </basic-table>
