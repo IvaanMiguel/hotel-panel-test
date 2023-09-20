@@ -14,8 +14,8 @@
                     <div class="row g-4">
                         <div class="col-auto">
                             <div class="avatar-lg">
-                                <template v-if="variables.avatar_path">
-                                    <img :src="variables.avatar_path" alt="user-img"
+                                <template v-if="variables.user.avatar_path">
+                                    <img :src="variables.user.avatar_path" alt="user-img"
                                         style="width: 100px; height: 100px; background-color: #507dad; display: flex; justify-content: center; align-items: center;"
                                         class="img-thumbnail rounded-circle user-avatar" />
                                 </template>
@@ -84,8 +84,8 @@
                                                             <a href="javascript: void(0);" class="avatar-group-item"
                                                                 data-bs-toggle="tooltip" data-bs-placement="top" title=""
                                                                 data-bs-original-title="Usuario">
-                                                                <template v-if="log.avatar_path">
-                                                                    <img :src="log.avatar_path" alt=""
+                                                                <template v-if="variables.user.avatar_path">
+                                                                    <img :src="variables.user.avatar_path" alt=""
                                                                         class="rounded-circle avatar-xs" />
                                                                 </template>
                                                                 <template v-else>
