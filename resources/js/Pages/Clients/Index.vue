@@ -1,38 +1,53 @@
 <template>
-    <div class="d-flex justify-content-around">
-        <div class="card card-height-100" v-for="(country, index) in topCountries" :key="index">
-            <div class="card-body">
-              <div class="d-flex align-items-center">
+  <div class="d-flex justify-content-around">
+    <div class="card bg-info h-100 flex-fill m-4" v-for="(country, index) in topCountries" :key="index">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <p class="text-uppercase fw-medium text-white-50 mb-0">País</p>
+                </div>
+            </div>
+            <div class="d-flex align-items-end justify-content-between mt-4">
+                <div>
+                    <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white">
+                        {{ country[0] }}: {{ country[1] }}
+                    </h4>
+                    <p class="text-white-50">Clientes</p>
+                </div>
                 <div class="avatar-sm flex-shrink-0">
-                  <span class="bg-soft-success text-success rounded-2 fs-2 p-1">
-                    #{{ index + 1 }}
+                    <span class="avatar-title bg-soft-light rounded fs-3">
+                        #{{ index + 1 }}                        
+                    </span>
+                </div>
+            </div>
+        </div><!-- end card body -->
+    </div><!-- end card -->
+
+    <div class="card bg-warning h-100 flex-fill m-4">
+        <div class="card-body">
+            <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
+                    <p class="text-uppercase fw-medium text-white-50 mb-0">Total</p>
+                </div>
+            </div>
+            <div class="d-flex align-items-end justify-content-between mt-4">
+                <div>
+                    <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white">
+                        {{ clientsWithCountryName.length }}
+                    </h4>
+                    <p class="text-white-50">Clientes</p>
+                </div>
+                <div class="avatar-sm flex-shrink-0">
+                  <span class="avatar-title bg-soft-light rounded fs-3">
+                    <i class="bx bx-user-circle"></i>
                   </span>
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <p class="text-uppercase fw-medium text-muted mb-3">Ranking Por País</p>
-                  <h4 class="fs-4 mb-3">
-                    {{ country[0] }}: {{ country[1] }} Clientes
-                  </h4>
-                </div>
               </div>
-            </div><!-- end card body -->
-        </div>
-        <div class="card card-height-100">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="avatar-sm flex-shrink-0">
-                        <span class="avatar-title bg-soft-warning text-warning rounded-2 fs-2">
-                            <i class="bx bxs-user-account"></i>
-                        </span>
-                    </div>
-                    <div class="flex-grow-1 ms-3">
-                        <p class="text-uppercase fw-medium text-muted mb-3">Total de Clientes Registrados</p>
-                        <h4 class="fs-4 mb-3"><span>{{ clientsWithCountryName.length }} Clientes</span></h4>
-                    </div>
-                </div>
-            </div><!-- end card body -->
-        </div>
-    </div>
+            </div>
+        </div><!-- end card body -->
+    </div><!-- end card -->
+</div>
+
+
     <basic-table
         :data="clientsWithCountryName"
         :tableHeaders="[
