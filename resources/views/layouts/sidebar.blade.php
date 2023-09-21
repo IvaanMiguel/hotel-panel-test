@@ -43,11 +43,19 @@
                     </a>
                 </li>
                 @if (Auth::user()->hasPermissionTo('contacts.get'))
-                <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('contacts*') ? 'active' : '' }}" href="{{ route('contacts')}}" role="button">
-                        <i class="ri-phone-line"></i> <span>Contactos</span>
-                    </a>
-                </li>
+                    @php
+                        $pendingContactCount = App\Helpers\Helper::get_current_branch_pending_contacts();
+                    @endphp
+                    <li class="nav-item">
+                        <a class="nav-link menu-link {{ request()->is('contacts*') ? 'active' : '' }}" href="{{ route('contacts')}}" role="button">
+                            <i class="ri-phone-line"></i> 
+                            <span>Contactos                             
+                                @if ($pendingContactCount > 0)
+                                    <span class="badge badge-pill bg-danger">{{ $pendingContactCount }}</span>
+                                @endif
+                            </span>
+                        </a>
+                    </li>
                 @endif
                 @endif
                 @if (Auth::user()->hasPermissionTo('users.get'))
