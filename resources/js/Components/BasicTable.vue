@@ -69,20 +69,25 @@
                                     </td>
                                 </template>
                                 <td v-if="!read_only">
+                                    <!-- ruta de nuevo usuario -->
                                     <btn-option :btnRoute="route(moduleName + '.login', element.id)" type="listButton"
                                         color="primary" text="Cambiar Usuario" icon="ri-swap-line"
-                                       v-if="createBtnpermissions"></btn-option>
-<!-- 
-                                    <btn-option :btnRoute="route(moduleName + '.login', element.id)" type="listButton"
-                                        color="primary" text="Cambiar Usuario" icon="ri-swap-line"
-                                        v-if="(can(moduleName + '.get') && createBtnpermissions)"></btn-option> -->
+                                        v-if="createBtnpermissions"></btn-option>
+                                    <!-- ruda editar foto -->
+                                    <btn-option :action="{ id: moduleName, method: 'edit', params: { id: element.id } }"
+                                        type="listButton" color="primary" text="Editar foto" icon="ri-image-edit-line"
+                                        v-if="(can(moduleName + '.update.avatar') && createBtnpermissions)"></btn-option>
+                                    <!--  -->
                                     <btn-option :btnRoute="route(moduleName + '.show', element.id)" type="listButton"
                                         color="primary" text="Detalles" icon="ri-eye-fill"
                                         v-if="(can(moduleName + '.get') && detailsBtn)"></btn-option>
+                                    <!--  -->
                                     <btn-option :action="{ id: moduleName, method: 'edit', params: { id: element.id } }"
                                         type="listButton" color="success" text="Editar" icon="ri-pencil-fill"
                                         v-if="(can(moduleName + '.update') && editBtn)"></btn-option>
+                                    <!--  -->
                                     <slot name="tableActions" v-bind="element" />
+                                    <!--  -->
                                     <btn-option
                                         :action="{ id: moduleName + '', method: 'destroy', params: { id: element.id } }"
                                         type="listButton" color="danger" text="Eliminar" icon="ri-delete-bin-5-fill"
@@ -119,7 +124,7 @@ export default {
         BtnOption
     },
     methods: {
-     
+
     },
     props: {
         data: Array,

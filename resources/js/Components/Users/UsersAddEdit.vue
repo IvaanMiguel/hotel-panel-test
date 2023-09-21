@@ -10,6 +10,7 @@
       @onSubmit="methods.submitForm($event)"
     >
     <template #modalBody>
+      
         <basic-input
           v-model:keyValue="form.name"
           title="Nombre"
@@ -28,6 +29,16 @@
           :cols="6"
           :errors="validator.email?.$errors"
           :required="(validator.email?.required != undefined)"
+        ></basic-input>
+
+        <basic-input
+          v-model:keyValue="form.avatar"
+          title="Foto de perfil"
+          inputName="avatar"
+          type="file"
+          :cols="12"
+          :errors="validator.avatar?.$errors"
+          :required="(validator.avatar?.required != undefined)"
         ></basic-input>
 <!--         
         <basic-input
@@ -66,7 +77,7 @@ export default {
         type: String,
         default: 'modalAddUsers'
     },
-    roles: Array
+    roles: Array,
   },
   setup(props){
 
@@ -76,6 +87,7 @@ export default {
       id: '',
       name: '',
       email: '',
+      avatar: null,
     }
 
     const cleanFormData = {...formData}
