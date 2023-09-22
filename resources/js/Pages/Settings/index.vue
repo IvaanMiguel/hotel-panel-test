@@ -1,14 +1,14 @@
 <template>
-<SettingEdit/>
+<SettingEdit class="d-flex col-12 flex-wrap"/>
 </template>
 
 <script>
 
 import BasicInput from '@/Components/BasicInput.vue'
-import SettingAddEdit from '@/Components/Settings/SettingEdit.vue';
+import SettingEdit from '@/Components/Settings/SettingEdit.vue';
 export default {
     components: {
-        SettingAddEdit,
+        SettingEdit,
         BasicInput
     },
     props:{
