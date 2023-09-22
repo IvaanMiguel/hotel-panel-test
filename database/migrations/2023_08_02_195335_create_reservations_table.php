@@ -26,6 +26,8 @@ return new class extends Migration
 
             $table->foreignId('client_id')->references('id')->on('clients')->cascadeOnDelete();
             $table->foreignId('room_id')  ->references('id')->on('rooms')  ->cascadeOnDelete();
+            $table->foreignId('rate_id')  ->references('id')->on('rates')  ->cascadeOnDelete();
+            $table->foreignId('coupon_id')->references('id')->on('coupons')->cascadeOnDelete();
             $table->timestamps();
         });
     }
