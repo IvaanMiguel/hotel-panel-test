@@ -362,7 +362,37 @@
         "roles":[
             "Sistemas"
         ]
+    },
+    {
+        "name": "rates.get",
+        "description": "Obtener tarifas",
+        "module": "rates",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "rates.create",
+        "description": "Agregar tarifas",
+        "module": "rates",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "rates.edit",
+        "description": "Actualizar Tarifas",
+        "module": "rates",
+        "roles":[
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "rates.delete",
+        "description": "Eliminar tarifas",
+        "module": "rates",
+        "roles": [
+            "Sistemas"
+        ]
     }
-
-    
 ]

@@ -9,6 +9,11 @@ class Rate extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description'
+    ];
+
     public function schedules(){
         return $this->belongsToMany(Schedule::class);
     }

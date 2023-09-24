@@ -37,7 +37,7 @@ class LogController extends Controller
         $log->description = strtoupper($description);
         $log->module = strtoupper($module);
         $log->route = strtoupper($route);
-        error_log(json_encode($log));
+        env('APP_DEBUG') && error_log(json_encode($log, JSON_PRETTY_PRINT));
         $log->save();
     }
 

@@ -7,12 +7,14 @@ use App\Http\Controllers\Web\CountryController;
 use App\Http\Controllers\Web\CouponController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\HotelController;
+use App\Http\Controllers\Web\RateController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\RoomController;
 use App\Http\Controllers\Web\ScheduleController;
 use App\Http\Controllers\Web\SettingController;
 use App\Http\Controllers\Web\UserController;
 use App\Models\User;
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
@@ -147,11 +149,22 @@ Route::middleware('auth')->group(function(){
 
     //planeacion
     Route::controller(ScheduleController::class)->prefix('/schedules')->group(function(){
-        Route::get('/', 'index')->middleware('permission:schedules.get')->name('hotel.schedules');
+        Route::get('/', 'index')->middleware('permission:schedules.get')->name('schedules');
         Route::post('/', 'store')->middleware('permission:schedules.create')->name('schedules.create');
         Route::put('/', 'update')->middleware('permission:schedules.edit')->name('schedules.edit');
         Route::delete('/{id}', 'destroy')->middleware('permission:schedules.delete')->name('schedules.delete');
         Route::get('get/{id}', 'get')->middleware('permission:schedules.get')->name('schedules.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:schedules.get')->name('schedules.show');
     });
+
+    // tarifas
+    Route::controller(RateController::class)->prefix('/rates')->group(function(){
+        Route::get('/', 'index')->middleware('permission:rates.get')->name('rates');
+        Route::post('/', 'store')->middleware('permission:rates.create')->name('rates.create');
+        Route::put('/', 'update')->middleware('permission:rates.edit')->name('rates.edit');
+        Route::delete('/{id}', 'destroy')->middleware('permission:rates.delete')->name('rates.delete');
+        Route::get('/get/{id}', 'get')->middleware('permission:rates.get')->name('rates.get.by.id');
+        Route::get('/{id}', 'show')->middleware('permission:rates.get')->name('rates.show');
+    });
+
 });
