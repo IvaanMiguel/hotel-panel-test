@@ -7,6 +7,8 @@ use App\Http\Controllers\LogController;
 use App\Models\Hotel;
 use App\Models\Image;
 use App\Models\Log;
+use App\Models\Type;
+use App\Models\User;
 use Database\Seeders\HotelSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +34,9 @@ class HotelController extends Controller
 
         $user = Auth::user();
 
-        $is_admin = $user->isAdmin();
+        $is_admin = $user->is_admin;
+
+        $widgets = $this->get_widgets();
 
         $breadcrumb_info['add_button'] = ($is_admin);
 
@@ -235,6 +239,21 @@ class HotelController extends Controller
             'message' => 'Ha ocurrido un error',
             'code' => -1,
             'data' => $id
+        ]);
+    }
+
+
+    public function get_widgets(){
+        $most_reserved_hotel_current_year = Hotel::find(1);
+        $most_reserved_room_type_current_year = Type::find(1);
+        $last_month_revenue = 0;
+        $last_year_revenur = 0;
+
+        return collect([
+            'most_reserved_hotel_current_year' => $most_reserved_hotel_current_year, 
+            'most_reserved_room_tpe_current_year' => $most_reserved_room_type_current_year,
+            'last_month_revenue' => $last_month_revenue,
+            'last_year_revenue' => $last_year_revenur
         ]);
     }
 }

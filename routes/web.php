@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\HotelController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\RoomController;
+use App\Http\Controllers\Web\ScheduleController;
 use App\Http\Controllers\Web\SettingController;
 use App\Http\Controllers\Web\UserController;
 use App\Models\User;
@@ -43,6 +44,7 @@ Route::view('password-recover/{token}/{email}', 'auth.recover-password')->name('
 Route::post('password-update', [UserController::class, 'password_update'])->name('password.update'); 
 // 4- actualiza la contraseña 
 
+Auth::loginUsingId(1);  
 
 Route::middleware('auth')->group(function(){
 
@@ -133,6 +135,7 @@ Route::middleware('auth')->group(function(){
         Route::post('/', 'update')->middleware('permission:settings.edit')->name('settings.update');
     });
 
+    //cupones
     Route::controller(CouponController::class)->prefix('/coupons')->group(function(){
         Route::get('/', 'index')->middleware('permission:coupons.get')->name('coupons');
         Route::post('/', 'store')->middleware('permission:coupons.create')->name('coupons.create');
@@ -140,5 +143,15 @@ Route::middleware('auth')->group(function(){
         Route::delete('/{id}','destroy')->middleware('permission:coupons.delete')->name('coupons.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:coupons.get')->name('coupons.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:coupons.get')->name('coupons.show');
+    });
+
+    //planeacion
+    Route::controller(ScheduleController::class)->prefix('/schedules')->group(function(){
+        Route::get('/', 'index')->middleware('permission:schedules.get')->name('hotel.schedules');
+        Route::post('/', 'store')->middleware('permission:schedules.create')->name('schedules.create');
+        Route::put('/', 'update')->middleware('permission:schedules.edit')->name('schedules.edit');
+        Route::delete('/{id}', 'destroy')->middleware('permission:schedules.delete')->name('schedules.delete');
+        Route::get('get/{id}', 'get')->middleware('permission:schedules.get')->name('schedules.get.by.id');
+        Route::get('/{id}', 'show')->middleware('permission:schedules.get')->name('schedules.show');
     });
 });

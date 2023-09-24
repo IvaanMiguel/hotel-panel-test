@@ -330,6 +330,38 @@
         "roles": [
             "Sistemas"
         ]
+    },
+    {
+        "name": "schedules.get",
+        "description": " Ver planeacion",
+        "module": "schedules",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "schedules.create",
+        "description": "Agregar planeacion",
+        "module": "schedules",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "schedules.delete",
+        "description": "Eliminar planeacion",
+        "module": "schedules",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "schedules.edit",
+        "description": "Actualizar planeacion",
+        "module": "schedules",
+        "roles":[
+            "Sistemas"
+        ]
     }
 
     

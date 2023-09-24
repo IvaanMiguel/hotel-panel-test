@@ -21,7 +21,7 @@ class HotelController extends Controller
 
             return response()->json([
                 'message' => 'Registro consultado correctamente',
-                'code' => 2,
+                'code' => 1,
                 'data' => $hotel
             ]);
         }
@@ -30,7 +30,7 @@ class HotelController extends Controller
 
         return response()->json([
           'message' => 'Ha ocurrido un error',
-            'code' => -2,
+            'code' => -1,
             'data' => null
         ], 404);
 

@@ -58,7 +58,7 @@ class User extends Authenticatable
         'avatar_path'
     ];
 
-    public function isAdmin(){
+    public function getIsAdminAttribute(){
         return $this->roles()->whereIn('name', 
         [
             'Director', 
