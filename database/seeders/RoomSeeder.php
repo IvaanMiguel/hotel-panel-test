@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Http\Controllers\Web\RoomController;
 use App\Models\Image;
+use App\Models\Rate;
 use App\Models\Room;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -51,6 +52,20 @@ class RoomSeeder extends Seeder
                         'imageable_type' => 'App\Models\Room',
                         'imageable_id' => $room->id
                     ]);
+                }
+            }
+
+            if(array_key_exists('rates', $value)){
+
+                foreach($value['rates'] as $rate_item){
+
+                    $room->rates()->attach(
+                        $rate_item['rate_id'],
+                        [
+                            'default_price' => $rate_item['default_price'],
+                            'default_extra_per_person' => $rate_item['default_extra_per_person']
+                        ]
+                    );
                 }
             }
         }

@@ -21,13 +21,15 @@ return new class extends Migration
             $table->longText('comments')->nullable();
             $table->string('payment_confirmation')->nullable();
             $table->double('amount')->nullable();
-            $table->boolean('billing');
+            $table->boolean('billing')->default(false);
             $table->string('lang')->nullable();
 
             $table->foreignId('client_id')->references('id')->on('clients')->cascadeOnDelete();
             $table->foreignId('room_id')  ->references('id')->on('rooms')  ->cascadeOnDelete();
-            // $table->foreignId('rate_id')  ->references('id')->on('rates')  ->cascadeOnDelete();
-            // $table->foreignId('coupon_id')->references('id')->on('coupons')->cascadeOnDelete();
+            $table->foreignId('rate_id')  ->references('id')->on('rates')  ->cascadeOnDelete();
+            $table->foreignId('coupon_id')->nullable()->references('id')->on('coupons')->cascadeOnDelete();
+
+            $table->string('status')->default('pendiente');
             $table->timestamps();
         });
     }

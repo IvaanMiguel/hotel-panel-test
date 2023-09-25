@@ -17,7 +17,7 @@ class Schedule extends Model
     ];
 
     public function rates(){
-        return $this->belongsToMany(Rate::class);
+        return $this->belongsToMany(Rate::class)->withPivot(['price']);
     }
 
     public function room(){

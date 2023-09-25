@@ -46,7 +46,7 @@ Route::view('password-recover/{token}/{email}', 'auth.recover-password')->name('
 Route::post('password-update', [UserController::class, 'password_update'])->name('password.update'); 
 // 4- actualiza la contraseña 
 
-Auth::loginUsingId(1);  
+// Auth::loginUsingId(1);  
 
 Route::middleware('auth')->group(function(){
 

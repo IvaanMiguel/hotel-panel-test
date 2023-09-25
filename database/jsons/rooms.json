@@ -9,7 +9,19 @@
         "hotel_id":"1",
         "type_id":"1",
         "created_at":"2021-03-19 21:05:18",
-        "updated_at":"2021-03-19 21:05:18"
+        "updated_at":"2021-03-19 21:05:18",
+        "rates":[
+            {
+                "rate_id": 1,
+                "default_price":5000,
+                "default_extra_per_person": 300
+            },
+            {
+                "rate_id": 2,
+                "default_price": 4000,
+                "default_extra_per_person": 100
+            }
+        ]
     },
 
     {
@@ -22,7 +34,19 @@
         "hotel_id":"1",
         "type_id":"2",
         "created_at":"2021-03-19 21:05:18",
-        "updated_at":"2022-04-20 13:09:14"
+        "updated_at":"2022-04-20 13:09:14",
+         "rates":[
+            {
+                "rate_id": 1,
+                "default_price":5000,
+                "default_extra_per_person": 300
+            },
+            {
+                "rate_id": 2,
+                "default_price": 4000,
+                "default_extra_per_person": 100
+            }
+        ]
     },
 
     {
@@ -35,7 +59,19 @@
         "hotel_id":"1",
         "type_id":"3",
         "created_at":"2021-03-19 21:05:18",
-        "updated_at":"2021-03-19 21:05:18"
+        "updated_at":"2021-03-19 21:05:18",
+         "rates":[
+            {
+                "rate_id": 1,
+                "default_price":5000,
+                "default_extra_per_person": 300
+            },
+            {
+                "rate_id": 2,
+                "default_price": 4000,
+                "default_extra_per_person": 100
+            }
+        ]
     },
 
     {
@@ -48,7 +84,19 @@
         "hotel_id":"1",
         "type_id":"4",
         "created_at":"2021-03-19 21:05:18",
-        "updated_at":"2021-03-19 21:05:18"
+        "updated_at":"2021-03-19 21:05:18",
+         "rates":[
+            {
+                "rate_id": 1,
+                "default_price":5000,
+                "default_extra_per_person": 300
+            },
+            {
+                "rate_id": 2,
+                "default_price": 4000,
+                "default_extra_per_person": 100
+            }
+        ]
     },
 
     {
@@ -61,7 +109,19 @@
         "hotel_id":"2",
         "type_id":"1",
         "created_at":"2021-03-19 21:05:18",
-        "updated_at":"2021-03-19 21:05:18"
+        "updated_at":"2021-03-19 21:05:18",
+         "rates":[
+            {
+                "rate_id": 1,
+                "default_price":5000,
+                "default_extra_per_person": 300
+            },
+            {
+                "rate_id": 2,
+                "default_price": 4000,
+                "default_extra_per_person": 100
+            }
+        ]
     },
 
     {
@@ -74,7 +134,19 @@
         "hotel_id":"2",
         "type_id":"2",
         "created_at":"2021-03-19 21:05:18",
-        "updated_at":"2021-03-19 21:05:18"
+        "updated_at":"2021-03-19 21:05:18",
+         "rates":[
+            {
+                "rate_id": 1,
+                "default_price":5000,
+                "default_extra_per_person": 300
+            },
+            {
+                "rate_id": 2,
+                "default_price": 4000,
+                "default_extra_per_person": 100
+            }
+        ]
     },
 
     {
@@ -87,7 +159,19 @@
         "hotel_id":"2",
         "type_id":"3",
         "created_at":"2021-03-19 21:05:18",
-        "updated_at":"2021-03-19 21:05:18"
+        "updated_at":"2021-03-19 21:05:18",
+         "rates":[
+            {
+                "rate_id": 1,
+                "default_price":5000,
+                "default_extra_per_person": 300
+            },
+            {
+                "rate_id": 2,
+                "default_price": 4000,
+                "default_extra_per_person": 100
+            }
+        ]
     },
 
     {
@@ -100,7 +184,19 @@
         "hotel_id":"2",
         "type_id":"4",
         "created_at":"2021-03-19 21:05:18",
-        "updated_at":"2021-03-19 21:05:18"
+        "updated_at":"2021-03-19 21:05:18",
+         "rates":[
+            {
+                "rate_id": 1,
+                "default_price":5000,
+                "default_extra_per_person": 300
+            },
+            {
+                "rate_id": 2,
+                "default_price": 4000,
+                "default_extra_per_person": 100
+            }
+        ]
     },
 
     {
@@ -113,5 +209,19 @@
         "hotel_id":"2",
         "type_id":"5",
         "created_at":"2021-03-19 21:05:18",
-        "updated_at":"2021-03-19 21:05:18"}
+        "updated_at":"2021-03-19 21:05:18",
+         "rates":[
+            {
+                "rate_id": 1,
+                "default_price":5000,
+                "default_extra_per_person": 300
+            },
+            {
+                "rate_id": 2,
+                "default_price": 4000,
+                "default_extra_per_person": 100
+            }
+        ]
+
+    }
 ]

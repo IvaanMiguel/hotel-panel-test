@@ -33,6 +33,9 @@ class Room extends Model
         return $this->morphMany(Image::class, 'imageable')->where('type', 'cover')->first();
     }
 
+    public function rates(){
+        return $this->belongsToMany(Rate::class)->withPivot(['default_price', 'default_extra_per_person']);        
+    }
  
     public function images(){
         return $this->morphMany(Image::class, 'imageable');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->double('default_extra_per_person');
 
             $table->foreignId('rate_id')->references('id')->on('rates')->cascadeOnDelete();
-            $table->foreignId('room')->references('id')->on('rooms')->cascadeOnDelete();
+            $table->foreignId('room_id')->references('id')->on('rooms')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('rate_schedule', function (Blueprint $table) {
             //BORRAR PROBABLEMENTE
             $table->id();
-            $table->double('new_price')->nullable()->default(null);
-            $table->double('new_extra_per_person');
-
+            // $table->double('new_price')->nullable()->default(null);
+            // // $table->double('new_extra_per_person');
+            $table->float('price');
             $table->foreignId('rate_id')    ->references('id')->on('rates')    ->cascadeOnDelete();
             $table->foreignId('schedule_id')->references('id')->on('schedules')->cascadeOnDelete();
 

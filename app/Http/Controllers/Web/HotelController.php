@@ -7,10 +7,12 @@ use App\Http\Controllers\LogController;
 use App\Models\Hotel;
 use App\Models\Image;
 use App\Models\Log;
+use App\Models\Room;
 use App\Models\Type;
 use App\Models\User;
 use Database\Seeders\HotelSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Request as FacadesRequest;
@@ -244,8 +246,22 @@ class HotelController extends Controller
 
 
     public function get_widgets(){
-        $most_reserved_hotel_current_year = Hotel::find(1);
-        $most_reserved_room_type_current_year = Type::find(1);
+
+        $most_reserved_hotel_current_year = Hotel::withCount(['reservations as current_year_reservation_count' => function($q){
+                                                $q->whereBetween('reservations.created_at', 
+                                                                    [Carbon::now()->startOfYear(), Carbon::now()
+                                                                ]);
+                                                }])
+                                                ->orderBy('current_year_reservation_count', 'DESC')
+                                                ->first();
+
+
+        $most_reserved_room_type_current_year = Room::withCount(['reservations as current_year_reservation_count' => function($q){
+                                                $q->whereBetween('reservations.created_at', 
+                                                                    [Carbon::now()->startOfYear(), Carbon::now()
+                                                                ]);
+                                                }])->orderBy('current_year_reservation_count', 'DESC')
+                                                ->first();
         $last_month_revenue = 0;
         $last_year_revenur = 0;
 

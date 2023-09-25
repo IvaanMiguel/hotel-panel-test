@@ -19,13 +19,14 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CountrySeeder::class,
             ClientSeeder::class,
+            RateSeeder::class,
             RoomSeeder::class,
+            ReservationSeeder::class,
             SettingSeeder::class,
             ContactSeeder::class,
             CardSeeder::class,
             CouponSeeder::class,
-            ScheduleSeeder::class,
-            RateSeeder::class
+            ScheduleSeeder::class
         ]);
 
     }
