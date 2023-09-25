@@ -30,7 +30,8 @@ class ReservationController extends Controller
         $clients = Client::all();
         $rooms = Room::all();
 
-        return get_defined_vars();
+        LogController::store(Auth::user()->id, 'consultar', 0, 'consultar reservaciones', 'reservations', request()->url());
+        return view('reservations.index', get_defined_vars());
     }
 
     /**
@@ -46,7 +47,22 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request['check_out'] = date('Y-m-d', strtotime($request->check_in . "+ " . $request->nights_reserved . " days"));
+
+        $reservation = Reservation::create($request->all());
+
+        if($reservation)
+        {
+            $log = new LogController;
+            $log->store(Auth::user()->id, "Registrar",$reservation->id, "registro una nueva reservacion", "reservations" , request()->url());
+
+            return redirect()->back()->with('success','ok');
+        }
+
+        $log = new LogController;
+        $log->store(Auth::user()->id, "Error",0, "error al registrar una reservación", "reservations" , request()->url());
+
+        return redirect()->back()->with('error','error servidor');
     }
 
     /**
@@ -77,8 +93,11 @@ class ReservationController extends Controller
         $rates = Rate::all();
 
         if($reservation){
-            return get_defined_vars();
+            LogController::store(Auth::user()->id, 'consultar', $reservation->id, 'consultar una reservación', 'reservations', request()->url());
+            return view('reservations.show', get_defined_vars());
         }
+
+        LogController::store(Auth::user()->id, 'Error', 0, 'error en servidor', 'reservations', request()->url());
     }
 
 
@@ -109,15 +128,15 @@ class ReservationController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+
     }
 
     /**
