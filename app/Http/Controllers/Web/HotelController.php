@@ -38,8 +38,6 @@ class HotelController extends Controller
 
         $is_admin = $user->is_admin;
 
-        $widgets = $this->get_widgets();
-
         $breadcrumb_info['add_button'] = ($is_admin);
 
         $hotels = Hotel::with('images')->get();
@@ -245,31 +243,4 @@ class HotelController extends Controller
     }
 
 
-    public function get_widgets(){
-
-        $most_reserved_hotel_current_year = Hotel::withCount(['reservations as current_year_reservation_count' => function($q){
-                                                $q->whereBetween('reservations.created_at', 
-                                                                    [Carbon::now()->startOfYear(), Carbon::now()
-                                                                ]);
-                                                }])
-                                                ->orderBy('current_year_reservation_count', 'DESC')
-                                                ->first();
-
-
-        $most_reserved_room_type_current_year = Room::withCount(['reservations as current_year_reservation_count' => function($q){
-                                                $q->whereBetween('reservations.created_at', 
-                                                                    [Carbon::now()->startOfYear(), Carbon::now()
-                                                                ]);
-                                                }])->orderBy('current_year_reservation_count', 'DESC')
-                                                ->first();
-        $last_month_revenue = 0;
-        $last_year_revenur = 0;
-
-        return collect([
-            'most_reserved_hotel_current_year' => $most_reserved_hotel_current_year, 
-            'most_reserved_room_tpe_current_year' => $most_reserved_room_type_current_year,
-            'last_month_revenue' => $last_month_revenue,
-            'last_year_revenue' => $last_year_revenur
-        ]);
-    }
 }
