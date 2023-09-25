@@ -38,10 +38,10 @@
                                 </div>
                                 <div class="d-flex align-items-end justify-content-between mt-4">
                                     <div>
-                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">(En espera)</h4>
-                                        <h6>candidad de reservacines</h6>
+                                        <h4 class="fs-18 fw-semibold ff-secondary mb-4">{{ $widgets['most_reserved_hotel_current_year']['name'] }}</h4>
+                                        <h6>candidad de reservacines: {{ $widgets['most_reserved_hotel_current_year']['current_year_reservation_count'] }}</h6>
                                     </div>
-                                   
+                                    <!-- {{$widgets['most_reserved_hotel_current_year']}} -->
                                 </div>
                             </div><!-- end card body -->
                         </div><!-- end card -->
@@ -64,8 +64,8 @@
                                 </div>
                                 <div class="d-flex align-items-end justify-content-between mt-4">
                                     <div>
-                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">(En espera)</h4>
-                                        <h6>candidad de reservacines</h6>
+                                        <h6 class="fs-18 fw-semibold ff-secondary mb-4">{{ $widgets['most_reserved_room_tpe_current_year']['name'] }}</h6>
+                                        <h6>candidad de reservacines: {{ $widgets['most_reserved_room_tpe_current_year']['current_year_reservation_count'] }}</h6>
                                     </div>
                                 </div>
                             </div><!-- end card body -->
@@ -88,14 +88,14 @@
                                 </div>
                                 <div class="d-flex align-items-end justify-content-between mt-4">
                                     <div>
-                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">(En espera)</h4>
-                                        <h6>candidad de ingresos</h6>
+                                        <h4 class="fs-18 fw-semibold ff-secondary mb-4">.</h4>
+                                        <h6>candidad de ingresos: {{$widgets['last_month_revenue']}}</h6>
                                     </div>
                                 </div>
                             </div><!-- end card body -->
                         </div><!-- end card -->
                     </div><!-- end col -->
-
+                        
                     <div class="col-xl-3 col-md-6">
                         <!-- card -->
                         <div class="card card-animate">
@@ -112,8 +112,8 @@
                                 </div>
                                 <div class="d-flex align-items-end justify-content-between mt-4">
                                     <div>
-                                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">(En espera) </h4>
-                                        <h6>candidad de ingresos anual</h6>
+                                        <h4 class="fs-18 fw-semibold ff-secondary mb-4">.</h4>
+                                        <h6>candidad de ingresos anual: {{$widgets['last_year_revenue']}} </h6>
                                     </div>
                                    
                                 </div>
