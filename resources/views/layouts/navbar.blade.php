@@ -151,8 +151,8 @@
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
                             <img class="rounded-circle header-profile-user" 
-                            src="{{isset(Auth::user()->profile_photo_path) ? 
-                            asset('storage/users/avatars/'.Auth::user()->profile_photo_path) : 
+                            src="{{isset(Auth::user()->avatar_path) ? 
+                            asset('storage/users/avatars/'.Auth::user()->avatar_path) : 
                             'https://ui-avatars.com/api/?name='.Auth::user()->name.' '.(Auth::user()->lastname ?? '')}}"
                             alt="Header Avatar">
                             <span class="text-start ms-xl-2">

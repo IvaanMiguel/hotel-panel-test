@@ -76,7 +76,7 @@
                                     <!-- ruda editar foto -->
                                     <btn-option :action="{ id: moduleName, method: 'edit', params: { id: element.id } }"
                                         type="listButton" color="primary" text="Editar foto" icon="ri-image-edit-line"
-                                        v-if="(can(moduleName + '.update.avatar') && createBtnpermissions)"></btn-option>
+                                        v-if="(can(moduleName + 'update_avatar') && createBtnpermissions)"></btn-option>
                                     <!--  -->
                                     <btn-option :btnRoute="route(moduleName + '.show', element.id)" type="listButton"
                                         color="primary" text="Detalles" icon="ri-eye-fill"
