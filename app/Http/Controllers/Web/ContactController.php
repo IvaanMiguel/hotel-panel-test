@@ -22,7 +22,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::get();
+        $contacts = Contact::with('hotel')->get();
         
         $breadcrumb_info = $this->breadcrumb_info;
 
