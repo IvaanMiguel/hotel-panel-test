@@ -18,7 +18,7 @@
           <!-- Columna izquierda (cinco campos) -->
           <div class="col-md-6">
             <div class="mb-4">
-              <label for="google_recaptcha_public_key" class="form-label">Google reCAPTCHA Public Key</label>
+              <label for="google_recaptcha_public_key" class="form-label">Google recaptcha Public Key</label>
               <input
                 v-model="form.google_recaptcha_public_key"
                 type="text"
@@ -93,7 +93,7 @@
             </div>
   
             <div class="mb-4">
-              <label for="google_recaptcha_private_key" class="form-label">Google reCAPTCHA Private Key</label>
+              <label for="google_recaptcha_private_key" class="form-label">Google recaptcha Private Key</label>
               <input
                 v-model="form.google_recaptcha_private_key "
                 type="text"
