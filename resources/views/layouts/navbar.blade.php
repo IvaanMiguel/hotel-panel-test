@@ -167,14 +167,25 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
+                        
+                        <form action="{{ route('settings') }}">
+                        @csrf
+                            <button class="dropdown-item" type="submit">
+                                <i class="fas fa-sign-out-alt text-muted fs-16 align-middle me-1"></i>
+                                <i class="ri-settings-3-line"> Configuracion</i>
+                            
+                            </button>
+                        </form>
 
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="dropdown-item" type="submit">
                                 <i class="fas fa-sign-out-alt text-muted fs-16 align-middle me-1"></i>
-                                Cerrar sesión
+                                <i class="ri-logout-box-r-line"> Cerrar Sesion</i>
+                            
                             </button>
                         </form>
+
                     </div>
                 </div>
             </div>
