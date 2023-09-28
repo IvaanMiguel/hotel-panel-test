@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 use function Laravel\Prompts\error;
@@ -27,6 +28,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::get();
+
+        $permissions = Permission::get();
 
         $breadcrumb_info = $this->breadcrumb_info;
 
