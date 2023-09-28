@@ -59,7 +59,7 @@
       ></basic-input>
       <basic-input
         v-model:keyValue="form.url_address"
-        title="Url de dirección"
+        title="URL de google maps"
         inputName="url_address"
         type="text"
         :cols="12"
@@ -68,7 +68,7 @@
       ></basic-input>
       <basic-input
         v-model:keyValue="form.cover"
-        title="Cover"
+        title="Portada"
         inputName="cover"
         type="file"
         accept=".jpeg"
