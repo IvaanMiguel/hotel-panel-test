@@ -93,10 +93,10 @@ class SettingController extends Controller
             "production_stripe_public_key" => "required",
             "test_stripe_private_key" => "required",
             "test_stripe_public_key" =>"required",
-            "production" => 'required|boolean',
+            "production" => 'required',
             "email" => "required|email",
-            "usd_value" => "decimal:2",
-            "eur_value" => "decimal:2"
+            "usd_value" => "required",
+            "eur_value" => "required"
         ]);
 
         if($validator->passes()){
@@ -104,7 +104,7 @@ class SettingController extends Controller
             if($setting = Setting::find($request->id)){
 
                 if($setting->update($request->all())){
-
+                    error_log(json_encode($request->all()));
                     if($request->hasFile('cover')){
 
                         $file = $request->file('cover');
@@ -144,7 +144,7 @@ class SettingController extends Controller
             }
         }
 
-
+        error_log(json_encode($validator->errors()->all()));
         LogController::store(Auth::user()->id, 'error', $request->id, 'Error al actualizar confguracion', 'settings', request()->url());
         return back()->withErrors($validator->errors());
  
