@@ -106,7 +106,7 @@
 
                                         <div class="form-group">
                                             <a class="link" href="{{ route('password.request')}}">
-                                                Olvidaste tu contraseña?
+                                                ¿Olvidaste tu contraseña?
                                             </a>
                                         </div>
 
