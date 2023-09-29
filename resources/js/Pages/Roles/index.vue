@@ -1,34 +1,24 @@
 <template>
-    <div>
-      <basic-table
-        :data="variables.roles"
-        :tableHeaders="[
-          {
-            title: 'Perfiles',
-            key: 'name',
-          },
-        ]"
-        table_id="rolesTable"
-        moduleName="roles"
-        
-      >
-        <template #name="element">
-          {{ element.name }}
-        </template>
-      </basic-table>
-    
+  
+     <div class="row">
+        <div class="col-lg-12">
+            <roles-table
+                :roles="roles"
+                :permissions="permissions"
+            >
+            </roles-table>
+        </div>
     </div>
   </template>
 <script>
-import BasicTable from '@/Components/BasicTable.vue'
-import BtnOption from '@/Components/BtnOption.vue'
+import RolesTable from '@/Components/Roles/RolesTable.vue'
 export default {
     components: {
-        BasicTable,
-        BtnOption,
+      RolesTable
     },
     props:{
-        variables: Object,
+      roles: Array,
+      permissions: Object,
     },
     setup(props){
     }

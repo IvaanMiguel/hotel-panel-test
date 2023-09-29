@@ -1,6 +1,7 @@
 <x-app :breadcrumb="$breadcrumb_info"> 
     <roles-index
-        :variables='@json(get_defined_vars())'
+        :roles='@json($roles)'
+        :permissions = '@json($permissions)'
     ></roles-index>
 
     <x-slot name="scripts">
