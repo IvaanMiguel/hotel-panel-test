@@ -2,11 +2,9 @@
     <!-- <div v-for="(value, key) in variables.user" :key="key">
         <p>{{ key }}: {{ value }}</p>
     </div> -->
-    <div class="main-content" style="padding: 0; margin: 0;">
-
-        <div class="page-content" style="margin: 0;">
+    <div class="container-fluid">
             <div class="container-fluid">
-                <div class="profile-foreground position-relative mx-n4 mt-n4">
+                <div class="profile-foreground position-relative mx-n3 mt-n3">
                     <div class="profile-wid-bg">
                     </div>
                 </div>
@@ -115,7 +113,7 @@
             </div>
         </div>
 
-    </div>
+
 </template>
 
 <script>

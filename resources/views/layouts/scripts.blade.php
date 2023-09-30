@@ -27,7 +27,7 @@
 
 <!-- JAVASCRIPT -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://unpkg.com/gridjs/plugins/selection/dist/selection.umd.js"></script>
 <script>
     $(document).ready(function(){
         $('[data-bs-toggle="tooltip"]').tooltip();   
@@ -46,7 +46,18 @@
 <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 <script src="{{ asset('assets/js/plugins.js') }}"></script>
 
-{{ $slot }}
 
 <!-- App js -->
+<script src="{{ asset('assets/js/pages/seller-details.init.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
+
+
+
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/gridjs/gridjs.umd.js') }}"></script>
+    <script src="{{ asset('assets/libs/swiper/swiper-bundle.min.js') }}"></script>
+{{ $slot }}
+
+
+ 

@@ -29,3 +29,9 @@
 <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
 
 <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+
+<!-- gridjs css -->
+<link rel="{{ asset('stylesheet" href="assets/libs/gridjs/theme/mermaid.min.css') }}">
+
+<!--Swiper slider css-->
+<link href="{{ asset('assets/libs/swiper/swiper-bundle.min.css') }}" rel="stylesheet" type="text/css" />
