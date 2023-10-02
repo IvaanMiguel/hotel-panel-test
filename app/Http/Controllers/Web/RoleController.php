@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request as FacadesRequest;
@@ -28,6 +29,8 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::get();
+
+        $hotels = Hotel::get();
 
         $permissions = Permission::get();
 
