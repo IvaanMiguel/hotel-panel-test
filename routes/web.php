@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function(){
         Route::post('/update', 'update')->middleware('permission:rooms.edit')->name('rooms.edit');
         Route::delete('/{id}', 'destroy')->middleware('permission:rooms.delete')->name('rooms.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:rooms.get')->name('rooms.get.by.id');
-        Route::get('/{id}', 'show')->middleware('permission:rooms.get')->name('rooms.get');
+        Route::get('/{id}', 'show')->middleware('permission:rooms.get')->name('rooms.show');
     });
 
     Route::controller(CountryController::class)->prefix('/countries')->group(function(){

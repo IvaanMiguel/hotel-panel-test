@@ -37,11 +37,26 @@
                     </a>
                 </li>
                 @if (Auth::user()->hasPermissionTo('hotels.get'))
-                <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('hotels*') ? 'active' : '' }}" href="{{ route('hotels')}}" role="button">
-                        <i class="ri-building-4-line"></i> <span>Hoteles</span>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{ request()->is('hotels*') || request()->is('rooms*') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ri-building-4-line"></i> <span>Hoteles</span>
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item {{ request()->is('hotels*') ? 'active' : '' }}" href="{{ route('hotels') }}">
+                        <i class="ri-building-4-line"></i> Hoteles
+                        </a>
+                        <a class="dropdown-item {{ request()->is('rooms*') ? 'active' : '' }}" href="{{ route('rooms') }}">
+                        <i class="ri-hotel-bed-line"></i> Habitaciones
+                        </a>
+                    </div>
                 </li>
+                @endif
+
+
+
+
+
+
                 @if (Auth::user()->hasPermissionTo('contacts.get'))
                     @php
                         $pendingContactCount = App\Helpers\Helper::get_current_branch_pending_contacts();
@@ -56,7 +71,6 @@
                             </span>
                         </a>
                     </li>
-                @endif
                 @endif
                 @if (Auth::user()->hasPermissionTo('users.get'))
                 <li class="nav-item dropdown">

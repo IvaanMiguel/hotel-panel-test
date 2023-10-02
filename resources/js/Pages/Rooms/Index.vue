@@ -1,0 +1,73 @@
+<template>
+    <div>
+        <basic-table :data="variables.rooms" :tableHeaders="[
+            {
+                title: 'Nombre',
+                key: 'name',
+            },
+            {
+                title: 'Descripción',
+                key: 'description',
+            },
+            {
+                title: 'Personas ',
+                key: 'max_people',
+            },
+        ]" table_id="roomsTable" moduleName="rooms" detailsBtn>
+            <template #name="element">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="avatar-sm bg-light rounded p-1" style="overflow: hidden;">
+                            <img :src="element.avatar_path || getAvatar(element.name)" alt="" class="img-fluid d-block">
+                        </div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="fs-14 mb-1">
+                            {{ element.name }}
+                        </h5>
+                        <p class="text-muted mb-0" v-if="element">
+                            {{ element.slug }}
+                        </p>
+                    </div>
+                </div>
+            </template>
+            <template #max_people="element">
+                <div class="text-center">
+                    {{ element.max_people }}
+                </div>
+            </template>
+            <template #description="element">
+                <div class="description-text">
+                    {{ element.description }}
+                </div>
+            </template>
+        </basic-table>
+        <rooms-add-edit />
+    </div>
+</template>
+<script>
+import BasicTable from '@/Components/BasicTable.vue'
+import BtnOption from '@/Components/BtnOption.vue'
+import RoomsAddEdit from '@/Components/Rooms/RoomsAddEdit.vue'
+export default {
+    components: {
+        BasicTable,
+        BtnOption,
+        RoomsAddEdit,
+    },
+    props: {
+        variables: Object,
+    },
+    setup(props) {
+    }
+}
+</script>
+
+<style scoped>
+.description-text {
+    white-space: pre-line;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+</style>

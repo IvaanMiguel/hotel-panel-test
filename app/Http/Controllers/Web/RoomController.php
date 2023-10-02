@@ -194,16 +194,24 @@ class RoomController extends Controller
     {
         $room = Room::find($id);
 
-        if($room && $room->delete()){
-            //  return 'ok';
+        if($room){
+            $room->delete();
 
             LogController::store(Auth::user()->id, 'eliminar', $id, 'eliminar una habitacion', 'rooms', request()->url());
-            return back()->with('status', 'ok');
+            return response()->json([
+                'message' => 'Registro eliminado correctamente',
+                'code' => 1,
+                'data' => $id
+            ]);
         }
 
 
         LogController::store(Auth::user()->id, 'error', $id, 'error al eliminar una habitacion', 'rooms', request()->url());
-        return back()->with('status', 'error');
+        return response()->json([
+            'message' => 'Ha ocurrido un error',
+            'code' => -1,
+            'data' => $id
+        ]);
     }
 
     public function get($id){
