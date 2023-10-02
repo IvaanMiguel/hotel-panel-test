@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
+use App\Models\Hotel;
 use App\Models\Image;
 use App\Models\Room;
 use Illuminate\Support\Facades\Validator;
@@ -27,6 +28,8 @@ class RoomController extends Controller
     {
         $rooms = Room::get();
 
+        $hotels = Hotel::get();
+        
         $breadcrumb_info = $this->breadcrumb_info;
 
         LogController::store(Auth::user()->id, 'consultar', 0, 'consultar habitaciones', 'rooms', request()->url());

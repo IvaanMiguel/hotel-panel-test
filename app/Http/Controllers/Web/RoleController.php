@@ -30,8 +30,6 @@ class RoleController extends Controller
     {
         $roles = Role::get();
 
-        $hotels = Hotel::get();
-
         $permissions = Permission::get();
 
         $breadcrumb_info = $this->breadcrumb_info;
