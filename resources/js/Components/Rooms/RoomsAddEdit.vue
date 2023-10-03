@@ -18,6 +18,16 @@
           :cols="6"
           :errors="validator.name?.$errors"
           :required="(validator.name?.required != undefined)"
+           @input="updateSlug"
+        ></basic-input>
+        <basic-input
+          v-model:keyValue="form.slug"
+          title="slug"
+          inputName="slug"
+          type="hidden"
+          :cols="6"
+          :errors="validator.slug?.$errors"
+          :required="(validator.slug?.required != undefined)"
         ></basic-input>
 
         <basic-input
@@ -29,7 +39,32 @@
           :errors="validator.max_people?.$errors"
           :required="(validator.max_people?.required != undefined)"
         ></basic-input>
-
+        
+        <basic-input
+          v-model:keyValue="form.hotel_id"
+          title="Hotel"
+          inputName="hotel_id"
+          type="select"
+          :catalog = "hotels"
+          catalogKey ="id"
+          catalogLabel ="name"
+          :cols="6"
+          :errors="validator.hotel_id?.$errors"
+          :required="(validator.hotel_id?.required != undefined)"
+        ></basic-input>
+                
+        <basic-input
+          v-model:keyValue="form.type_id"
+          title="Habitacion"
+          inputName="type_id"
+          type="select"
+          :catalog = "rooms"
+          catalogKey ="id"
+          catalogLabel ="name"
+          :cols="6"
+          :errors="validator.type_id?.$errors"
+          :required="(validator.type_id?.required != undefined)"
+        ></basic-input>
 
         <basic-input
           v-model:keyValue="form.description"
@@ -59,10 +94,18 @@ export default {
     AppModal,
     BasicInput,
   },
+ 
   props: {
     modal_id: {
         type: String,
         default: 'modalAddRooms'
+    },
+    hotels: Array,
+    rooms: Array
+  },
+  methods: {
+    updateSlug() {
+      this.form.slug = this.form.name.toLowerCase().replace(/\s+/g, '-');
     },
   },
   setup(props){
@@ -73,7 +116,9 @@ export default {
       id: '',
       name: '',
       description: '',
-      max_people: ''
+      max_people: '',
+      type_id: '',
+      hotel_id: '',
     }
 
     const cleanFormData = {...formData}

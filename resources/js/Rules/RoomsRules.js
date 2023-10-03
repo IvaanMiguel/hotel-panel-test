@@ -24,6 +24,24 @@ export default function HotelsRules() {
                 required
             ),
         },
+        hotel_id: {
+            required: helpers.withMessage(
+                "Este campo es obligatorio.",
+                required
+            ),
+        },
+        type_id: {
+            required: helpers.withMessage(
+                "Este campo es obligatorio.",
+                required
+            ),
+        },
+        slug: {
+            required: helpers.withMessage(
+                "Este campo es obligatorio.",
+                required
+            ),
+        },
     };
 
     return {

@@ -143,12 +143,12 @@ class RoomController extends Controller
             'cover' => 'sometimes|image',
             'name' => 'required',
             'description' => 'required',
-            'slug' => 'required|unique:rooms,slug',
+            'slug' => 'required|unique:rooms,slug,'.$request->id,
             'max_people' => 'required|numeric|min:1',
             'hotel_id' => 'required|exists:hotels,id',
             'type_id' => 'required|exists:types,id'
         ]);
-
+        error_log(json_encode($request->all()));
         if($validator->passes() && $room = Room::find($request->id)){
         
             if($room && $room->update($request->all())){

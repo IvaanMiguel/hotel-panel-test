@@ -10,7 +10,7 @@
                 key: 'description',
             },
             {
-                title: 'Personas ',
+                title: 'Capacidad',
                 key: 'max_people',
             },
         ]" table_id="roomsTable" moduleName="rooms" detailsBtn>
@@ -42,7 +42,7 @@
                 </div>
             </template>
         </basic-table>
-        <rooms-add-edit />
+        <rooms-add-edit :rooms = "variables.rooms" :hotels = "variables.hotels"/>
     </div>
 </template>
 <script>
