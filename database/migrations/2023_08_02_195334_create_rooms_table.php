@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->longText('description');
             $table->integer('max_people');
-            $table->string('cover');
+            $table->string('cover')->nullable();
             $table->double('extra_pay_per_person')->nullable()->default(null);
 
             $table->foreignId('hotel_id')->references('id')->on('hotels')->cascadeOnDelete();
