@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
+use App\Models\Hotel;
 use App\Models\Image;
 use App\Models\Log;
 use App\Models\User;
@@ -41,6 +42,8 @@ class UserController extends Controller
         }) */
         ->get();
 
+        $hotels = Hotel::get();
+        
         $roles = Role::all();
 
         LogController::store(Auth::user()->id, 'Consultar', 0, 'Consultar todos los usuarios', 'users', FacadesRequest::getRequestUri());
