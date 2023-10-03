@@ -77,6 +77,11 @@
             </div>
           </div>
         </template>
+
+        <template #updated_at="element">
+          {{ formatDate(element.updated_at) }}
+       </template>
+
       </basic-table>
       <contacts-add-edit/>
     </div>
@@ -94,6 +99,14 @@ export default {
     BasicTable,
     BtnOption,
     ContactsAddEdit,
+  },
+  methods:{
+    formatDate(dateTime) {
+      if (!dateTime) return '';
+      const date = new Date(dateTime);
+      const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+      return date.toLocaleDateString(undefined, options);
+    },
   },
   props: {
     variables: Object,
