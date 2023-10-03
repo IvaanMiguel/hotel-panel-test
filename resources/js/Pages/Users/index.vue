@@ -45,6 +45,14 @@
                 {{ element.address }}
             </div>
         </template>
+        <template #role_id="element">
+            {{ getRoleNameById(element.role_id) }}
+        </template>
+
+        <template #hotel_id="element">
+            {{ getHotelNameById(element.hotel_id) }}
+        </template>
+       
     </basic-table>
     <!-- :roles = "variables.roles" -->
     <users-add-edit />
@@ -59,6 +67,16 @@ export default {
         BasicTable,
         BtnOption,
         UsersAddEdit,
+    },
+    methods: {
+        getRoleNameById(roleId) {
+            const role = this.variables.roles.find(role => role.id === roleId);
+            return role ? role.name : 'Desconocido';
+        },
+        getHotelNameById(hotelId) {
+            const hotel = this.variables.hotels.find(hotel => hotel.id === hotelId);
+            return hotel ? hotel.name : 'Desconocido';
+        },
     },
     props: {
         variables: Object,
