@@ -5,9 +5,17 @@
             key: 'name',
         },
         {
+            title:'rol',
+           key:'role_id'
+        },
+        {
             title: 'Correo',
             key: 'email',
         },
+        {
+            title:'hotel',
+            key:'hotel_id'
+        }
 
     ]" table_id="usersTable" moduleName="users" detailsBtn :createBtnpermissions="true">
         <template #name="element">
