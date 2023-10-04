@@ -70,9 +70,9 @@
                                 </template>
                                 <td v-if="!read_only">
                                     <!-- ruta de nuevo usuario -->
-                                    <btn-option :btnRoute="route(moduleName + '.login', element.id)" type="listButton"
-                                        color="primary" text="Cambiar Usuario" icon="ri-swap-line"
-                                        v-if="createBtnpermissions"></btn-option>
+                                    <btn-option :action="{ id: moduleName, method: 'cambio', params: { id: element.id } }"
+                                        type="listButton" color="primary" text="Cambiar Usuario" icon="ri-swap-line"
+                                        v-if="(can(moduleName + 'login_as_user') && createBtnpermissions)"></btn-option>
                                     <!-- ruda editar foto -->
                                     <btn-option :action="{ id: moduleName, method: 'edit', params: { id: element.id } }"
                                         type="listButton" color="primary" text="Editar foto" icon="ri-image-edit-line"

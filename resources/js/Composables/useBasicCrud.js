@@ -89,11 +89,35 @@ export default function useBasicCRUD({titleBase, form, method_create, cleanFormD
             }
         });
     };
-
+    
+    const cambio = async ({ id }) => {
+        const confirmed = await    Swal.fire({
+            title: "¿Estas seguro?",
+            text: "Cambiaras de cuenta, no podras revertir esto.",
+            icon: "warning",
+            showCancelButton: true,
+            cancelButtonText: `Cancelar`,
+            confirmButtonText: `Aceptar`,
+        });
+    
+        if (confirmed.isConfirmed) {
+            try {
+                const routeName = 'users.login'; 
+                const url = route(routeName, { id: id });
+                
+                window.location.href = url; 
+            } catch (error) {
+                Swal.fire('Error', 'No se pudo cambiar de usuario.', 'error');
+                console.error(error);
+            }
+        }
+    };
+    
     const methods = {
         create: create,
         edit: edit,
         destroy: destroy,
+        cambio: cambio,
         cleanForm: cleanForm,
         submitForm: submitForm,
     }

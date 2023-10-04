@@ -35,16 +35,6 @@
                 </div>
             </div>
         </template>
-        <template #address="element">
-            <div style="
-                    word-wrap: break-word;
-                    min-width: 160px;
-                    max-width: 160px;
-                    white-space:normal;
-                ">
-                {{ element.address }}
-            </div>
-        </template>
         <template #role_id="element">
             {{ getRoleNameById(element.role_id) }}
         </template>
