@@ -17,7 +17,7 @@ class RoomController extends Controller
 {
 
      public $breadcrumb_info = [
-        "main_title" => "Roles",
+        "main_title" => "Habitaciones",
         "second_level" => "",
         "add_button" => false
     ];
