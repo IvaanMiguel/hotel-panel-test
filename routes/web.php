@@ -15,6 +15,7 @@ use App\Http\Controllers\Web\SettingController;
 use App\Http\Controllers\Web\UserController;
 use App\Models\User;
 use Faker\Guesser\Name;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
@@ -34,8 +35,12 @@ use Whoops\Run;
 Route::get('/', function () {
     return view('auth.login');
 });
-//   Auth::logout();
-//    Auth::loginUsingId(1);
+
+Route::post('/dark-mode', function(Request $request){
+    $user = User::find($request->user_id);
+    $user && $user->update(['dark_mode' => $request->dark_mode]);
+    return back()->with('status', 'ok');
+})->middleware(['auth'])->name('dark.mode');
 
 Route::view('forgot-password', 'auth.forgot-password')->name('password.request'); 
 //1-  vista donde se pone el correo

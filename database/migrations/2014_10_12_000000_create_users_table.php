@@ -22,6 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->integer('role_id')->nullable();
             $table->foreignId('hotel_id')->nullable()->references('id')->on('hotels')->onDelete('cascade');
+            $table->boolean('dark_mode')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

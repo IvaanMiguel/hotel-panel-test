@@ -31,7 +31,8 @@ class User extends Authenticatable
         'email',
         'password',
         'hotel_id',
-        'role_id'
+        'role_id',
+        'dark_mode'
     ];
     
     /**
@@ -94,6 +95,6 @@ class User extends Authenticatable
     }
 
     public function logs(){
-        return $this->hasMany(Log::class)->orderBy('created_at', 'DESC');
+        return $this->hasMany(Log::class);
     }
 }
