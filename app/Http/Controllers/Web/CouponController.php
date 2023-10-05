@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
 use App\Models\Coupon;
 use App\Models\CouponData;
+use App\Models\Hotel;
 use App\Models\Image;
+use App\Models\Type;
 use Carbon\CarbonPeriod;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Cache\Lock;
@@ -35,6 +37,11 @@ class CouponController extends Controller
     public function index()
     {
         $coupons = Coupon::get();
+
+        $types = Type::get();
+        $hotels = Hotel::get();
+
+        $currentDate = Carbon::now()->addDay()->toDateString();
 
         $breadcrumb_info = $this->breadcrumb_info;
 
@@ -368,9 +375,10 @@ class CouponController extends Controller
 
     public function get($id){
         
-        $coupon = Coupon::with('coupon_data')->find($id);
+        $coupon = Coupon::with('coupon_data', 'types')->find($id);
     
         if($coupon){
+            $coupon->current_date = Carbon::now()->addDay()->toDateString();
 
             LogController::store(Auth::id(),'consultar', $id, 'cosultar un cupon', 'coupons', request()->url());           
             return response()->json([
