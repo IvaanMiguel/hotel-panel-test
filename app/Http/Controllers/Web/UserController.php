@@ -133,7 +133,7 @@ class UserController extends Controller
             if(!$user->logs->isEmpty()){
 
                 $logs = $user->logs->toQuery();
-                $user->setRelation('logs', $logs->paginate(10));
+                $user->setRelation('logs', $logs->orderBy('created_at', 'DESC')->paginate(10));
             }
 
             LogController::store(Auth::user()->id, 'Consultar', $user->id, 'consultar un usuario', 'users', FacadesRequest::getRequestUri());
