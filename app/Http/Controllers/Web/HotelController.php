@@ -112,12 +112,18 @@ class HotelController extends Controller
         $breadcrumb_info['second_level'] = 'Detalles';
         $breadcrumb_info['add_button'] = false;
 
-        $hotel = Hotel::with('images')
-            ->find($id);
+        $hotel = Hotel::with(['images', 'reservations'])->withSum('reservations', 'amount')
+        ->find($id);
+
+        $hotel->reservations_count = $hotel->reservations->count();
+        $hotel->setRelation('clients', 
+            $hotel->reservations->isEmpty() ?
+            [] : 
+            $hotel->reservations->pluck('client')
+        );
 
         if ($hotel) {
             LogController::store(Auth::user()->id, 'Consultar', $hotel->id, 'consultar un hotel', 'hotels', request()->url());
-
             return view('hotels.show', get_defined_vars());
         }
 
