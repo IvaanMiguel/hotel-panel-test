@@ -86,7 +86,7 @@
 
                                             <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
                                             <div class="input-group">
-                                                <span class="input-group-text bx bx-sobre-abierto" id="basic-addon1">@</span>
+                                                <span class="input-group-text bx bx-sobre-abierto" id="basic-addon1"><i class="ri-mail-line"></i></span>
                                                 <input type="email" class="form-control" name="email" required="" placeholder="Ingrese un email">
                                             </div>
                                            
@@ -99,15 +99,19 @@
                                         
                                         <div class="mb-3">
                                             <label class="form-label" for="password-input">Contraseña</label>
-                                            <div class="position-relative auth-pass-inputgroup">
-                                                <input type="password" class="form-control pe-5 password-input @error('login') is-invalid @enderror" id="password" name="password" required autocomplete="current-password" placeholder="* * * * *" aria-describedby="passwordInput" required>
-                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
-                                                @error('password')
-                                                    <span class="text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                            <div class="input-group">
+                                                   
+                                                         <span class="input-group-text bx bx-sobre-abierto" id="basic-addon1"><i class="ri-key-fill"></i></i></span>
+                                                        <input type="password" class="form-control pe-5 password-input @error('login') is-invalid @enderror" id="password" name="password" required autocomplete="current-password" placeholder="* * * * *" aria-describedby="passwordInput" required>
+                                                        <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                        @error('password')
+                                                            <span class="text-danger" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
                                             </div>
+                                      
                                         </div>
 
                                         <div class="form-group">
