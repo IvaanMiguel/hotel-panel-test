@@ -94,6 +94,9 @@
                         <input type="hidden" :name="inputName" :value="keyValue">
                     </div>
                 </div>
+                <error-msg v-if="errors"
+                    :errors="errors"
+                ></error-msg>
             </template>
             <template v-else>
                 <label>{{title}} {{ (required ? '*' : '')}}</label>
