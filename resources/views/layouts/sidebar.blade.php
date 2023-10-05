@@ -94,6 +94,13 @@
                     </a>
                 </li>
                 @endif
+                @if (Auth::user()->hasPermissionTo('coupons.get'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is('coupons*') ? 'active' : '' }}" href="{{ route('coupons')}}" role="button">
+                        <i class="ri-coupon-3-line"></i> <span>Cupones</span>
+                    </a>
+                </li>
+                @endif
                 @if (Auth::user()->hasPermissionTo('settings.get'))
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->is('settings*') ? 'active' : '' }}" href="{{ route('settings')}}" role="button">
