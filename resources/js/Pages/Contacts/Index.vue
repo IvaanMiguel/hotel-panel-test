@@ -1,44 +1,59 @@
 <template>
   <div class="row">
-    <div class="col-md-2 mb-3">
-      <div class="card bg-white">
-        <div class="card-body">
-          <h4 class="fw-medium">Filtros</h4>
-          <ul class="list-unstyled">
-            <li class="fw-medium p-2 cursor-pointer" @click="filterContacts('pendiente')"
-              :class="{ 'disabled': selectedStatus === 'pendiente', 'selected': selectedStatus === 'pendiente', [statusColors.pendiente]: selectedStatus === 'pendiente' }">
-              Pendientes
-            </li>
-            <li class="fw-medium p-2 cursor-pointer" @click="filterContacts('atendido')"
-              :class="{ 'disabled': selectedStatus === 'atendido', 'selected': selectedStatus === 'atendido', [statusColors.atendido]: selectedStatus === 'atendido' }">
-              Atendidos
-            </li>
-            <li class="fw-medium p-2 cursor-pointer" @click="filterContacts('archivado')"
-              :class="{ 'disabled': selectedStatus === 'archivado', 'selected': selectedStatus === 'archivado', [statusColors.archivado]: selectedStatus === 'archivado' }">
-              Archivados
-            </li>
-            <li class="fw-medium p-2 cursor-pointer" @click="filterContacts('all')"
+    <div class="col-md-3 mb-3">
+    <div class="card bg-white">
+      <div class="card-body">
+        <h4 class="fw-medium">Filtros</h4>
+        <ul class="list-unstyled">
+          <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('pendiente')"
+            :class="{ 'disabled': selectedStatus === 'pendiente', 'selected': selectedStatus === 'pendiente', [statusColors.pendiente]: selectedStatus === 'pendiente' }">
+            <div class="circle-icon bg-light fs-16 text-primary me-3">
+              <i class="ri-error-warning-line"></i>
+            </div>
+            Pendientes
+          </li>
+          <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('atendido')"
+            :class="{ 'disabled': selectedStatus === 'atendido', 'selected': selectedStatus === 'atendido', [statusColors.atendido]: selectedStatus === 'atendido' }">
+            <div class="circle-icon bg-light fs-16 text-primary me-3">
+              <i class="ri-check-line"></i>
+            </div>
+            Atendidos
+          </li>
+          <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('archivado')"
+            :class="{ 'disabled': selectedStatus === 'archivado', 'selected': selectedStatus === 'archivado', [statusColors.archivado]: selectedStatus === 'archivado' }">
+            <div class="circle-icon bg-light fs-16 text-primary me-3">
+              <i class="ri-folder-line"></i>
+            </div>
+            Archivados
+          </li>
+          <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('all')"
             :class="{ 'disabled': selectedStatus === 'all', 'selected': selectedStatus === 'all', 'badge': selectedStatus === 'all' }">
+            <div class="circle-icon bg-light fs-16 text-primary me-3">
+              <i class="ri-star-line"></i>
+            </div>
             Todos
           </li>
-            <li class="fw-medium p-2" :class="{ 'disabled': selectedStatus === 'hotel' }">
-              Filtrar por Hotel
-              <select v-model="selectedHotel" class="form-select mt-2" @change="handleHotelChange">
-                <option value="" disabled>Selecciona un hotel</option>
-                <option v-for="hotel in uniqueHotels" :key="hotel.id" :value="hotel.id">{{ hotel.name }}</option>
-              </select>
-            </li>
-          </ul>
-        </div>
+          <li class="fw-medium p-2 d-flex align-items-center" :class="{ 'disabled': selectedStatus === 'hotel' }">
+            <div class="circle-icon bg-light fs-16 text-primary me-3">
+              <i class="ri-hotel-line"></i>
+            </div>
+            <div>  Filtrar por Hotel
+               <select v-model="selectedHotel" class="form-select mt-2" @change="handleHotelChange">
+              <option value="" disabled>Selecciona un hotel</option>
+              <option v-for="hotel in uniqueHotels" :key="hotel.id" :value="hotel.id">{{ hotel.name }}</option>
+            </select></div>
+          </li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <div class="col-md-10">
+
+    <div class="col-md-9">
       <basic-table :data="filteredContacts" :tableHeaders="[
         {
           title: 'Mensaje',
           key: 'message',
-          dataStyle: () => 'text-wrap'
         },
         {
           title: 'Estado',
@@ -49,7 +64,7 @@
             } else if (element.status === 'archivado') {
               return statusColors.archivado;
             } else if (element.status === 'atendido') {
-              return statusColors.atendido; 
+              return statusColors.atendido;
             } else {
               return '';
             }
@@ -77,13 +92,15 @@
             </div>
           </div>
         </template>
-
+        <template #message="element">
+          <div class="text-ellipsis">{{ limitText(element.message, 60) }}</div>
+        </template>
         <template #updated_at="element">
           {{ formatDate(element.updated_at) }}
-       </template>
+        </template>
 
       </basic-table>
-      <contacts-add-edit/>
+      <contacts-add-edit />
     </div>
   </div>
 </template>
@@ -100,13 +117,20 @@ export default {
     BtnOption,
     ContactsAddEdit,
   },
-  methods:{
+  methods: {
     formatDate(dateTime) {
       if (!dateTime) return '';
       const date = new Date(dateTime);
       const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
       return date.toLocaleDateString(undefined, options);
     },
+    
+  limitText(text, maxLength) {
+    if (text && text.length > maxLength) {
+      return text.slice(0, maxLength) + '...';
+    }
+    return text;
+  },
   },
   props: {
     variables: Object,
@@ -127,8 +151,8 @@ export default {
       return unique;
     }, []);
     const statusColors = {
-      pendiente: 'badge bg-danger', 
-      atendido: 'badge bg-success', 
+      pendiente: 'badge bg-danger',
+      atendido: 'badge bg-success',
       archivado: 'badge bg-primary',
     };
 
@@ -147,6 +171,7 @@ export default {
         }
         selectedStatus.value = status;
       }
+      
     };
     const handleHotelChange = () => {
       filterContacts('hotel');
@@ -163,6 +188,7 @@ export default {
     onMounted(() => {
       filterContacts(selectedStatus.value);
     });
+    
 
     return {
       filteredContacts,
@@ -183,5 +209,17 @@ export default {
 .selected {
   background-color: black;
   color: white;
+}
+.circle-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-icon i {
+  font-size: 16px; /* Ajusta el tamaño del icono según sea necesario */
 }
 </style>
