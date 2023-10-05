@@ -82,8 +82,14 @@
                                         @csrf
                                         <input type="hidden" name="uid" id="device_uid">
                                         <div class="mb-3">
+                                            <!-- Basic example -->
+
                                             <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" name="email" required="" placeholder="Ingrese un email">
+                                            <div class="input-group">
+                                                <span class="input-group-text bx bx-sobre-abierto" id="basic-addon1">@</span>
+                                                <input type="email" class="form-control" name="email" required="" placeholder="Ingrese un email">
+                                            </div>
+                                           
                                             @error('email')
                                                 <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -216,5 +222,8 @@
         console.log("%c¡Detente!", cssRule);
         setTimeout(console.log.bind(console, '%cEsta función del navegador está pensada para desarrolladores. Si alguien te indicó que copiaras y pegaras algo aquí para habilitar una función de E-commerce o para ´hackear´ la cuenta de alguien, se trata de un fraude. Si lo haces, esta persona podrá acceder a tu cuenta.', 'color: #9e202ad1;font-size: 30px;'), 0);
     </script>
+
+  
+</body>
 </body>
 </html>
