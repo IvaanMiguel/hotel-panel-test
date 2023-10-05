@@ -90,6 +90,7 @@ Route::middleware('auth')->group(function(){
     Route::controller(UserController::class)->prefix('/users')->group(function(){
         Route::get('/login-as-user/{id}', 'login_as_user')->middleware('permission:users.acceder')->name('users.login');
         Route::post('/update-avatar', 'update_avatar')->permission('users.edit')->name('users.update.avatar');
+        Route::get('/profile', 'profile')->name('user.profile');
 
         Route::get('/', 'index')->middleware('permission:users.get')->name('users');
         Route::post('/', 'store')->middleware('permission:users.create')->name('users.create');

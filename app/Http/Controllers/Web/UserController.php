@@ -114,9 +114,11 @@ class UserController extends Controller
 
     }
 
+    public function profile(){
+        return $this->show(Auth::id());
+    }
+
     public function show($id = null){
-        
-   
         $breadcrum_info = $this->breadcrum_info;
         $breadcrum_info['second_level'] = 'Perfil de usuario';
         $breadcrum_info['add_buttin'] = false;
