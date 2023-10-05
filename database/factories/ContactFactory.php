@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
 use App\Models\Contact;
+use App\Models\Hotel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,12 +20,14 @@ class ContactFactory extends Factory
     public function definition(): array
     {
         $status = Contact::$status;
+        $hotel_ids = Hotel::pluck('id');
+        $client_ids = Client::pluck('id');
         return [
             'message' => fake()->text,
             'response' => '',
-            'hotel_id' => rand(1,2),
-            'client_id' => rand(1,2),
-            'status' => $status[rand(0,2)]
+            'hotel_id' => $hotel_ids->random(),
+            'client_id' => $client_ids->random(),
+            'status' => array_rand($status)
         ];
     }
 }
