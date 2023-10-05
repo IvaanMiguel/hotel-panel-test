@@ -5,6 +5,7 @@ import { createApp } from "vue/dist/vue.esm-bundler";
 import HotelsIndex from "./Pages/Hotels/Index.vue";
 import UsersIndex from "./Pages/Users/Index.vue";
 import ClientsIndex from "./Pages/Clients/Index.vue";
+import CouponsIndex from "./Pages/Coupons/Index.vue";
 import ContactsIndex from "./Pages/Contacts/Index.vue";
 import SettingsIndex  from "./Pages/Settings/index.vue";
 import ProfileIndex from "./Pages/Users/Profile.vue";
@@ -18,6 +19,7 @@ const app = createApp({
         HotelsIndex,
         UsersIndex,
         ClientsIndex,
+        CouponsIndex,
         ContactsIndex,
         SettingsIndex,
         RolesIndex,
