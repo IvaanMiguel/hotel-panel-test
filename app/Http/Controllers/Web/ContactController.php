@@ -78,7 +78,7 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        $contact = Contact::firstWhere('id', $id);
+        $contact = Contact::with('client')->find($id);
 
         $breadcrumb_info = $this->breadcrumb_info;
 
