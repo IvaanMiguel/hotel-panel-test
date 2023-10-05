@@ -84,7 +84,7 @@ class ContactController extends Controller
 
         LogController::store(Auth::user()->id, 'consultar', 0, 'consultar contactos', 'contacts', request()->url());
 
-        return view('contacts.show', get_defined_vars());   
+        return view('contacts.details', get_defined_vars());   
     }
 
     /**

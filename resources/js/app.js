@@ -10,6 +10,7 @@ import ContactsIndex from "./Pages/Contacts/Index.vue";
 import SettingsIndex  from "./Pages/Settings/index.vue";
 import ProfileIndex from "./Pages/Users/Profile.vue";
 import RoomsIndex from "./Pages/Rooms/Index.vue";
+import DetailsIndex from "./Pages/Contacts/Details.vue";
 import ShowIndex from "./Pages/Hotels/Show.vue";
 import RolesIndex from "./Pages/Roles/Index.vue";
 import { provide, ref } from 'vue';
@@ -25,7 +26,8 @@ const app = createApp({
         RolesIndex,
         ProfileIndex,
         ShowIndex,
-        RoomsIndex
+        RoomsIndex,
+        DetailsIndex
     },
     setup() {
         provide(
