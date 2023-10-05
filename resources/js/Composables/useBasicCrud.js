@@ -93,7 +93,7 @@ export default function useBasicCRUD({titleBase, form, method_create, cleanFormD
     const cambio = async ({ id }) => {
         const confirmed = await    Swal.fire({
             title: "¿Estas seguro?",
-            text: "Cambiaras de cuenta, no podras revertir esto.",
+            text: "Acceder a cuenta",
             icon: "warning",
             showCancelButton: true,
             cancelButtonText: `Cancelar`,
