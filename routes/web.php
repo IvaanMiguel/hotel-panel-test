@@ -141,7 +141,7 @@ Route::middleware('auth')->group(function(){
     Route::controller(CouponController::class)->prefix('/coupons')->group(function(){
         Route::get('/', 'index')->middleware('permission:coupons.get')->name('coupons');
         Route::post('/', 'store')->middleware('permission:coupons.create')->name('coupons.create');
-        Route::post('/update', 'update')->middleware('permission:coupons.edit')->name('coupons.edit');
+        Route::put('/update', 'update')->middleware('permission:coupons.edit')->name('coupons.edit');
         Route::delete('/{id}','destroy')->middleware('permission:coupons.delete')->name('coupons.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:coupons.get')->name('coupons.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:coupons.get')->name('coupons.show');
