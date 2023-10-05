@@ -95,6 +95,8 @@
                     :type="type"
                     :name="inputName"
                     :value="keyValue"
+                    :max="maxValue"
+                    :min="minValue"
                     @input="$emit('update:keyValue', $event.target.value)"
                 >
                 <error-msg v-if="errors"
@@ -130,6 +132,8 @@ export default {
         catalogKey: String,
         catalogLabel: String,
         fileType: String,
+        maxValue : String,
+        minValue: String, 
         required: {
             type: Boolean,
             default: false
