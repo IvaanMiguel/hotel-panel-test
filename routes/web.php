@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\CountryController;
 use App\Http\Controllers\Web\CouponController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\FileController;
 use App\Http\Controllers\Web\HotelController;
 use App\Http\Controllers\Web\RateController;
 use App\Http\Controllers\Web\RoleController;
@@ -51,7 +52,7 @@ Route::view('password-recover/{token}/{email}', 'auth.recover-password')->name('
 Route::post('password-update', [UserController::class, 'password_update'])->name('password.update'); 
 // 4- actualiza la contraseña 
 
-// Auth::loginUsingId(1);  
+  
 
 Route::middleware('auth')->group(function(){
 
@@ -171,6 +172,15 @@ Route::middleware('auth')->group(function(){
         Route::delete('/{id}', 'destroy')->middleware('permission:rates.delete')->name('rates.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:rates.get')->name('rates.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:rates.get')->name('rates.show');
+    });
+
+
+    Route::controller(FileController::class)->prefix('/files')->group(function(){
+        Route::get('/', 'index')->middleware('permission:files.get')->name('files');
+        Route::post('/', 'store')->middleware('permission:files.create')->name('files.create');
+        Route::post('/update', 'update')->middleware('permission:files.edit')->name('files.edit');
+        Route::delete('/{id}', 'destroy')->middleware('permission:files.delete')->name('files.delete');
+        Route::get('/{id}', 'show')->middleware('permission:files.get')->name('files.show');
     });
 
 });

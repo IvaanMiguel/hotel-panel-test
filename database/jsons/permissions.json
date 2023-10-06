@@ -394,5 +394,38 @@
         "roles": [
             "Sistemas"
         ]
+    },
+    {
+        "name": "files.get",
+        "description": "Obtener archivos",
+        "module" :"files",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "files.create",
+        "description": "Agregar archivos",
+        "module": "files",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "files.edit",
+        "description": "Editar archivos",
+        "module": "files",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "files.delete",
+        "description":"Eliminar archivos",
+        "module": "files",
+        "roles": [
+            "Sistemas"
+        ]
     }
+
 ]

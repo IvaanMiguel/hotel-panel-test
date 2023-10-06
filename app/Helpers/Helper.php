@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Str;
 class Helper{
 
     public static function get_current_branch_pending_contacts(){

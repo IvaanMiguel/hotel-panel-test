@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\HotelController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +30,11 @@ Route::middleware(['auth:sanctum'])->group(function(){
 });
 
 env('APP_DEBUG') && Route::post('/test', function(Request $request){
-    $res = (new App\Http\Controllers\Web\CouponController)->update($request);
+    // return User::latest()->get();
+    
+
+    Auth::loginUsingId(1);
+    $res = (new App\Http\Controllers\Web\FileController)->update($request);
  
     return $res; 
     

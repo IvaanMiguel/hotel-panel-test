@@ -178,4 +178,53 @@ class ScheduleController extends Controller
             'data' => $id
         ]);
     }
+
+    public function check_availability(Request $request){
+
+        $request->merge([
+            'room_id' => 3,           
+            'hotel_id' =>1,
+            'type_id' => 3,
+            'check_in' => '2023-09-25',
+            'check_out' => '2023-09-28'
+        ]);
+        
+        $schedules = Schedule::withWhereHas('room', function($q) use ($request){
+            $q->where('id', $request->room_id);
+            $q->where('hotel_id', $request->hotel_id);
+            $q->where('type_id', $request->type_id);
+        })
+        ->whereBetween('date', [
+            $request->check_in,
+            $request->check_out
+        ])
+        ->where('stock', '>', 0)
+        ->orderBy('date', 'DESC')
+        ->get();
+
+    
+        $period = CarbonPeriod::create($request->check_in, $request->check_out);
+        foreach($period as $day){
+            $day = date_format($day, 'Y-m-d');
+            // verificar si el dia esta disponible
+
+            $available_day = $schedules->where('date',$day);
+
+            if(sizeof($available_day) == 0){
+                // retornar false i no esta disponible ese rango de dias
+               return false;
+            }
+
+            error_log($available_day->first()->stock);
+
+
+        }
+
+
+        return $schedules;
+
+
+
+        
+    }
 }
