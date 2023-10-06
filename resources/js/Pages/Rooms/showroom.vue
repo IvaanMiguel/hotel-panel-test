@@ -15,27 +15,54 @@
                                 <h5 class="mb-1">{{ rooms.name }}</h5>
                                 <p class="text-muted text-justify">{{ rooms.slug }}</p>
                             </div>
-                        </div>
-                        <div class="col-6 col-md-8">
+                            <div class="col-6 col-md-8">
                                 <div class="d-flex mt-4">
-                                    <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                        <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
-                                            <i class="ri-hotel-line"></i>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <p class="mb-1">Hotel :</p>
-                                        <h6 class="text-truncate mb-0">{{ rooms.hotel? rooms.hotel : 'No encontrado' }}</h6>
+                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
+                                        <i class="ri-hotel-line"></i>
                                     </div>
                                 </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="mb-1">Hotel :</p>
+                                    <h6 class="text-truncate mb-0">{{ rooms.hotel ? rooms.hotel : 'No encontrado' }}</h6>
+                                </div>
                             </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-6 col-md-8">
+                                <div class="d-flex mt-4">
+                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
+                                        <i class="ri-group-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="mb-1">Personas :</p>
+                                    <h6 class="text-truncate mb-0">{{ rooms.max_people }}</h6>
+                                </div>
+                            </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-6 col-md-8">
+                                <div class="d-flex mt-4">
+                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
+                                        <i class="ri-group-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="mb-1">Pago extra por persona :</p>
+                                    <h6 class="text-truncate mb-0">{{ rooms.extra_pay_per_person ? rooms.extra_pay_per_person : 'Sin pago'}}</h6>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
                     <!--end card-body-->
                 </div>
                 <!--end card-->
             </div>
             <!--end col-->
-
             <div class="col-xxl-8">
                 <div class="card">
                     <div class="card-header">
@@ -45,7 +72,6 @@
                                     <i class="fas fa-home"></i> Detalles
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                     <div class="card-body">
