@@ -63,7 +63,7 @@
 
 
     <div class="col-md-9">
-      <basic-table :data="variables.contacts" :tableHeaders="[
+      <basic-table :data="filteredContacts" :tableHeaders="[
         {
           title: 'Mensaje',
           key: 'message',
