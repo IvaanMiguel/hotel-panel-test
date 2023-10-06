@@ -72,6 +72,13 @@
                         </a>
                     </li>
                 @endif
+                @if (Auth::user()->hasPermissionTo('rates.get'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is('rates*') ? 'active' : '' }}" href="{{ route('rates')}}" role="button">
+                        <i class="ri-service-line"></i><span>Tarifas</span>
+                    </a>
+                </li>
+                @endif
                 @if (Auth::user()->hasPermissionTo('users.get'))
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle {{ request()->is('users*') || request()->is('roles*') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
