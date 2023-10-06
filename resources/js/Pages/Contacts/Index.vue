@@ -1,52 +1,65 @@
 <template>
   <div class="row">
     <div class="col-md-3 mb-3">
-    <div class="card bg-white">
-      <div class="card-body">
-        <h4 class="fw-medium">Filtros</h4>
-        <ul class="list-unstyled">
-          <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('pendiente')"
-            :class="{ 'disabled': selectedStatus === 'pendiente', 'selected': selectedStatus === 'pendiente', [statusColors.pendiente]: selectedStatus === 'pendiente' }">
-            <div class="circle-icon bg-light fs-16 text-primary me-3">
-              <i class="ri-error-warning-line"></i>
-            </div>
-            Pendientes
-          </li>
-          <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('atendido')"
-            :class="{ 'disabled': selectedStatus === 'atendido', 'selected': selectedStatus === 'atendido', [statusColors.atendido]: selectedStatus === 'atendido' }">
-            <div class="circle-icon bg-light fs-16 text-primary me-3">
-              <i class="ri-check-line"></i>
-            </div>
-            Atendidos
-          </li>
-          <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('archivado')"
-            :class="{ 'disabled': selectedStatus === 'archivado', 'selected': selectedStatus === 'archivado', [statusColors.archivado]: selectedStatus === 'archivado' }">
-            <div class="circle-icon bg-light fs-16 text-primary me-3">
-              <i class="ri-folder-line"></i>
-            </div>
-            Archivados
-          </li>
-          <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('all')"
-            :class="{ 'disabled': selectedStatus === 'all', 'selected': selectedStatus === 'all', 'badge': selectedStatus === 'all' }">
-            <div class="circle-icon bg-light fs-16 text-primary me-3">
-              <i class="ri-star-line"></i>
-            </div>
-            Todos
-          </li>
-          <li class="fw-medium p-2 d-flex align-items-center" :class="{ 'disabled': selectedStatus === 'hotel' }">
-            <div class="circle-icon bg-light fs-16 text-primary me-3">
-              <i class="ri-hotel-line"></i>
-            </div>
-            <div>  Filtrar por Hotel
-               <select v-model="selectedHotel" class="form-select mt-2" @change="handleHotelChange">
-              <option value="" disabled>Selecciona un hotel</option>
-              <option v-for="hotel in uniqueHotels" :key="hotel.id" :value="hotel.id">{{ hotel.name }}</option>
-            </select></div>
-          </li>
-        </ul>
+      <div class="card bg-white">
+        <div class="card-body">
+          <h4 class="fw-medium">Filtros</h4>
+          <ul class="list-unstyled">
+            <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('pendiente')"
+              :class="{ 'disabled': selectedStatus === 'pendiente', 'selected': selectedStatus === 'pendiente', [statusColors.pendiente]: selectedStatus === 'pendiente' }">
+              <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div class="circle-icon bg-light fs-16 text-primary me-3">
+                  <i class="ri-error-warning-line"></i>
+                </div>
+                <div style="flex-grow: 1;">Pendientes</div>
+                <span class="badge bg-danger">{{countPendiente}}</span>
+              </div>
+            </li>
+            <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('atendido')"
+              :class="{ 'disabled': selectedStatus === 'atendido', 'selected': selectedStatus === 'atendido', [statusColors.atendido]: selectedStatus === 'atendido' }">
+              <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div class="circle-icon bg-light fs-16 text-primary me-3">
+                  <i class="ri-check-line"></i>
+                </div>
+                <div style="flex-grow: 1;"> Atendidos</div>
+                <span class="badge bg-success">{{countAtendido}}</span>
+              </div>
+            </li>
+            <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('archivado')"
+              :class="{ 'disabled': selectedStatus === 'archivado', 'selected': selectedStatus === 'archivado', [statusColors.archivado]: selectedStatus === 'archivado' }">
+              <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div class="circle-icon bg-light fs-16 text-primary me-3">
+                  <i class="ri-folder-line"></i>
+                </div>
+                <div style="flex-grow: 1;">Archivados</div>
+                <span class="badge bg-primary">{{countArchivado}}</span>
+              </div>
+            </li>
+            <li class="fw-medium p-2 cursor-pointer d-flex align-items-center" @click="filterContacts('all')"
+              :class="{ 'disabled': selectedStatus === 'all', 'selected': selectedStatus === 'all', 'badge': selectedStatus === 'all' }">
+              <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div class="circle-icon bg-light fs-16 text-primary me-3">
+                  <i class="ri-star-line"></i>
+                </div>
+                <div style="flex-grow: 1;">Todos</div>
+                <span class="badge bg-dark">{{ countTodos }}</span>
+              </div>
+            </li>
+            <li class="fw-medium p-2 d-flex align-items-center" :class="{ 'disabled': selectedStatus === 'hotel' }">
+              <div class="circle-icon bg-light fs-16 text-primary me-3">
+                <i class="ri-hotel-line"></i>
+              </div>
+              <div> Filtrar por Hotel
+                <select v-model="selectedHotel" class="form-select mt-2" @change="handleHotelChange">
+                  <option value="" disabled>Selecciona un hotel</option>
+                  <option v-for="hotel in uniqueHotels" :key="hotel.id" :value="hotel.id">{{ hotel.name }}</option>
+                </select>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
 
     <div class="col-md-9">
@@ -124,13 +137,13 @@ export default {
       const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
       return date.toLocaleDateString(undefined, options);
     },
-    
-  limitText(text, maxLength) {
-    if (text && text.length > maxLength) {
-      return text.slice(0, maxLength) + '...';
-    }
-    return text;
-  },
+
+    limitText(text, maxLength) {
+      if (text && text.length > maxLength) {
+        return text.slice(0, maxLength) + '...';
+      }
+      return text;
+    },
   },
   props: {
     variables: Object,
@@ -139,7 +152,10 @@ export default {
     const filteredContacts = ref([]);
     const selectedStatus = ref('pendiente');
     const selectedHotel = ref('');
-
+    const countPendiente = ref(0);
+    const countAtendido = ref(0);
+    const countArchivado = ref(0);
+    const countTodos = ref(0);
     const contacts = props.variables.contacts || [];
     const hotels = contacts.map((contact) => contact.hotel);
 
@@ -171,11 +187,11 @@ export default {
         }
         selectedStatus.value = status;
       }
-      
     };
     const handleHotelChange = () => {
       filterContacts('hotel');
     };
+
 
     watch(() => props.variables.contacts, () => {
       if (selectedStatus.value === 'hotel') {
@@ -186,15 +202,23 @@ export default {
     });
 
     onMounted(() => {
+      countPendiente.value = contacts.filter((contact) => contact.status === 'pendiente').length;
+      countAtendido.value = contacts.filter((contact) => contact.status === 'atendido').length;
+      countArchivado.value = contacts.filter((contact) => contact.status === 'archivado').length;
+      countTodos.value = props.variables.contacts.length;
       filterContacts(selectedStatus.value);
     });
-    
+
 
     return {
       filteredContacts,
       selectedStatus,
       selectedHotel,
+      countPendiente,
+      countAtendido,
+      countArchivado,
       hotels,
+      countTodos,
       filterContacts,
       ContactsAddEdit,
       uniqueHotels,
@@ -210,6 +234,7 @@ export default {
   background-color: black;
   color: white;
 }
+
 .circle-icon {
   width: 32px;
   height: 32px;
@@ -217,9 +242,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.circle-icon i {
-  font-size: 16px; /* Ajusta el tamaño del icono según sea necesario */
+  font-size: 16px;
 }
 </style>
