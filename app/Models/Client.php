@@ -31,5 +31,13 @@ class Client extends Model
         return $this->hasMany(Card::class);
     }
 
+    public function getHotelsAttribute(){
+        $hotels = collect();
+        foreach($this->reservations as $reservation){
+            error_log(json_encode($reservation));
+            $hotels->add($reservation->hotel);
+        }
+        return $hotels->unique();
+    }
 }
 

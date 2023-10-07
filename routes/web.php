@@ -124,7 +124,7 @@ Route::middleware('auth')->group(function(){
         Route::put('/' , 'update')->middleware('permission:clients.edit')->name('clients.edit');
         Route::delete('/{id}', 'destroy')->middleware('permission:clients.delete')->name('clients.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:clients.get')->name('clients.get.by.id');
-        Route::get('/{email}', 'show')->middleware('permission:clients.get')->name('clients.show');
+        Route::get('/{id}', 'show')->middleware('permission:clients.get')->name('clients.show');
     });
 
     //contactos 

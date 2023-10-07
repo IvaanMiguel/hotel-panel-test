@@ -36,6 +36,12 @@ class ClientController extends Controller
         $breadcrum_info = $this->breadcrumb_info;
         $clients = Client::with('country')       
         ->orderBy('created_at','DESC')
+        
+        ->when(env('APP_DEBUG'), function($q){
+            $q->take(5);
+        })
+
+
         ->get();
 
         $clients_by_countries = Country::has('clients')->withCount('clients')->get();
@@ -105,17 +111,14 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($email = null)
+    public function show($id)
     {
-    
         $breadcrumb_info = $this->breadcrumb_info;
         $breadcrumb_info['second_level'] = 'Detalles de cliente';
         $breadcrumb_info['abb_button'] = false;
 
-        $client = Client::where('email', $email)
-            ->with('country')
-            ->first();
-    // falta traer reservaciones, el no esta todavia
+        $client = Client::with(['country', 'reservations'])
+            ->find($id)->append('hotels');
         
         $countries = Country::all();
 
@@ -239,5 +242,7 @@ class ClientController extends Controller
             'third_max_clients_country' => $max_clients_countryies->get(2)
         ]);
     }
+
+
  
 }

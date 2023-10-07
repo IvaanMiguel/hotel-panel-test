@@ -33,7 +33,7 @@ env('APP_DEBUG') && Route::post('/test', function(Request $request){
     // return User::latest()->get();
     
 
-    Auth::loginUsingId(1);
+    // Auth::loginUsingId(1);
     $res = (new App\Http\Controllers\Web\FileController)->update($request);
  
     return $res; 

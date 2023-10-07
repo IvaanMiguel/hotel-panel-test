@@ -44,4 +44,8 @@ class Reservation extends Model
     public function coupon(){
         return $this->belongsTo(Coupon::class);
     }
+
+     public function getHotelAttribute(){
+        return $this->room->hotel;
+    }
 }
