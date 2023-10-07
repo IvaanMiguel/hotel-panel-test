@@ -97,4 +97,8 @@ class User extends Authenticatable
     public function logs(){
         return $this->hasMany(Log::class);
     }
+
+    public function answers(){
+        return $this->hasMany(Answer::class);
+    }
 }

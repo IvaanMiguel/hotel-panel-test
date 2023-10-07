@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ReservationSeeder::class,
             SettingSeeder::class,
             ContactSeeder::class,
+            AnswerSeeder::class,
             CardSeeder::class,
             CouponSeeder::class,
             ScheduleSeeder::class,

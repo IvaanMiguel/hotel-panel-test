@@ -14,6 +14,7 @@ use App\Http\Controllers\Web\RoomController;
 use App\Http\Controllers\Web\ScheduleController;
 use App\Http\Controllers\Web\SettingController;
 use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\AnswerController;
 use App\Models\User;
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;
@@ -181,6 +182,10 @@ Route::middleware('auth')->group(function(){
         Route::post('/update', 'update')->middleware('permission:files.edit')->name('files.edit');
         Route::delete('/{id}', 'destroy')->middleware('permission:files.delete')->name('files.delete');
         Route::get('/{id}', 'show')->middleware('permission:files.get')->name('files.show');
+    });
+
+    Route::controller(AnswerController::class)->prefix('/answers')->group(function(){
+        Route::get('/', 'store');
     });
 
 });
