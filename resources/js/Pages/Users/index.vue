@@ -6,7 +6,7 @@
         },
         {
             title:'rol',
-           key:'role_id'
+           key:'role_id',
         },
         {
             title: 'Correo',
@@ -36,11 +36,21 @@
             </div>
         </template>
         <template #role_id="element">
-            {{ getRoleNameById(element.role_id) }}
+            <div v-if=" getRoleNameById(element.role_id) !=' '">
+                <span class="badge bg-info"> {{ getRoleNameById(element.role_id) }}</span>
+            </div>
+            <div v-else>
+                {{ getRoleNameById(element.role_id) }}
+            </div>
         </template>
 
         <template #hotel_id="element">
-            {{ getHotelNameById(element.hotel_id) }}
+            <div v-if=" getHotelNameById(element.hotel_id) !=' '">
+                <span class="badge bg-info">  {{ getHotelNameById(element.hotel_id) }}</span>
+            </div>
+            <div v-else>
+                {{ getHotelNameById(element.hotel_id) }}
+            </div>
         </template>
        
     </basic-table>
@@ -61,17 +71,18 @@ export default {
     methods: {
         getRoleNameById(roleId) {
             const role = this.variables.roles.find(role => role.id === roleId);
-            return role ? role.name : 'Desconocido';
+            return role ? role.name : ' ';
         },
         getHotelNameById(hotelId) {
             const hotel = this.variables.hotels.find(hotel => hotel.id === hotelId);
-            return hotel ? hotel.name : 'Desconocido';
+            return hotel ? hotel.name : ' ';
         },
     },
     props: {
         variables: Object,
     },
     setup(props) {
+        const typeBadge="badge badge-pill badge-info";
     }
 }
 </script>
