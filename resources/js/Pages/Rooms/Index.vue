@@ -10,6 +10,10 @@
                 key: 'description',
             },
             {
+                title:'Hotel',
+                key:''
+            },
+            {
                 title: 'Capacidad',
                 key: 'max_people',
             },
@@ -33,12 +37,12 @@
             </template>
             <template #max_people="element">
                 <div class="text-center">
-                    {{ element.max_people }}
+                    <span class="badge bg-info"> {{ element.max_people }} </span>     
                 </div>
             </template>
             <template #description="element">
                 <div class="description-text">
-                    {{ element.description }}
+                    {{ cut(element.description) }}
                 </div>
             </template>
         </basic-table>
@@ -54,6 +58,12 @@ export default {
         BasicTable,
         BtnOption,
         RoomsAddEdit,
+    },
+    methods:{
+         cut(text){
+            return text
+            .replace(/^(.{50}[^\s]*).*/, "$1...");
+        }
     },
     props: {
         variables: Object,

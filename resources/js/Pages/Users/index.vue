@@ -82,7 +82,7 @@ export default {
         variables: Object,
     },
     setup(props) {
-        const typeBadge="badge badge-pill badge-info";
+       
     }
 }
 </script>
