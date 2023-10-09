@@ -11,7 +11,7 @@
             },
             {
                 title:'Hotel',
-                key:''
+                key:'hotel_id'
             },
             {
                 title: 'Capacidad',
@@ -45,6 +45,17 @@
                     {{ cut(element.description) }}
                 </div>
             </template>
+            <template #hotel_id="element">
+                <div class="text center">
+                    <div v-if="getHotelNameById(element.hotel_id) =='Malecón'">
+                        <span class="badge bg-info"> {{ getHotelNameById(element.hotel_id) }} </span>
+                    </div>
+                   <div v-else-if="getHotelNameById(element.hotel_id) =='Centro Histórico'">
+                    <span class="badge bg-dark"> {{ getHotelNameById(element.hotel_id) }} </span>
+                   </div>
+                    
+                </div>
+            </template>
         </basic-table>
         <rooms-add-edit :rooms = "variables.rooms" :hotels = "variables.hotels"/>
     </div>
@@ -63,7 +74,12 @@ export default {
          cut(text){
             return text
             .replace(/^(.{50}[^\s]*).*/, "$1...");
+        },
+        getHotelNameById(hotelId) {
+            const hotel = this.variables.hotels.find(hotel => hotel.id === hotelId);
+            return hotel ? hotel.name : ' ';
         }
+
     },
     props: {
         variables: Object,
