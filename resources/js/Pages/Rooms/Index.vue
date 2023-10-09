@@ -53,7 +53,6 @@
                    <div v-else-if="getHotelNameById(element.hotel_id) =='Centro Histórico'">
                     <span class="badge bg-dark"> {{ getHotelNameById(element.hotel_id) }} </span>
                    </div>
-                    
                 </div>
             </template>
         </basic-table>
