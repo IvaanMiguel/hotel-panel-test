@@ -51,7 +51,10 @@
                         <span class="badge bg-info"> {{ getHotelNameById(element.hotel_id) }} </span>
                     </div>
                    <div v-else-if="getHotelNameById(element.hotel_id) =='Centro Histórico'">
-                    <span class="badge bg-dark"> {{ getHotelNameById(element.hotel_id) }} </span>
+                    <span class="badge bg-warning"> {{ getHotelNameById(element.hotel_id) }} </span>
+                   </div>
+                   <div v-else>
+                    <span class="badge bg-success"> {{ getHotelNameById(element.hotel_id) }} </span>
                    </div>
                 </div>
             </template>
