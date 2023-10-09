@@ -15,6 +15,7 @@ use App\Http\Controllers\Web\ScheduleController;
 use App\Http\Controllers\Web\SettingController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\AnswerController;
+use App\Http\Controllers\Web\BillingDataController;
 use App\Models\User;
 use Faker\Guesser\Name;
 use Illuminate\Http\Request;
@@ -173,6 +174,15 @@ Route::middleware('auth')->group(function(){
         Route::delete('/{id}', 'destroy')->middleware('permission:rates.delete')->name('rates.delete');
         Route::get('/get/{id}', 'get')->middleware('permission:rates.get')->name('rates.get.by.id');
         Route::get('/{id}', 'show')->middleware('permission:rates.get')->name('rates.show');
+    });
+
+    Route::controller(BillingDataController::class)->prefix('/billing-data')->group(function(){
+        Route::get('/', 'index')->middleware('permission:billing.data.get')->name('billing.data');
+        Route::post('/', 'store')->middleware('permission:billing.data.create')->name('billing.data.create');
+        Route::put('/', 'update')->middleware('permission:billing.data.edit')->name('billing.data.edit');
+        Route::delete('/{id}', 'destroy')->middleware('permission:billing.data.delete')->name('billing.data.delete');
+        Route::get('/get/{id}', 'get')->middleware('permission:billing.data.get')->name('billing.data.get.by.id');
+        Route::get('{id}', 'show')->middleware('permission:billing.data.get')->name('billing.data.show');
     });
 
 

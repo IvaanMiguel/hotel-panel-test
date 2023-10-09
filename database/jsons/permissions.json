@@ -426,6 +426,37 @@
         "roles": [
             "Sistemas"
         ]
+    },
+    {
+        "name": "billing.data.get",
+        "description":"Ver datos de facturacion", 
+        "module": "billing.data",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "billing.data.create",
+        "description": "Agregar datos de facturación",
+        "module": "billing.data",
+        "roles":[ 
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "billing.data.edit",
+        "description": "Editar datos de facturación",
+        "module": "billing.data",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "billing.data.delete",
+        "description": "Eliminar datos de facturación",
+        "module": "billing.data",
+        "roles": [
+            "Sistemas"
+        ]
     }
-
 ]
