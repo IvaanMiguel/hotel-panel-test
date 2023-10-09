@@ -137,7 +137,7 @@
         <!-- end auth page content -->
 
         <!-- footer -->
-        <footer class="footer">
+        <footer class="footer text-center text-lg-start">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -230,4 +230,9 @@
   
 </body>
 </body>
+<style>
+    .footer{
+        position: inherit;
+    }
+</style>
 </html>
