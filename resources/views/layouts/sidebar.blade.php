@@ -75,7 +75,7 @@
                 @if (Auth::user()->hasPermissionTo('rates.get'))
                 <li class="nav-item">
                     <a class="nav-link menu-link {{ request()->is('rates*') ? 'active' : '' }}" href="{{ route('rates')}}" role="button">
-                        <i class="ri-service-line"></i><span>Tarifas</span>
+                        <i class=" ri-bank-card-line"></i><span>Tarifas</span>
                     </a>
                 </li>
                 @endif
