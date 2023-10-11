@@ -167,21 +167,30 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        
+                        <form action="{{ route('user.profile') }}">
+                        @csrf
+                            <button class="dropdown-item" type="submit">
+                            <i
+                                class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
+                                class="align-middle">Perfil</span></a>
+                            </button>
+                        </form>
+                        <div class="dropdown-divider"></div>
                         <form action="{{ route('settings') }}">
                         @csrf
                             <button class="dropdown-item" type="submit">
-                                <i class="fas fa-sign-out-alt text-muted fs-16 align-middle me-1"></i>
-                                <i class="ri-settings-3-line"> Configuracion</i>
-                            
+                            <i
+                                class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
+                                class="align-middle">Configuración</span></a>
                             </button>
                         </form>
 
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="dropdown-item" type="submit">
-                                <i class="fas fa-sign-out-alt text-muted fs-16 align-middle me-1"></i>
-                                <i class="ri-logout-box-r-line"> Cerrar Sesion</i>
+                            <i
+                                class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                class="align-middle" data-key="t-logout">Cerrar Sesion</span></a>
                             
                             </button>
                         </form>
