@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class SettingController extends Controller
 {
     public $breadcrumb_info = [
-        "main_title" => "Roles",
+        "main_title" => "Configuracion",
         "second_level" => "",
         "add_button" => false
     ];
