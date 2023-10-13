@@ -31,6 +31,10 @@ class Client extends Model
         return $this->hasMany(Card::class);
     }
 
+    public function contacts(){
+        return $this->hasMany(Contact::class);
+    }
+
     public function getHotelsAttribute(){
         $hotels = collect();
         foreach($this->reservations as $reservation){

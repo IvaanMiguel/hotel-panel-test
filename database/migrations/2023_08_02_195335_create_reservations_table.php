@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
+            $table->string('code')->nullable()->unique();
             $table->integer('nights_reserved')->default(1);
             $table->integer('amount_of_people')->default(1);
             $table->date('check_in')->nullable();
@@ -28,7 +28,6 @@ return new class extends Migration
             $table->foreignId('room_id')  ->references('id')->on('rooms')  ->cascadeOnDelete();
             $table->foreignId('rate_id')  ->references('id')->on('rates')  ->cascadeOnDelete();
             $table->foreignId('coupon_id')->nullable()->references('id')->on('coupons')->cascadeOnDelete();
-
             $table->string('status')->default('pendiente');
             $table->timestamps();
         });

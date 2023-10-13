@@ -11,7 +11,16 @@ use App\Models\Rate;
 use App\View\Components\Breadcrumb;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
+use App\Mail\CancelledReservarionEmail;
+use App\Mail\CancelledReservationEmail;
+use App\Mail\ConfirmedReservationEmail;
+use App\Models\User;
+use App\Services\ReservationService;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Validator;
+use Mockery\CountValidator\AtMost;
 use Psy\Command\WhereamiCommand;
 
 use function Laravel\Prompts\error;
@@ -98,8 +107,7 @@ class ReservationController extends Controller
         $breadcrum_info['second_level'] = "Detalle de la reservación";
         $breadcrum_info['add_button'] = false;
 
-        $reservation = Reservation::find($id)
-                        ->with('room.hotel', 'rate', 'coupon')
+        $reservation = Reservation::with('room.hotel', 'rate', 'coupon', 'billing_data')
                         ->with('client', function($q){
                             $q->with('reservations');
                             $q->withCount('contacts');
@@ -110,7 +118,7 @@ class ReservationController extends Controller
                                 $q->where('status','cancelada');
                             }]);
                         })
-                        ->get();
+                        ->find($id);
 
         $rooms = Room::all();
         $clients = Client::all();
@@ -127,9 +135,8 @@ class ReservationController extends Controller
 
     public function get($id)
     {
-        $reservation = Reservation::find($id)
-                        ->with('room', 'rate', 'client')
-                        ->get();
+        $reservation = Reservation::with('room', 'rate', 'client')
+                        ->find($id);
 
         if($reservation){
             LogController::store(Auth::user()->id, 'Obtener', $id, 'Obtener una reservación', 'reservations', request()->url());
@@ -152,15 +159,46 @@ class ReservationController extends Controller
      */
     public function edit(string $id)
     {
-
-    }
+    } 
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
-    {
+    {   
+        
+  /*        $request->merge([
+            'id' => 1,
+            'code' => '652989BA0E023',
+            'status' => 'confirmada'
+        ]); */
+        $validator = Validator::make($request->all(), [
+            'code' => 'unique:reservations,code,'.$request->id
+        ]);
 
+        if($validator->passes()){
+
+            $reservation = Reservation::find($request->id);
+
+
+            if($reservation && $reservation->update($request->all())){
+
+                if($reservation->status == 'confirmada' && isset($reservation->client->email)){
+                         
+                    Mail::to($reservation->client->email)->send(new ConfirmedReservationEmail($reservation, $reservation->client));
+                 
+                }
+                
+                LogController::store(Auth::user()->id, 'Actualizar', $reservation->id, 'Actualizar una reservacion', 'reservations', FacadesRequest::getRequestUri().'/'. $reservation->code);
+       
+                return back()->with('status', 'ok');
+            }
+
+            
+        }
+        LogController::store(Auth::user()->id, 'Error', $request->id, 'error al actualizar una reservacion', 'reservations', FacadesRequest::getRequestUri().'/'. $request->id);
+        
+        return back()->with('status', 'error');
     }
 
     /**
@@ -184,5 +222,35 @@ class ReservationController extends Controller
         }
 
         return $widgets;
+    }
+
+    //
+    public function change_status(Request $request){
+        
+        $request['id'] = 4;
+        $request['status'] = 'cancelada';
+        $reservation = Reservation::find($request->id);
+
+
+        if(!is_null($reservation) && $request->status == 'confirmada' && $reservation->status == 'pendiente'){
+            
+            $reservation->update(['status' => $request->status, 'code' => $request->code]);
+
+            if(isset($reservation->client->email)){
+
+                Mail::to($reservation->client->email)->send(new ConfirmedReservationEmail($reservation, $reservation->client));               
+            }
+        
+        }else if(!is_null($reservation) && $reservation->status == 'cancelada') {
+
+            $reservation->update(['status' => $request->status]);
+
+            if(isset($reservation->client->email)){
+
+                Mail::to($reservation->client->email)->send(new CancelledReservationEmail($reservation, $reservation->client));
+            }
+
+        }
+    
     }
 }

@@ -458,5 +458,29 @@
         "roles": [
             "Sistemas"
         ]
+    },
+    {
+        "name": "reservations.get",
+        "description": "Ver reservaciones",
+        "module": "reservations",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "reservations.create",
+        "description": "Agregar reservacioones",
+        "module": "reservations",
+        "roles": [
+            "Sistemas"
+        ]
+    },
+    {
+        "name": "reservations.edit",
+        "description": "Editar reservaciones",
+        "module": "reservations",
+        "roles": [
+            "Sistemas"
+        ]
     }
 ]

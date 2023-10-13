@@ -25,11 +25,16 @@ class Reservation extends Model
         'room_id',
         'rate_id',
         'coupon_id',
+        'status'
     ];
 
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function billing_data(){
+        return $this->hasOne(BillingData::class);
     }
 
     public function room()

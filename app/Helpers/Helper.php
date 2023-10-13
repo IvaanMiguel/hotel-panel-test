@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Contact;
 use App\Models\Reservation;
+use App\Services\ReservationService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 class Helper{
@@ -25,5 +26,9 @@ class Helper{
             });
         })->where('status', 'pendiente')->pluck('id');
         return $pending_reservations_count;
+    }
+
+    public function get_unique_reservation_code(){
+        return ReservationService::unique_code('code');
     }
 }

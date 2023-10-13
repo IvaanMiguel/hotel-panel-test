@@ -1,1 +1,1 @@
-{{json_encoded(get_defined_vars())}}
+{{json_encode(get_defined_vars())}}

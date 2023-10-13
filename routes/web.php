@@ -183,7 +183,7 @@ Route::middleware('auth')->group(function(){
         Route::get('{id}', 'show')->middleware('permission:billing.data.get')->name('billing.data.show');
     });
 
-
+    // archivos
     Route::controller(FileController::class)->prefix('/files')->group(function(){
         Route::get('/', 'index')->middleware('permission:files.get')->name('files');
         Route::post('/', 'store')->middleware('permission:files.create')->name('files.create');
@@ -192,8 +192,14 @@ Route::middleware('auth')->group(function(){
         Route::get('/{id}', 'show')->middleware('permission:files.get')->name('files.show');
     });
 
+    // reservaciones
     Route::controller(ReservationController::class)->prefix('/reservations')->group(function(){
-        Route::get('/{start_date?}/{end_date?}/{by?}', 'index');
+        Route::post('/change-status', 'change_status');
+        Route::get('/{start_date?}/{end_date?}/{by?}', 'index')->middleware('permission:reservations.get')->name('reservations');
+        Route::post('/', 'store')->middleware('permission:reservations.create')->name('reservations.create');
+        Route::put('/', 'update')->middleware('permission:reservations.edit')->name('reservations.edit');
+        Route::get('/get/{id}', 'get')->middleware('permission:reservations.get')->name('reservations.get.by.id');
+        Route::get('/{id}', 'show')->middleware('permission:reservations.get')->name('reservations.show');
     });
     
     Route::controller(AnswerController::class)->prefix('/answers')->group(function(){
