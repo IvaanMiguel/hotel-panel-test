@@ -18,8 +18,8 @@ class Rate extends Model
         return $this->belongsToMany(Schedule::class)->withPivot(['price']);
     }
 
-    public function rates(){
-        return $this->belongsToMany(Rate::class)->withPivot(['default_price', 'default_extra_per_person']);
+    public function rooms(){
+        return $this->belongsToMany(Room::class)->withPivot(['default_price', 'default_extra_per_person']);
         
     }
 }

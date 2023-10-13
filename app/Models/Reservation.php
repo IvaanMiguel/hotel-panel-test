@@ -20,7 +20,7 @@ class Reservation extends Model
         'amount',
         'billing',
         'lang',
-
+        'origin',
         'client_id',
         'room_id',
         'rate_id',

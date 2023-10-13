@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +9,12 @@ use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\Rate;
 use App\View\Components\Breadcrumb;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LogController;
+use Illuminate\Support\Facades\Artisan;
+use Psy\Command\WhereamiCommand;
+
+use function Laravel\Prompts\error;
 
 class ReservationController extends Controller
 {
@@ -21,12 +27,30 @@ class ReservationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($start_date = null, $end_date = null, $by = null)
     {
+    /*     $by = 'check_out';
+        $start_date = '2023-10-16';
+        $end_date = '2023-10-17';  */
+
+        if(!isset($start_date, $end_date, $by)){
+            $between_dates = false;
+        }else{
+            $between_dates = true;
+        }
+
+        
         $breadcrum_info = $this->breadcrum_info;
-        $reservations = Reservation::with('room.hotel', 'client')
-            ->orderBy('check_out', 'desc')
-            ->get();
+        $widgets = $this->get_widgets();
+        $reservations = Reservation::with('room.hotel:id,name', 'client:id,name,email', 'rate')
+        ->when($between_dates, function($q) use($start_date, $end_date, $by){
+            $q->whereBetween($by, [$start_date, $end_date]);
+            $q->orderBy($by);
+        }, function($q){
+            $q->whereDate('check_out', '>', now());
+            $q->orderBy('check_out');
+        })
+        ->get(); 
         $clients = Client::all();
         $rooms = Room::all();
 
@@ -145,5 +169,20 @@ class ReservationController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function get_widgets(){
+        
+        $reservations = Reservation::get();
+        $statuses = ['confirmada', 'pendiente', 'cancelada', 'inconclusa'];
+        $widgets = collect();
+        foreach($statuses as $status){
+            $widgets->push([
+                'status' => $status,
+                'count' => $reservations->where('status', $status)->count()
+            ]);
+        }
+
+        return $widgets;
     }
 }

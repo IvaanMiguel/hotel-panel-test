@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
             RateSeeder::class,
             RoomSeeder::class,
             UsoCfdiSeeder::class,
-            ReservationSeeder::class,
             BillingDataSeeder::class,
             SettingSeeder::class,
             ContactSeeder::class,
@@ -31,6 +30,7 @@ class DatabaseSeeder extends Seeder
             CardSeeder::class,
             CouponSeeder::class,
             ScheduleSeeder::class,
+            ReservationSeeder::class,
             FileSeeder::class
         ]);
 

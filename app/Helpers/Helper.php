@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Contact;
+use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 class Helper{
@@ -15,5 +16,14 @@ class Helper{
         ->count();
     
         return $pending_contact_count;
+    }
+
+    public function get_current_pending_reservations(){
+        $pending_reservations_count = Reservation::when(!is_null(Auth::user()->hotel_id), function($q){
+            $q->whereHas('room.hotel', function($q){
+                $q->where('id', Auth::user()->hotel_id);
+            });
+        })->where('status', 'pendiente')->pluck('id');
+        return $pending_reservations_count;
     }
 }

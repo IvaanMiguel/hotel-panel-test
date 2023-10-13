@@ -1,5 +1,6 @@
 <?php
-
+ 
+use App\Http\Controllers\Web\ReservationController;
 use App\Http\Controllers\Web\CardController;
 use App\Http\Controllers\Web\ClientController;
 use App\Http\Controllers\Web\ContactController;
@@ -17,12 +18,9 @@ use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\AnswerController;
 use App\Http\Controllers\Web\BillingDataController;
 use App\Models\User;
-use Faker\Guesser\Name;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
-use Whoops\Run;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -194,6 +192,10 @@ Route::middleware('auth')->group(function(){
         Route::get('/{id}', 'show')->middleware('permission:files.get')->name('files.show');
     });
 
+    Route::controller(ReservationController::class)->prefix('/reservations')->group(function(){
+        Route::get('/{start_date?}/{end_date?}/{by?}', 'index');
+    });
+    
     Route::controller(AnswerController::class)->prefix('/answers')->group(function(){
         Route::get('/', 'store');
     });

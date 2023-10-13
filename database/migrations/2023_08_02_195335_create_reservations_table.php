@@ -23,7 +23,7 @@ return new class extends Migration
             $table->double('amount')->nullable();
             $table->boolean('billing')->default(false);
             $table->string('lang')->nullable();
-
+            $table->string('origin')->nullable();
             $table->foreignId('client_id')->references('id')->on('clients')->cascadeOnDelete();
             $table->foreignId('room_id')  ->references('id')->on('rooms')  ->cascadeOnDelete();
             $table->foreignId('rate_id')  ->references('id')->on('rates')  ->cascadeOnDelete();

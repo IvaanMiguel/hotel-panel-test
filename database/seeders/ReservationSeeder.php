@@ -2,9 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Client;
+use App\Models\Rate;
 use App\Models\Reservation;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Process\FakeProcessResult;
+
+use function Laravel\Prompts\error;
 
 class ReservationSeeder extends Seeder
 {
@@ -14,25 +19,38 @@ class ReservationSeeder extends Seeder
     public function run(): void
     {
         
-/*             $table->id();
-            $table->string('code')->unique();
-            $table->integer('nights_reserved')->default(1);
-            $table->integer('amount_of_people')->default(1);
-            $table->date('check_in')->nullable();
-            $table->date('check_out')->nullable();
-            $table->longText('comments')->nullable();
-            $table->string('payment_confirmation')->nullable();
-            $table->double('amount')->nullable();
-            $table->boolean('billing');
-            $table->string('lang')->nullable();
+        $rates = Rate::get();
+        $client = Client::pluck('id');
+        foreach($rates as $rate){
+    
+            $schedules = $rate->schedules()->take(4)->inRandomOrder()->get();
+            
+            foreach($schedules as $schedule){
 
-            $table->foreignId('client_id')->references('id')->on('clients')->cascadeOnDelete();
-            $table->foreignId('room_id')  ->references('id')->on('rooms')  ->cascadeOnDelete();
-            $table->foreignId('rate_id')  ->references('id')->on('rates')  ->cascadeOnDelete();
-            $table->foreignId('coupon_id')->references('id')->on('coupons')->cascadeOnDelete(); */
-
-
-               $reservation = new Reservation();
+                $room = $rate->rooms()->find($schedule->room);
+               
+                $reservation = Reservation::create([
+                    'code' => strtoupper(uniqid()),
+                    'nights_reserved' => 1,
+                    'amount_of_people' => $schedule->room->max_people,
+                    'check_in' => $schedule->date,
+                    'check_out' => date('Y-m-d', strtotime($schedule->date . ' + 1 days')),
+                    'comments' => fake()->text(30),
+                    'payment_confirmation' => 20,
+                    'amount' => $room->pivot->default_price,
+                    'room_id' => $schedule->room->id,
+                    'rate_id' => $rate->id,
+                    'client_id' => $client->random(),
+                    'billing' => fake()->randomElement([true, false]),
+                    'status' => fake()->randomElement(['confirmada', 'pendiente', 'cancelada', 'inconclusa']),
+                    'origin' => 'organico'
+                ]); 
+            }
+        }
+    
+         
+        /* 
+        $reservation = new Reservation();
         $reservation->code = "RES20200827";
         $reservation->nights_reserved = 3;
         $reservation->amount_of_people = 2;
@@ -107,6 +125,6 @@ class ReservationSeeder extends Seeder
         $reservation->billing = true;
         $reservation->status = "cancelada";
         $reservation->save();
-
+ */
     }
 }
