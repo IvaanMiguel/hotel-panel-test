@@ -227,8 +227,9 @@ class ReservationController extends Controller
     //
     public function change_status(Request $request){
         
-        $request['id'] = 4;
+  /*       $request['id'] = 4;
         $request['status'] = 'cancelada';
+        */
         $reservation = Reservation::find($request->id);
 
 
@@ -251,6 +252,7 @@ class ReservationController extends Controller
             }
 
         }
-    
+
+        return back()->with('status', 'ok');
     }
 }
