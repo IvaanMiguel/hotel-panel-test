@@ -539,3 +539,10 @@ function topFunction() {
 mybutton && (window.onscroll = function() {
     scrollFunction()
 });
+
+async function changeTheme(dark_mode, id){
+    if(dark_mode ==null) dark_mode = (dark_mode == 1 ? 0 : 1);
+    else dark_mode = (dark_mode == 1 ? 0 : 1);
+    axios.post(route('dark.mode'),{user_id: id , dark_mode: dark_mode})
+
+}

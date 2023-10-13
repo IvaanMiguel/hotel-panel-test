@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" data-layout="horizontal" data-topbar="light" data-sidebar="dark" 
-data-sidebar-size="lg" data-sidebar-image="none" data-preloader="enable" data-layout-width="boxed">
+data-sidebar-size="lg" data-sidebar-image="none" data-preloader="enable" data-layout-width="boxed" data-layout-mode="{{ Auth::user()->dark_mode ? 'dark' : 'light' }}">
 
 <head>
     <x-head>
