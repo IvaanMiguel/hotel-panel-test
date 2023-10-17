@@ -26,7 +26,7 @@
                             {{ clients.email }}
                         </div>
                         <div class="hstack text-white-50 gap-1">
-                            <div class="me-1">Numero de teléfono :</div>
+                            <div class="me-1">Teléfono :</div>
                             {{ clients.phone_number }}
                         </div>
                     </div>
@@ -44,13 +44,13 @@
                             <li class="nav-item">
                                 <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
                                     <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span
-                                        class="d-none d-md-inline-block">Overview</span>
+                                        class="d-none d-md-inline-block">Información</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link fs-14" data-bs-toggle="tab" href="#documents" role="tab">
                                     <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span
-                                        class="d-none d-md-inline-block">Documents</span>
+                                        class="d-none d-md-inline-block">Documentos</span>
                                 </a>
                             </li>
                         </ul>
@@ -65,17 +65,17 @@
                             <div class="row">
                                 <div class="col-xxl-3">
                                     <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body ">
                                             <h5 class="card-title mb-3">Información</h5>
                                             <div class="table-responsive">
-                                                <table class="table table-borderless">
+                                                <table class="table mb-0 table-borderless">
                                                     <tbody>
                                                         <tr>
                                                             <th class="ps-0">Nombre : </th>
                                                             <td class="text-muted">{{ clients.name }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th class="ps-0">Telefono :</th>
+                                                            <th class="ps-0">Teléfono:</th>
                                                             <td class="text-muted">{{ clients.phone_number }}</td>
                                                         </tr>
                                                         <tr>
@@ -88,7 +88,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <th class="ps-0">Día de ingreso</th>
+                                                            <th class="ps-0">Día de ingreso :</th>
                                                             <td class="text-muted">{{ formatDate(clients.created_at) }}</td>
                                                         </tr>
                                                     </tbody>
