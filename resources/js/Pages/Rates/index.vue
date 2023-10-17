@@ -6,10 +6,10 @@
           <div class="card">
             <div class="card-body">
               <!-- Tarifa -->
-              <div class="seccion mb-4"> 
+              <div class="seccion mb-4">
                 <div class="titulo">
                   <i class="ri-bank-card-fill"></i>
-                  <span class="card-title">Tarifa</span> 
+                  <span class="card-title">Tarifa</span>
                 </div>
                 <div class="descripcion">
                   <p class="card-text">{{ rate.name }}</p>
@@ -20,19 +20,19 @@
               <div class="seccion mb-4">
                 <div class="titulo">
                   <i class="ri-error-warning-fill"></i>
-                  <span class="card-title">Descripción</span> 
+                  <span class="card-title">Descripción</span>
                 </div>
                 <div class="descripcion">
                   <p class="card-text">{{ rate.description }}</p>
                 </div>
               </div>
 
-              <div class="mb-4"> 
+              <div class="mb-4">
                 <div class="d-flex align-items-center">
                   <!-- "Precio" -->
                   <div class="titulo">
                     <i class="ri-money-dollar-box-fill"></i>
-                    <span class="card-title">Precio</span> 
+                    <span class="card-title">Precio</span>
                     <div class="descripcion">
                       <p class="card-text">{{ rate.price ? rate.price : 'Sin precio' }}</p>
                     </div>
@@ -43,7 +43,7 @@
                   <!-- "Extra" -->
                   <div class="titulo">
                     <i class="ri-money-dollar-circle-fill"></i>
-                    <span class="card-title">Extra</span> 
+                    <span class="card-title">Extra</span>
                     <div class="descripcion">
                       <p class="card-text">{{ rate.extra ? rate.extra : 'Sin extra' }}</p>
                     </div>
@@ -52,10 +52,10 @@
               </div>
 
               <!-- Estado -->
-              <div class="seccion mb-4"> 
+              <div class="seccion mb-4">
                 <div class="titulo">
                   <i class="ri-flag-fill"></i>
-                  <span class="card-title">Estado</span> 
+                  <span class="card-title">Estado</span>
                 </div>
                 <div class="descripcion">
                   <p class="card-text">{{ rate.status ? rate.status : 'Sin Estatus' }}</p>
@@ -63,17 +63,18 @@
               </div>
 
               <!-- Botones -->
-              <div class="d-flex flex-row">
-                <button @click="methods.edit({ id: rate.id })" class="btn btn-primary flex-fill me-1"
-                  data-mdb-ripple-color="dark">
-                  <i class="ri-edit-line ri-lg"></i> Editar
-                </button>
-                <button @click="methods.destroy({ id: rate.id })" class="btn btn-danger flex-fill ms-1">
-                  <i class="ri-delete-bin-line ri-lg"></i> Eliminar
-                </button>
-                <button class="btn btn-success flex-fill ms-1">
-                  <i class="ri-information-line ri-lg"></i> Detalles
-                </button>
+              <div class="d-flex flex-row justify-content-end">
+
+                <btn-option :action="{ id: 'rates', method: 'edit', params: { id: rate.id } }" type="button"
+                  color="success" text="Editar" icon="ri-image-edit-line" v-if="(can('rates.update'))"></btn-option>
+
+                <btn-option :action="{ id: 'rates' , method: 'destroy', params: { id: rate.id } }"
+                  type="button" color="danger" text="Eliminar" icon="ri-delete-bin-5-fill"
+                  v-if="(can('rates.destroy'))"></btn-option>
+
+                <btn-option :btnRoute="route('rates.show', rate.id)" type="button" color="primary"
+                  text="Detalles" icon="ri-eye-fill" v-if="(can('rates.get'))"></btn-option>
+
               </div>
 
             </div>
@@ -81,16 +82,17 @@
         </div>
       </div>
     </div>
-    <rates-add-edit/>
   </div>
+  <rates-add-edit />
 </template>
 
 
 <script>
 import RatesAddEdit from '@/Components/Rates/RatesAddEdit.vue';
-import useBasicCrud from '@/Composables/UseBasicCrud.js';
+import BtnOption from '@/Components/BtnOption.vue'
 export default {
   components: {
+    BtnOption,
     RatesAddEdit
   },
   props: {
@@ -100,16 +102,10 @@ export default {
   },
   setup(props) {
 
-    const {
-      edit,
-      title_modal,
-      methods,
-    } = useBasicCrud({ titleBase: 'Rates', getRoute: 'rates', destroyRoute: 'rates' });
+
 
     return {
-      methods,
-      title_modal,
-      edit,
+
     };
   }
 };

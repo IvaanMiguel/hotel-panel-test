@@ -16,7 +16,7 @@
           title="Nombre"
           inputName="name"
           type="text"
-          :cols="6"
+          :cols="12"
           :errors="validator.name?.$errors"
           :required="(validator.name?.required != undefined)"
         ></basic-input>
@@ -25,8 +25,8 @@
           v-model:keyValue="form.description"
           title="descripcion"
           inputName="description"
-          type="text"
-          :cols="6"
+          type="textarea"
+          :cols="12"
           :errors="validator.description?.$errors"
           :required="(validator.description?.required != undefined)"
         ></basic-input>
