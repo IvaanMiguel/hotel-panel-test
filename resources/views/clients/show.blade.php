@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    {{ json_encode(get_defined_vars()) }}
-</body>
-</html>
+<x-app :breadcrumb="$breadcrumb_info"> 
+    <show-client-index
+        :variables='@json(get_defined_vars())'
+    ></show-client-index>
+
+    <x-slot name="scripts">
+        <script src="{{ asset('assets/libs/list.js/list.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/list.pagination.js/list.pagination.min.js') }}"></script>
+    </x-slot> 
+</x-app>

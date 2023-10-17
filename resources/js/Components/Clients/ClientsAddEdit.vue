@@ -32,10 +32,40 @@
           v-model:keyValue="form.phone_number"
           title="Teléfono"
           inputName="phone_number"
-          type="text"
+          type="number"
           :cols="6"
           :errors="validator.phone_number?.$errors"
           :required="(validator.phone_number?.required != undefined)"
+        ></basic-input>
+        <basic-input
+          v-model:keyValue="form.country_id"
+          title="Ciudad"
+          inputName="country_id"
+          type="select"
+          :catalog = "countries"
+          catalogKey ="id"
+          catalogLabel ="name"
+          :cols="6"
+          :errors="validator.country_id?.$errors"
+          :required="(validator.country_id?.required != undefined)"
+        ></basic-input>
+        <basic-input
+          v-model:keyValue="form.password"
+          title="contraseña"
+          inputName="password"
+          type="password"
+          :cols="6"
+          :errors="validator.password?.$errors"
+          :required="(validator.password?.required != undefined)"
+        ></basic-input>
+        <basic-input
+          v-model:keyValue="form.password_confirmation"
+          title="Confirmar contraseña"
+          inputName="password_confirmation"
+          type="password"
+          :cols="6"
+          :errors="validator.password_confirmation?.$errors"
+          :required="(validator.password_confirmation?.required != undefined)"
         ></basic-input>
       </template>
     </app-modal>
@@ -58,6 +88,7 @@ export default {
         type: String,
         default: 'modalAddClients'
     },
+    countries: Array
   },
   setup(props){
 
@@ -68,6 +99,9 @@ export default {
       name: '',
       email: '',
       phone_number: '',
+      countries: '',
+      password: '',
+      password_confirmation: ''
     }
 
     const cleanFormData = {...formData}

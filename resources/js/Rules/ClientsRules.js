@@ -19,11 +19,29 @@ export default function HotelsRules() {
             ),
         },
         phone_number: {
-            numeric: helpers.withMessage(
-                "Este campo debe ser numérico.",
+            required: helpers.withMessage(
+                "Este campo es obligatorio.",
                 required
             ), 
-        }
+        },
+        country_id: {
+            required: helpers.withMessage(
+                "Este campo es obligatorio.",
+                required
+            ), 
+        },
+        password: {
+            required: helpers.withMessage(
+                "Este campo es obligatorio.",
+                required
+            ), 
+        },
+        password_confirmation: {
+            required: helpers.withMessage(
+                "Este campo es obligatorio.",
+                required
+            ), 
+        },
     };
 
     return {

@@ -70,6 +70,7 @@
         ]"
         table_id="clientsTable"
         moduleName="clients"
+        detailsBtn
         
     >
         <template #name="element">
@@ -106,7 +107,7 @@
         </template>
     </basic-table>
 
-    <clients-add-edit />
+    <clients-add-edit :countries = "variables.countries"/>
 </template>
 
 <script>
