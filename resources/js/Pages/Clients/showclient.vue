@@ -55,7 +55,7 @@
                             </li>
                         </ul>
                         <btn-option :action="{ id: 'clients', method: 'edit', params: { id: clients.id } }"
-                            type="listButton" color="primary" text="Editar foto" icon="ri-image-edit-line"
+                        type="button" color="success" text="Editar foto" icon="ri-image-edit-line"
                             v-if="(can('clients.update'))"></btn-option>
                             
                     </div>
