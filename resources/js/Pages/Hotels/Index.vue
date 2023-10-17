@@ -1,84 +1,73 @@
 <template>
-    <basic-table
-        :data="variables.hotels"
-        :tableHeaders="[
-            {
-                title: 'Nombre',
-                key: 'name',
-            },
-            {    
-                title: 'Correo',
-                key: 'email',
-            },
-            {    
-                title: 'Teléfono',
-                key: 'phone_number',
-            },
-            {    
-                title: 'Dirección',
-                key: 'address',
-            },
-            {    
-                title: 'Fecha de creación',
-                key: 'created_at',
-            },
-        ]"
-        table_id="hotelsTable"
-        moduleName="hotels"
-        detailsBtn
-    >
-        <template #name="element">
-            <div class="d-flex align-items-center">
-                <div class="flex-shrink-0 me-3">
-                    <div class="avatar-sm bg-light rounded p-1" style="overflow: hidden;">
-                        <img :src="element.cover?.full_path ?? getAvatar(element.name)" 
-                        alt="" class="img-fluid d-block">
+    <div class="container-fluid">
+        <div class="row">
+            <div
+                class="col-md-6"
+                v-for="(hotel, index) in variables.hotels"
+                :key="index"
+            >
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title mb-2">{{ hotel.name }}</h4>
+                        <h6 class="card-subtitle font-14 text-muted"></h6>
+                    </div>
+                    <img
+                        :src="hotel.url?.full_path ?? getAvatar(hotel.name)"
+                        alt=""
+                        class="img-fluid d-block image-zoom"
+                    />
+                    <div class="card-body">
+                        <p class="card-text">{{ hotel.address }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <!-- details button -->
+                        <btn-option
+                            :btnRoute="route('hotels.show', hotel.id)"
+                            type="button"
+                            color="primary"
+                            text="Detalles"
+                            icon="ri-eye-fill"
+                            v-if="can('hotels.get')"
+                        ></btn-option>
+                        <!-- edit button  -->
+                        <btn-option
+                            :action="{
+                                id: 'hotels',
+                                method: 'edit',
+                                params: { id: hotel.id },
+                            }"
+                            type="button"
+                            color="success"
+                            text="Editar"
+                            icon="ri-image-edit-line"
+                            v-if="can('hotels.update')"
+                        ></btn-option>
+                        <!-- delete button  -->
+                        <btn-option
+                            :action="{
+                                id: 'hotels',
+                                method: 'destroy',
+                                params: { id: hotel.id },
+                            }"
+                            type="button"
+                            color="danger"
+                            text="Eliminar"
+                            icon="ri-delete-bin-5-fill"
+                            v-if="can('hotels.destroy')"
+                        ></btn-option>
                     </div>
                 </div>
-                <div class="flex-grow-1">
-                    <h5 class="fs-14 mb-1">
-                        {{ element.name }}
-                    </h5>
-                    <p class="text-muted mb-0" 
-                        v-if="element"
-                    >
-                       {{ element.slug }}
-                    </p>
-                </div>
             </div>
-        </template>
-        <template #address="element">
-            <div 
-                style="
-                    word-wrap: break-word;
-                    min-width: 160px;
-                    max-width: 160px;
-                    white-space:normal;
-                "
-            >
-                {{ element.address }}
-            </div>
-        </template>
-        <template #tableActions="element">
-            <btn-option
-                :btnRoute="element.url_address"
-                :target='"_blank"'
-                type="listButton"
-                color="info"
-                text="Url de dirección"
-                icon="ri-map-pin-2-fill"
-                v-if="can('hotels.get')"
-            ></btn-option>
-        </template>        
-    </basic-table>
+        </div>
+    </div>
 
     <hotels-add-edit />
 </template>
 
 <script>
-import BasicTable from '@/Components/BasicTable.vue'
-import BtnOption from '@/Components/BtnOption.vue'
-import HotelsAddEdit from '@/Components/Hotels/HotelsAddEdit.vue'
+import BasicTable from "@/Components/BasicTable.vue";
+import BtnOption from "@/Components/BtnOption.vue";
+import HotelsAddEdit from "@/Components/Hotels/HotelsAddEdit.vue";
 
 export default {
     components: {
@@ -86,10 +75,9 @@ export default {
         BtnOption,
         HotelsAddEdit,
     },
-    props:{
+    props: {
         variables: Object,
     },
-    setup(props){
-    }
-}
+    setup(props) {},
+};
 </script>
