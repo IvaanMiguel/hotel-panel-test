@@ -23,10 +23,10 @@ class LoginRequest extends RequestsLoginRequest
      */
     public function rules(): array
     {
-        // dd(request()->all());
-        error_log(json_encode(request()->all()));
+     
+        // error_log(json_encode(request()->all()));
         return [
-            'g-recaptcha-response' => [new PassesGrecaptcha]
+            // 'g-recaptcha-response' => [new PassesGrecaptcha]
         ];
     }
 }
