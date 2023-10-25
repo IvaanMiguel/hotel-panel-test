@@ -30,7 +30,7 @@ class RoleController extends Controller
     {
         $roles = Role::get();
 
-        $permissions = Permission::get();
+        $permissions = Permission::get()->groupBy('modulo');
 
         $breadcrumb_info = $this->breadcrumb_info;
 
