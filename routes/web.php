@@ -1,5 +1,6 @@
 <?php
- 
+
+use App\Console\Commands\DisableCards;
 use App\Http\Controllers\Web\ReservationController;
 use App\Http\Controllers\Web\CardController;
 use App\Http\Controllers\Web\ClientController;
@@ -208,3 +209,7 @@ Route::middleware('auth')->group(function(){
     });
 
 });
+
+
+
+Route::get('/test', [DisableCards::class, 'handle']);

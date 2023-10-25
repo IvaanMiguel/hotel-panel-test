@@ -2,16 +2,22 @@
 
 namespace App\Console;
 
+use App\Console\Commands\DisableCards;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+    protected $commands = [
+        Commands\DisableCards::class
+    ];
     /**
      * Define the application's command schedule.
      */
     protected function schedule(Schedule $schedule): void
     {
+        $schedule->command('app:disable-cards')->dailyAt('05:00')
+         ->appendOutputTo(storage_path('logs/cards_remove.log'))->withoutOverlapping();
         // $schedule->command('inspire')->hourly();
     }
 
