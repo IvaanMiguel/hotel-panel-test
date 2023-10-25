@@ -110,7 +110,7 @@ Route::middleware('auth')->group(function(){
     //roles 
     Route::controller(RoleController::class)->prefix('/roles')->group(function(){
         Route::get('/', 'index')->middleware('permission:roles.get')->name('roles');
-        Route::post('/', 'store')->middleware('permission:roles.create')->name('roles.store');
+        Route::post('/', 'store')->middleware('permission:roles.create')->name('roles.create');
         Route::put('/', 'update')->middleware('permission:roles.edit')->name('roles.edit');
         Route::delete('/{id}', 'destroy')->middleware('permission:roles.delete')->name('roles.delete');
         Route::get('get/{id}', 'get')->middleware('permission:roles.get')->name('roles.get.by.id');
@@ -156,6 +156,7 @@ Route::middleware('auth')->group(function(){
 
     //planeacion
     Route::controller(ScheduleController::class)->prefix('/schedules')->group(function(){
+        // Route::get('/check', 'check_availability');
         Route::get('/', 'index')->middleware('permission:schedules.get')->name('schedules');
         Route::post('/', 'store')->middleware('permission:schedules.create')->name('schedules.create');
         Route::put('/', 'update')->middleware('permission:schedules.edit')->name('schedules.edit');
