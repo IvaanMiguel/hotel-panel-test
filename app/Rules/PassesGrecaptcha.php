@@ -16,7 +16,7 @@ class PassesGrecaptcha implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        // error_log($value);
+/*         // error_log($value);
         $settings = Setting::first();
 
         if($settings && $settings->google_recaptcha){
@@ -30,6 +30,6 @@ class PassesGrecaptcha implements ValidationRule
             if(is_null($response) || !$response->success){
                 $fail('Google reCaptcha ha fallado');
             }
-        }
+        } */
     }
 }
