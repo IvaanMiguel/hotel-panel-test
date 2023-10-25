@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('google_recaptcha_public_key');
             $table->string('google_recaptcha_private_key');
+            $table->boolean('google_recaptcha')->default(false);
             $table->string('production_stripe_private_key');
             $table->string('production_stripe_public_key');
             $table->string('test_stripe_private_key');

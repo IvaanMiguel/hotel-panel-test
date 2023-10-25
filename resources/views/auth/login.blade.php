@@ -78,7 +78,7 @@
                                     </p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form class="needs-validation" method="POST" action="{{ route('login') }}">
+                                    <form id="demo-form" class="needs-validation" method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <input type="hidden" name="uid" id="device_uid">
                                         <div class="mb-3">
@@ -120,8 +120,14 @@
                                             </a>
                                         </div>
 
+                                        {{-- quitar esto cuando se arregle el bug --}}
+                                        <input type="hidden" name="g-recaptcha-response" id="A"> 
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">ACCEDER</button>
+                                            <button class="g-recaptcha btn btn-success w-100" 
+                                                data-sitekey="{{App\Models\Setting::first()->google_recaptcha_public_key}}" 
+                                                data-callback='onSubmit' 
+                                                data-action='submit'
+                                            type="submit">ACCEDER</button>
                                         </div>
                                     </form>                                                
                                 </div>
@@ -161,6 +167,7 @@
     <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
+     <script src="https://www.google.com/recaptcha/api.js"></script>
 
     <!-- particles js -->
     <script src="{{ asset('assets/libs/particles.js/particles.js') }}"></script>
@@ -225,6 +232,13 @@
             "filter: dropshadow(color=rgb(0, 0, 0), offx=1, offy=1);";
         console.log("%c¡Detente!", cssRule);
         setTimeout(console.log.bind(console, '%cEsta función del navegador está pensada para desarrolladores. Si alguien te indicó que copiaras y pegaras algo aquí para habilitar una función de E-commerce o para ´hackear´ la cuenta de alguien, se trata de un fraude. Si lo haces, esta persona podrá acceder a tu cuenta.', 'color: #9e202ad1;font-size: 30px;'), 0);
+    </script>
+
+    <script>
+        function onSubmit(token) {
+             document.getElementById("A").value = token; // quitar esto cuando se arregle el bug
+            document.getElementById("demo-form").submit();
+        }
     </script>
 
   

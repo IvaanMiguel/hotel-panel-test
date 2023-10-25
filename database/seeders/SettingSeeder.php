@@ -14,8 +14,9 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $setting = Setting::create([
-            "google_recaptcha_public_key" => "6Lfi4noaAAAAAJNaei8RfLECHcdzwm6m_4HOGFaF",
-            "google_recaptcha_private_key" => "6Lfi4noaAAAAAEo7FTjxsWUkJBpQxaAi6b7r05jZ",
+            "google_recaptcha_public_key" => "6LcZPMwoAAAAAJlOQnGX760nTZxzbiANRdM57KZD",
+            "google_recaptcha_private_key" => "6LcZPMwoAAAAAL8TYy7iY5d0EG5iJ4uXvXUw1f5W",
+            "google_recaptcha" => true,
             "production_stripe_private_key" => "demo",
             "production_stripe_public_key" => "demo",
             "test_stripe_private_key" => "sk_test_51Gy3elHwK1JeYAVej9CEULpKUMjyUxOnVlmyWBR448axlWhxZNamRsl6hFMblWP8jXwepc8ZARIz7BBeSoq4dvrI00ARsPzXaj",

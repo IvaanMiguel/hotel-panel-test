@@ -11,6 +11,7 @@ class Setting extends Model
     protected $fillable = [
         "google_recaptcha_public_key",
         "google_recaptcha_private_key",
+        "google_recaptcha",
         "production_stripe_private_key",
         "production_stripe_public_key",
         "test_stripe_private_key",
