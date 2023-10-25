@@ -336,7 +336,8 @@
         "description": " Ver planeacion",
         "module": "schedules",
         "roles": [
-            "Sistemas"
+            "Sistemas",
+            "User"
         ]
     },
     {

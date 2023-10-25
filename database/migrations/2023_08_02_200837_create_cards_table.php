@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('exp_month');
             $table->string('exp_year');
             $table->set('type_card', Card::$types);
+            $table->foreignId('reservation_id')->references('id')->on('reservations')->onDelete('cascade');
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });

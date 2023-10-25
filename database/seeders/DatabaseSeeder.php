@@ -26,10 +26,10 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             ContactSeeder::class,
             AnswerSeeder::class,
-            CardSeeder::class,
             CouponSeeder::class,
             ScheduleSeeder::class,
             ReservationSeeder::class,
+            CardSeeder::class,
             BillingDataSeeder::class,
             FileSeeder::class
         ]);

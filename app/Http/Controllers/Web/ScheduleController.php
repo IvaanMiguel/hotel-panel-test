@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogController;
 use App\Models\Hotel;
+use App\Models\Rate;
 use App\Models\Schedule;
+use App\Models\Type;
+use Carbon\CarbonInterval;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +27,22 @@ class ScheduleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $schedules = Schedule::get();
-        
+
+        //  Auth::loginUsingId(1);
+        $current_user = Auth::user();
+
+        $hotel = Hotel::select('id', 'name', 'slug')->when(isset($current_user->hotel_id), function($q) use($current_user){
+            $q->where('id', $current_user->hotel_id);
+        })->first();
+
+        // tipos del hotel
+        $type_ids = $hotel->rooms()->pluck('type_id')->toArray();
+        $hotel->types = Type::select('id', 'name')->find($type_ids);
+
+        // return $type_ids;
+    
         $breadcrumb_info = $this->breadcrumb_info;
 
         LogController::store(Auth::user()->id, 'consultar', 0, 'consultar planeacion', 'schedules', request()->url());
@@ -181,12 +197,12 @@ class ScheduleController extends Controller
 
     public function check_availability(Request $request){
 
-        $request->merge([
-            'room_id' => 3,           
-            'hotel_id' =>1,
-            'type_id' => 3,
-            'check_in' => '2023-09-25',
-            'check_out' => '2023-09-28'
+    /*     $request->merge([
+            'room_id' => 8,           
+            'hotel_id' =>2,
+            'type_id' => 4,
+            'check_in' => '2023-11-12',
+            'check_out' => '2023-11-13'
         ]);
         
         $schedules = Schedule::withWhereHas('room', function($q) use ($request){
@@ -199,32 +215,43 @@ class ScheduleController extends Controller
             $request->check_out
         ])
         ->where('stock', '>', 0)
+        ->with('rates')
         ->orderBy('date', 'DESC')
         ->get();
 
-    
-        $period = CarbonPeriod::create($request->check_in, $request->check_out);
-        foreach($period as $day){
-            $day = date_format($day, 'Y-m-d');
-            // verificar si el dia esta disponible
 
-            $available_day = $schedules->where('date',$day);
-
-            if(sizeof($available_day) == 0){
-                // retornar false i no esta disponible ese rango de dias
-               return false;
-            }
-
-            error_log($available_day->first()->stock);
-
-
+        if($schedules->isEmpty()) {
+            return false;
         }
 
+        // return $schedules;
+        $start_date = $request->check_in;
+        $end_date = $request->check_out;
+      
+        $period = CarbonPeriod::create($request->check_in, $request->check_out);
 
-        return $schedules;
+        foreach($period as $day){
 
+            $day = date_format($day, 'Y-m-d');
+            
+            $available_day = $schedules->where('date', $day);
 
-
+    
+    
+        }
+    
+        return $period; */
         
+    }
+
+
+    // obtener la programacion (ajax)
+    public function get_schedules(Request $request){
+    
+        $hotel = Hotel::select('id', 'name', 'slug')
+                        ->with(['rooms.schedules' => function($q){
+                            $q->with('rates');
+                            $q->where('date', '>=', date('Y-m-d'));
+                        }])->find(1);   
     }
 }

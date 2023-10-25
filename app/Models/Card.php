@@ -19,13 +19,19 @@ class Card extends Model
         'exp_month',
         'exp_year',
         'type_card',
-        'client_id'
+        'client_id',
+        'reservation_id'
     ];
 
     public function client(){
         return $this->belongsTo(Client::class);
     }
 
+    public function reservation(){
+        return $this->belongsTo(Reservation::class);
+    }
+
+ 
 
 
 

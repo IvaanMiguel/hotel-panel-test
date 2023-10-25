@@ -41,4 +41,8 @@ class Hotel extends Model
     public function getCoverAttribute(){
         return $this->morphMany(Image::class, 'imageable') ->where('type', 'cover')->first();
     }
+
+    public function schedules(){
+        return $this->hasManyThrough(Schedule::class, Room::class);
+    }
 }

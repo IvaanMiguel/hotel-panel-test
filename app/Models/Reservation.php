@@ -33,6 +33,10 @@ class Reservation extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function card(){
+        return $this->hasOne(Card::class);
+    }
+
     public function billing_data(){
         return $this->hasOne(BillingData::class);
     }
