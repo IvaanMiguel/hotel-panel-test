@@ -186,10 +186,10 @@ class RoleController extends Controller
 
     public function get($id){
         
-        $role = Role::find($id);
+        $role = Role::with(['permissions'])->find($id);
 
         if($role){
-
+            $role->setRelation('permissions', $role->permissions->groupBy('modulo'));
             LogController::store(Auth::user()->id, 'consultar', $id, 'consultar un rol', 'roles', request()->url());
             return response()->json([
                 'message' => 'Registro consultado correctamente',
