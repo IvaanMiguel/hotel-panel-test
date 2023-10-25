@@ -15,6 +15,7 @@ import ShowIndex from "./Pages/Hotels/Show.vue";
 import ShowroomIndex from "./Pages/Rooms/showroom.vue";
 import RolesIndex from "./Pages/Roles/Index.vue";
 import RatesIndex from "./Pages/Rates/Index.vue";
+import ShowRate from "./Pages/Rates/ShowRate.vue";
 import ShowClientIndex from "./Pages/Clients/ShowClient.vue";
 import { provide, ref } from 'vue';
 
@@ -33,7 +34,8 @@ const app = createApp({
         DetailsIndex,
         ShowroomIndex,
         RatesIndex,
-        ShowClientIndex
+        ShowClientIndex,
+        ShowRate
     },
     setup() {
         provide(
