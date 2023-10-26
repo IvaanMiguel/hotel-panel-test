@@ -157,8 +157,10 @@ Route::middleware('auth')->group(function(){
 
     //planeacion
     Route::controller(ScheduleController::class)->prefix('/schedules')->group(function(){
+        Route::get('/get/{slug}', 'get_schedules')->middleware('permission:schedules.get')->name('schedules.hotel.calendar');;
+        
         // Route::get('/check', 'check_availability');
-        Route::get('/', 'index')->middleware('permission:schedules.get')->name('schedules');
+        Route::get('/{slug?}', 'index')->middleware('permission:schedules.get')->name('schedules');
         Route::post('/', 'store')->middleware('permission:schedules.create')->name('schedules.create');
         Route::put('/', 'update')->middleware('permission:schedules.edit')->name('schedules.edit');
         Route::delete('/{id}', 'destroy')->middleware('permission:schedules.delete')->name('schedules.delete');

@@ -7,6 +7,7 @@ use App\Http\Controllers\LogController;
 use App\Models\Hotel;
 use App\Models\Rate;
 use App\Models\Schedule;
+use App\Models\Setting;
 use App\Models\Type;
 use Carbon\CarbonInterval;
 use Carbon\CarbonPeriod;
@@ -27,21 +28,33 @@ class ScheduleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index($slug = 'la-paz-malecon')
     {
 
-        //  Auth::loginUsingId(1);
-        $current_user = Auth::user();
+        // Auth::loginUsingId(1);
+        $current_user = Auth::user()->load(['hotel']);
 
-        $hotel = Hotel::select('id', 'name', 'slug')->when(isset($current_user->hotel_id), function($q) use($current_user){
-            $q->where('id', $current_user->hotel_id);
-        })->first();
+        $hotel = Hotel::select('id', 'name', 'slug')
+            ->when(isset($current_user->hotel_id), function($q) use($current_user){
+                $q->where('id', $current_user->hotel_id);
+            }, function($q) use ($slug){
+                $q->where('slug', $slug);
+            })->first();
 
         // tipos del hotel
         $type_ids = $hotel->rooms()->pluck('type_id')->toArray();
         $hotel->types = Type::select('id', 'name')->find($type_ids);
 
-        // return $type_ids;
+
+        // hoteles (si no es admin, solo su hotel)
+        $hotels = Hotel::select('id', 'name', 'slug')
+                ->when(isset($current_user->hotel), function($q) use ($current_user){
+                    $q->where('slug', $current_user->hotel->slug);
+                })->get();
+
+        $rates = Rate::with('rooms:id,name,slug,max_people')->get();
+        
+        $settings = Setting::select('usd_value','eur_value')->first();
     
         $breadcrumb_info = $this->breadcrumb_info;
 
@@ -246,12 +259,21 @@ class ScheduleController extends Controller
 
 
     // obtener la programacion (ajax)
-    public function get_schedules(Request $request){
+    public function get_schedules($slug){
     
         $hotel = Hotel::select('id', 'name', 'slug')
-                        ->with(['rooms.schedules' => function($q){
-                            $q->with('rates');
+                         ->with(['rooms.schedules' => function($q){
+                            $q->with('rates.rooms');
                             $q->where('date', '>=', date('Y-m-d'));
-                        }])->find(1);   
+                        }]) 
+                        ->where('slug', $slug)
+                        ->first();
+                        
+        // return $hotel;
+        return response()->json([
+            'message' => 'Registro consultado correctamente',
+            'code' => 1,
+            'data' => $hotel
+        ]);
     }
 }
