@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('date');
             $table->integer('stock');
             $table->integer('reserved')->default(0);
-
+            $table->boolean('status')->default(true);
             $table->foreignId('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

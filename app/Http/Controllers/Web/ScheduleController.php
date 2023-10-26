@@ -14,6 +14,7 @@ use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Stmt\Catch_;
 
@@ -275,5 +276,30 @@ class ScheduleController extends Controller
             'code' => 1,
             'data' => $hotel
         ]);
+    }
+
+    public function change_status_schedule($schedule_id){
+
+        $schedule = Schedule::find($schedule_id);
+
+        if($schedule && $schedule->update(['status' => !$schedule->status])){
+            
+            LogController::store(Auth::user()->id, 'actuzliar estado', $schedule->id, 'cambiar estado de una planeacion', 'schedules', FacadesRequest::getRequestUri().'/'.$schedule->id);
+       
+            return response()->json([
+                'message' => 'Status de schedule actualizado correctamente',
+                'code' => 1,
+                'data' => $schedule_id
+            ]);
+        }      
+        
+        LogController::store(Auth::user()->id, 'error', 0, 'error al actualizar un estado de planeacion', 'schedules', FacadesRequest::getRequestUri());
+
+        return response()->json([
+            'message' => 'Ha ocurrido un error',
+            'code' => -1,
+            'data' => $schedule_id
+        ]);
+            
     }
 }

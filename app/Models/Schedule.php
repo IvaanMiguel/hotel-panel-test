@@ -13,7 +13,8 @@ class Schedule extends Model
         'date',
         'stock',
         'reserved',
-        'room_id'
+        'room_id',
+        'status'
     ];
 
     public function rates(){

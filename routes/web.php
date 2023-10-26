@@ -157,6 +157,7 @@ Route::middleware('auth')->group(function(){
 
     //planeacion
     Route::controller(ScheduleController::class)->prefix('/schedules')->group(function(){
+        Route::get('/status/{id}', 'change_status_schedule')->middleware('permission:schedules.edit')->name('schedules.change.status');
         Route::get('/get/{slug}', 'get_schedules')->middleware('permission:schedules.get')->name('schedules.hotel.calendar');;
         
         // Route::get('/check', 'check_availability');
