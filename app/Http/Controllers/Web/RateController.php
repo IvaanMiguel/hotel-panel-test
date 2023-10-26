@@ -75,10 +75,11 @@ class RateController extends Controller
      */
     public function show($id)
     {
-        $rate = Rate::find($id);
+        $rate = Rate::with(['reservations.client', 'rooms'])->find($id);
         
         if($rate){
 
+            $rate->reservations_count = count($rate->reservations);
             $breadcrumb_info = $this->breadcrumb_info;
             
             LogController::store(Auth::user()->id, 'consultar', $id, 'cosultar una tarifa', 'rates', request()->url());

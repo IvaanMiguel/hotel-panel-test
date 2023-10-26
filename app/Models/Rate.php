@@ -19,7 +19,10 @@ class Rate extends Model
     }
 
     public function rooms(){
-        return $this->belongsToMany(Room::class)->withPivot(['default_price', 'default_extra_per_person']);
-        
+        return $this->belongsToMany(Room::class)->withPivot(['default_price', 'default_extra_per_person']);    
+    }
+
+    public function reservations(){
+        return $this->hasMany(Reservation::class);
     }
 }
