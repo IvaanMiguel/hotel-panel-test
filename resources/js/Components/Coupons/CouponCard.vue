@@ -5,11 +5,16 @@
 			<img class='image-card-top bg-body coupon-img' src='./default-coupon.png' alt='Imagen del cupón.'>
 			<div class='card-body'>
 				<div class='mb-3 d-flex flex-column'>
-					<h5 class='card-title'>{{ coupon.name }}</h5>
+					<h5 class='card-title name'>{{ coupon.name }}</h5>
 					<div class='border border-dashed border-success border-2 rounded p-1 mb-1 coupon-code'>
-						<span >{{ coupon.code }}</span>
+						<span class='code'>{{ coupon.code }}</span>
 					</div>
-					<span><b>Hotel:</b> {{ coupon.hotel_name }}</span>
+					<span>
+						<b>Hotel: </b>
+						<span class='hotel_name'>
+							{{ coupon.hotel_name }}
+						</span>
+					</span>
 					<span><b>Usos restantes:</b> {{ coupon.limit_uses - coupon.uses_count }}</span>
 				</div>
 				<div class='d-flex'>
