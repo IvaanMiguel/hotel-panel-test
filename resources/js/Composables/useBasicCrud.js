@@ -31,7 +31,9 @@ export default function useBasicCRUD({titleBase, form, method_create, cleanFormD
 
         axios.get(route(`${getRoute}.get.by.id`, id)).then(res => {
             Object.assign(form, res.data.data);
-            
+            if (form.permissions) {
+                form.permissions = form.permissions.map((p) => p.name);
+            }
             if(formatEdit)formatEdit();
 
             let myModalEl = document.getElementById(modal_id);

@@ -1,15 +1,17 @@
 <template>
     <app-modal
-    :modal_id="modal_id"
-    base_route="roles"
-        :form="form"
-        :title_modal="title_modal"
-        custom_route="roles.store"
-        @onSubmit="submitForm($event)"
+      :modal_id="modal_id"
+      base_route="roles"
+      :form="form"
+      :validator="validator"
+      :title="title_modal"
+      :method_put="!method_create"
+      :method_create="method_create"
+      @onSubmit="methods.submitForm($event)"
     >
         <template #modalBody>
             <div class="col-md-12">
-                <div class="form-group mb-2" :class="{ error: v.name.$errors.length }">
+                <div class="form-group mb-2">
                     <label for="name">Nombre del perfil *</label>
                     <input
                         type="text"
@@ -17,9 +19,9 @@
                         id="name"
                         v-model="form.name"
                         class="form-control"
-                        required
+                        :errors="validator.name?.$errors"
+                        :required="(validator.name?.required != undefined)"
                     />
-                    <error-msg :errors="v.name.$errors"></error-msg>
                 </div>
             </div>
 
@@ -38,13 +40,15 @@
                         >
                             <div class="form-check mt-2">
                                 <input
-                                    name="permissions[]"
+                                name="permissions[]"
                                     class="form-check-input"
                                     type="checkbox"
                                     :id="'check' + permission.id"
                                     :value="permission.id"
                                     :v-model="form.permissions"
                                     :checked="form.permissions.includes(permission.name)"
+                                    :errors="validator.permissions?.$errors"
+                                    :required="(validator.permissions?.required != undefined)"
                                 >
                                 <label class="form-check-label" :for="'check' + permission.id">
                                 {{permission.description}}</label>
@@ -57,32 +61,72 @@
         </template>
     </app-modal>
 </template>
-
+  
 <script>
-
 import AppModal from "@/Components/AppModal.vue";
-import ErrorMsg from "@/Components/ErrorMsg.vue";
+import useValidation from "@/Composables/useValidation.js";
+import useBasicCrud from "@/Composables/useBasicCrud.js";
+import useRules from "@/Rules/RolesRules.js";
+import BasicInput from '@/Components/BasicInput.vue'
+import { inject, ref, watch, reactive } from "vue";
+
 export default {
-  components: {
-    AppModal,
-    ErrorMsg,
-  },
-  props: {
-    modal_id: {
-      type: String,
-      default: "modalAddRoles",
+    components: {
+        AppModal,
     },
-    is_modifiable: Boolean,
-    form: Object,
-    method_create: Boolean,
-    permissions: Object,
-    title_modal: String,
-    submitForm: Function,
-    v: Object,
-  },
-  setup(props){
-    return{
+    props: {
+        modal_id: {
+            type: String,
+            default: "modalAddRoles"
+        },
+        permissions: Object,
+    },
+    setup(props) {
+        const method_create = ref(true);
+
+        
+        const formData = {
+            id: "",
+            name: "",
+            permissions: [{}],
+        };
+
+        const cleanFormData = { ...formData };
+
+        const form = reactive(formData);
+
+        const { rules } = useRules();
+
+        const { validator, validate } = useValidation(rules, form);
+
+        const { title_modal, methods } = useBasicCrud({
+            titleBase: "Roles",
+            form,
+            method_create,
+            cleanFormData,
+            validator,
+            validate,
+            modal_id: props.modal_id,
+            getRoute: "roles",
+            destroyRoute: "roles"
+        });
+
+        const trigger = inject("trigger");
+
+        watch(trigger, () => {
+            if (trigger.value?.id == "roles") {
+                methods[trigger.value?.method](trigger.value?.params);
+            }
+        });
+
+        return {
+            form,
+            validator,
+            title_modal,
+            method_create,
+            methods
+        };
     }
-  }
 };
 </script>
+  
