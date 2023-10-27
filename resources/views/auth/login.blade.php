@@ -124,9 +124,9 @@
                                         <input type="hidden" name="g-recaptcha-response" id="A"> 
                                         <div class="mt-4">
                                             <button class="g-recaptcha btn btn-success w-100" 
-                                                data-sitekey="{{App\Models\Setting::first()->google_recaptcha_public_key}}" 
+                                                {{-- data-sitekey="{{App\Models\Setting::first()->google_recaptcha_public_key}}" 
                                                 data-callback='onSubmit' 
-                                                data-action='submit'
+                                                data-action='submit' --}}
                                             type="submit">ACCEDER</button>
                                         </div>
                                     </form>                                                
