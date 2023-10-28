@@ -17,131 +17,117 @@
       <div class="card">
         <div class="card-body p-4" >
           <div class="row">
-            <!-- Columna izquierda (cinco campos) -->
-            <div class="col-md-6">
-              <div class="mb-4">
-                <label for="google_recaptcha_public_key" class="form-label">Google recaptcha Public Key</label>
-                <input
-                  v-model="form.google_recaptcha_public_key"
-                  type="text"
-                  class="form-control "
-                  id="google_recaptcha_public_key"
-                  name="google_recaptcha_public_key"
-                >
-                <!-- <div class="invalid-feedback" v-if="validator.google_recaptcha_public_key?.$errors">{{ validator.google_recaptcha_public_key.$errors[0] }}</div> -->
-              </div>
+            
+            <basic-input
+                v-model:keyValue="form.email"
+                title="Correo Electrónico de Notificaciones"
+                inputName="email"
+                type="text"
+                :cols="12"
+                :errors="validator.email?.$errors"
+                :required="(validator.email?.required != undefined)"
+              ></basic-input>
+              
+              <basic-input
+                v-model:keyValue="form.google_recaptcha_public_key"
+                title="Google recaptcha Public Key"
+                inputName="google_recaptcha_public_key"
+                type="text"
+                :cols="6"
+                :errors="validator.google_recaptcha_public_key?.$errors"
+                :required="(validator.google_recaptcha_public_key?.required != undefined)"
+              ></basic-input>
+
+              <basic-input
+                v-model:keyValue="form.google_recaptcha_private_key"
+                title="Google recaptcha Private Key"
+                inputName="google_recaptcha_private_key"
+                type="text"
+                :cols="6"
+                :errors="validator.google_recaptcha_private_key?.$errors"
+                :required="(validator.google_recaptcha_private_key?.required != undefined)"
+              ></basic-input>
+
+              <basic-input
+                v-model:keyValue="form.google_recaptcha"
+                title="Activar google recaptcha"
+                inputName="google_recaptcha"
+                type="switch"
+                :cols="6"
+                :errors="validator.google_recaptcha?.$errors"
+                :required="(validator.google_recaptcha?.required != undefined)"
+              ></basic-input>
+              
+              <basic-input
+                v-model:keyValue="form.production"
+                title="Activar modo producción"
+                inputName="production"
+                type="switch"
+                :cols="6"
+                :errors="validator.production?.$errors"
+                :required="(validator.production?.required != undefined)"
+              ></basic-input>
+
+              <basic-input
+                v-model:keyValue="form.production_stripe_public_key"
+                title="Stripe Production Public Key"
+                inputName="production_stripe_public_key"
+                type="text"
+                :cols="6"
+                :errors="validator.production_stripe_public_key?.$errors"
+                :required="(validator.production_stripe_public_key?.required != undefined)"
+              ></basic-input>
+
+              <basic-input
+                v-model:keyValue="form.test_stripe_public_key"
+                title="Stripe Test Public Key"
+                inputName="test_stripe_public_key"
+                type="text"
+                :cols="6"
+                :errors="validator.test_stripe_public_key?.$errors"
+                :required="(validator.test_stripe_public_key?.required != undefined)"
+              ></basic-input>
+
+              <basic-input
+                v-model:keyValue="form.production_stripe_private_key"
+                title="Stripe Production Private Key"
+                inputName="production_stripe_private_key"
+                type="text"
+                :cols="6"
+                :errors="validator.production_stripe_private_key?.$errors"
+                :required="(validator.production_stripe_private_key?.required != undefined)"
+              ></basic-input>
     
-              <div class="mb-4">
-                <label for="production_stripe_public_key" class="form-label">Stripe Production Public Key</label>
-                <input
-                  v-model="form.production_stripe_public_key "
-                  type="text"
-                  class="form-control "
-                  id="production_stripe_public_key"
-                  name="production_stripe_public_key"
-                >
-                <!-- <div class="invalid-feedback" v-if="validator.production_stripe_public_key?.$errors">{{ validator.production_stripe_public_key.$errors[0] }}</div> -->
-              </div>
+              <basic-input
+                v-model:keyValue="form.test_stripe_private_key"
+                title="Stripe Test Private Key"
+                inputName="test_stripe_private_key"
+                type="text"
+                :cols="6"
+                :errors="validator.test_stripe_private_key?.$errors"
+                :required="(validator.test_stripe_private_key?.required != undefined)"
+              ></basic-input>
     
-              <div class="mb-4">
-                <label for="test_stripe_public_key" class="form-label">Stripe Test Public Key</label>
-                <input
-                  v-model="form.test_stripe_public_key "
-                  type="text"
-                  class="form-control "
-                  id="test_stripe_public_key"
-                  name="test_stripe_public_key"
-                >
-                <!-- <div class="invalid-feedback" v-if="validator.test_stripe_public_key?.$errors">{{ validator.test_stripe_public_key.$errors[0] }}</div> -->
-              </div>
+              <basic-input
+                v-model:keyValue="form.usd_value"
+                title="Valor en Dólares"
+                inputName="usd_value"
+                type="number"
+                :cols="6"
+                :errors="validator.usd_value?.$errors"
+                :required="(validator.usd_value?.required != undefined)"
+              ></basic-input>
     
-              <div class="mb-4">
-                <label for="usd_value" class="form-label">Valor en Dólares</label>
-                <input
-                  v-model="form.usd_value "
-                  type="number"
-                  class="form-control "
-                  id="usd_value"
-                  name="usd_value"
-                >
-                <!-- <div class="invalid-feedback" v-if="validator.usd_value?.$errors">{{ validator.usd_value.$errors[0] }}</div> -->
-              </div>
-    
-              <div class="mb-4">
-                <label for="eur_value" class="form-label">Valor en Euros</label>
-                <input
-                  v-model="form.eur_value "
-                  type="number"
-                  class="form-control "
-                  id="eur_value"
-                  name="eur_value"
-                >
-                <!-- <div class="invalid-feedback" v-if="validator.eur_value?.$errors">{{ validator.eur_value.$errors[0] }}</div> -->
-              </div>
-            </div>
-    
-            <!-- Columna derecha (cuatro campos) -->
-            <div class="col-md-6">
-              <div class="mb-4">
-                <label for="email" class="form-label">Correo Electrónico de Notificaciones</label>
-                <input
-                  v-model="form.email "
-                  type="email"
-                  class="form-control "
-                  id="email"
-                  name="email"
-                >
-                <!-- <div class="invalid-feedback" v-if="validator.email?.$errors">{{ validator.email.$errors[0] }}</div> -->
-              </div>
-    
-              <div class="mb-4">
-                <label for="google_recaptcha_private_key" class="form-label">Google recaptcha Private Key</label>
-                <input
-                  v-model="form.google_recaptcha_private_key "
-                  type="text"
-                  class="form-control "
-                  id="google_recaptcha_private_key"
-                  name="google_recaptcha_private_key"
-                >
-                <!-- <div class="invalid-feedback" v-if="validator.google_recaptcha_private_key?.$errors">{{ validator.google_recaptcha_private_key.$errors[0] }}</div> -->
-              </div>
-    
-              <div class="mb-4">
-                <label for="production_stripe_private_key" class="form-label">Stripe Production Private Key</label>
-                <input
-                  v-model="form.production_stripe_private_key "
-                  type="text"
-                  class="form-control "
-                  id="production_stripe_private_key"
-                  name="production_stripe_private_key"
-                >
-                <!-- <div class="invalid-feedback" v-if="validator.production_stripe_private_key?.$errors">{{ validator.production_stripe_private_key.$errors[0] }}</div> -->
-              </div>
-    
-              <div class="mb-4">
-                <label for="test_stripe_private_key" class="form-label">Stripe Test Private Key</label>
-                <input
-                  v-model="form.test_stripe_private_key "
-                  type="text"
-                  class="form-control "
-                  id="test_stripe_private_key"
-                  name="test_stripe_private_key"
-                >
-                <!-- <div class="invalid-feedback" v-if="validator.test_stripe_private_key?.$errors">{{ validator.test_stripe_private_key.$errors[0] }}</div> -->
-              </div>
-    
-              <div class="mb-4">
-                <label for="production" class="form-label">Producción</label>
-                <input
-                  v-model="form.production "
-                  type="text"
-                  class="form-control "
-                  id="production"
-                  name="production"
-                >
-                <div class="invalid-feedback" v-if="validator.production?.$errors">{{ validator.production.$errors[0] }}</div>
-              </div>
-            </div>
+              <basic-input
+                v-model:keyValue="form.eur_value"
+                title="Valor en Euros"
+                inputName="eur_value"
+                type="number"
+                :cols="6"
+                :errors="validator.eur_value?.$errors"
+                :required="(validator.eur_value?.required != undefined)"
+              ></basic-input>
+
           </div>
     
           <template v-if="!method_create">
@@ -150,11 +136,10 @@
           <input type="hidden" name="id" :value="1" >
           <input type="hidden" name="_token" :value="csrf" />
           <div class="align-items-center justify-content-center">
-          <button type="submit" class="btn btn-primary w-100 ">Guardar</button>
+          <button type="submit" class="mt-2 btn btn-primary w-100 ">Guardar</button>
           </div>
-        </div>
-       
-      </div>
+        </div>  
+      </div>     
     </form>
    
     <!-- <p>{{ variables.settings }}</p> -->
@@ -166,14 +151,12 @@ import BtnOption from '@/Components/BtnOption.vue';
 import useValidation from "@/Composables/useValidation.js";
 import useBasicCrud from "@/Composables/useBasicCrud.js";
 import useRules from "@/Rules/UsersRules.js";
-
 import BasicInput from '@/Components/BasicInput.vue'
-
 import { inject, ref, watch, reactive,onMounted } from 'vue';
 
 export default {
   components: {
-
+    BasicInput,
   },
   props: {
   

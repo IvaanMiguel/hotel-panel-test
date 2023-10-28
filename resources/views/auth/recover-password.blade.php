@@ -31,6 +31,11 @@
     <meta name="robots" content="noindex,nofollow" />
     <meta name="googlebot" content="noindex,nofollow" />
 
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    
+    <!--Recaptcha-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 
 <body>
@@ -78,7 +83,8 @@
                                     </p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form action="{{ route('password.update') }}" method="POST">
+                                    <form action="{{ route('password.update') }}" method="POST"
+                                    onsubmit="validateLogin(event, '{{App\Models\Setting::first()->google_recaptcha}}')">
                                         @csrf
                                     
                                         <input type="hidden" value="{{ request()->email }}" name="email">
@@ -113,7 +119,14 @@
                                             @enderror
                                         </div>
                                     
-                                        <input type="submit" class="btn btn-success w-100" value="Restablecer Contraseña">
+                                        
+                                        @if(App\Models\Setting::first()->google_recaptcha)
+                                        <div class="g-recaptcha my-4" data-sitekey="{{App\Models\Setting::first()->google_recaptcha_public_key}}"></div>
+                                        @endif
+
+                                        <div class="mt-4">
+                                            <button class="btn btn-success w-100" type="submit">Restablecer Contraseña</button>
+                                        </div>
                                     </form>
                                                                                   
                                 </div>
@@ -147,6 +160,7 @@
     <!-- end auth-page-wrapper -->
 
     <!-- JAVASCRIPT -->
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
@@ -162,5 +176,35 @@
     <script src="{{ asset('assets/js/pages/form-validation.init.js') }}"></script>
     <!-- password create init -->
     <script src="{{ asset('assets/js/pages/passowrd-create.init.js') }}"></script>
+    
+    <script>
+        document.oncontextmenu = function(){ return false }
+
+        function validateLogin(e, active){
+            
+            if(!active){ return true }
+
+            if (grecaptcha.getResponse()){
+                return true
+            }else{
+                e.preventDefault();
+                Swal.fire(
+                    '',
+                    'Es necesario verificar el google reCaptcha',
+                    'warning'
+                )
+                return false;
+            }
+        }
+        console.clear();
+        var cssRule =
+            "color: rgb(0, 0, 0);" +
+            "font-size: 60px;" +
+            "font-weight: bold;" +
+            "text-shadow: 1px 1px 5px rgb(0, 0, 0);" +
+            "filter: dropshadow(color=rgb(0, 0, 0), offx=1, offy=1);";
+        console.log("%c¡Detente!", cssRule);
+        setTimeout(console.log.bind(console, '%cEsta función del navegador está pensada para desarrolladores. Si alguien te indicó que copiaras y pegaras algo aquí para habilitar una función de E-commerce o para ´hackear´ la cuenta de alguien, se trata de un fraude. Si lo haces, esta persona podrá acceder a tu cuenta.', 'color: #9e202ad1;font-size: 30px;'), 0);
+    </script>
 </body>
 </html>

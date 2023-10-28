@@ -28,6 +28,11 @@
     <!-- custom Css-->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    
+    <!--Recaptcha-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <meta name="robots" content="noindex,nofollow" />
     <meta name="googlebot" content="noindex,nofollow" />
 
@@ -78,7 +83,8 @@
                                     </p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form id="demo-form" class="needs-validation" method="POST" action="{{ route('login') }}">
+                                    <form id="demo-form" class="needs-validation" method="POST" action="{{ route('login') }}"
+                                    onsubmit="validateLogin(event, '{{App\Models\Setting::first()->google_recaptcha}}')">
                                         @csrf
                                         <input type="hidden" name="uid" id="device_uid">
                                         <div class="mb-3">
@@ -119,15 +125,14 @@
                                                 ¿Olvidaste tu contraseña?
                                             </a>
                                         </div>
+                                        
+                                        @if(App\Models\Setting::first()->google_recaptcha)
+                                        <div class="g-recaptcha my-4" data-sitekey="{{App\Models\Setting::first()->google_recaptcha_public_key}}"></div>
+                                        @endif
 
-                                        {{-- quitar esto cuando se arregle el bug --}}
-                                        <input type="hidden" name="g-recaptcha-response" id="A"> 
+                                       
                                         <div class="mt-4">
-                                            <button class="g-recaptcha btn btn-success w-100" 
-                                                {{-- data-sitekey="{{App\Models\Setting::first()->google_recaptcha_public_key}}" 
-                                                data-callback='onSubmit' 
-                                                data-action='submit' --}}
-                                            type="submit">ACCEDER</button>
+                                            <button class="btn btn-success w-100" type="submit">Acceder</button>
                                         </div>
                                     </form>                                                
                                 </div>
@@ -161,13 +166,13 @@
     <!-- end auth-page-wrapper -->
 
     <!-- JAVASCRIPT -->
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
     <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
-     <script src="https://www.google.com/recaptcha/api.js"></script>
 
     <!-- particles js -->
     <script src="{{ asset('assets/libs/particles.js/particles.js') }}"></script>
@@ -205,17 +210,17 @@
             });
         }
 
-        function validateLogin(target){
+        function validateLogin(e, active){
+            
+            if(!active){ return true }
+
             if (grecaptcha.getResponse()){
-
-                var token_google = grecaptcha.getResponse();
-                $("#token_google").val(token_google)
                 return true
-
             }else{
+                e.preventDefault();
                 Swal.fire(
                     '',
-                    'Es necesario verificar la casilla',
+                    'Es necesario verificar el google reCaptcha',
                     'warning'
                 )
                 return false;

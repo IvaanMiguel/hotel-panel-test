@@ -8,12 +8,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Plantilla de administración y panel de control premium y multipropósito" name="description">
     <meta content="Themesbrand" name="author">
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
-    <script src="assets/js/layout.js"></script>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+
+    <!-- Layout config Js -->
+    <script src="{{ asset('assets/js/layout.js') }}"></script>
+    <!-- Bootstrap Css -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <link href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    
+    <!--Recaptcha-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="auth-page-wrapper pt-5">
@@ -56,12 +68,18 @@
                                     Ingresa tu correo electrónico para enviar las instrcciones.
                                 </div>
                                 <div class="p-2">
-                                    <form action="{{ route('forgot.password.email') }}" method="POST">
+                                    <form action="{{ route('forgot.password.email') }}" method="POST"
+                                    onsubmit="validateLogin(event, '{{App\Models\Setting::first()->google_recaptcha}}')">
                                         @csrf
                                         <div class="mb-3">
                                             <label class="form-label" for="email">Correo Electrónico</label>
                                             <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese su correo electrónico" required>
                                         </div>
+                                         
+                                        @if(App\Models\Setting::first()->google_recaptcha)
+                                        <div class="g-recaptcha my-4" data-sitekey="{{App\Models\Setting::first()->google_recaptcha_public_key}}"></div>
+                                        @endif
+
                                         <div class="mt-4">
                                             <button class="btn btn-success w-100" type="submit">Restablecer Contraseña</button>
                                         </div>
@@ -92,14 +110,48 @@
             </div>
         </footer>
     </div>
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
-    <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/libs/particles.js/particles.js"></script>
-    <script src="assets/js/pages/particles.app.js"></script>
-    <script src="assets/js/pages/password-create.init.js"></script>
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <!-- particles js -->
+    <script src="{{ asset('assets/libs/particles.js/particles.js') }}"></script>
+    <!-- particles app js -->
+    <script src="{{ asset('assets/js/pages/particles.app.js') }}"></script>
+    <!-- password create init -->
+    <script src="{{ asset('assets/js/pages/passowrd-create.init.js') }}"></script>
+
+    <script>
+        document.oncontextmenu = function(){ return false }
+
+        function validateLogin(e, active){
+            
+            if(!active){ return true }
+
+            if (grecaptcha.getResponse()){
+                return true
+            }else{
+                e.preventDefault();
+                Swal.fire(
+                    '',
+                    'Es necesario verificar el google reCaptcha',
+                    'warning'
+                )
+                return false;
+            }
+        }
+        console.clear();
+        var cssRule =
+            "color: rgb(0, 0, 0);" +
+            "font-size: 60px;" +
+            "font-weight: bold;" +
+            "text-shadow: 1px 1px 5px rgb(0, 0, 0);" +
+            "filter: dropshadow(color=rgb(0, 0, 0), offx=1, offy=1);";
+        console.log("%c¡Detente!", cssRule);
+        setTimeout(console.log.bind(console, '%cEsta función del navegador está pensada para desarrolladores. Si alguien te indicó que copiaras y pegaras algo aquí para habilitar una función de E-commerce o para ´hackear´ la cuenta de alguien, se trata de un fraude. Si lo haces, esta persona podrá acceder a tu cuenta.', 'color: #9e202ad1;font-size: 30px;'), 0);
+    </script>
 </body>
 </html>
