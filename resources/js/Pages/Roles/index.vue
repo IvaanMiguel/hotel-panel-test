@@ -3,17 +3,14 @@
     <div class="col-sm-12">
       <div class="card">
         <div class="card-body">
-          <div class="row mb-2 g-3">
-            <div class="col-md-3">
+          <div class="row mb-2 g-3 align-items-center">
+            <div class="col-md-6">
               <h3>Perfiles</h3>
             </div>
-            <!-- <div class="col-md-auto ms-auto">
-                          <div class="d-flex hastck gap-2 flex-wrap">
-                              <a v-if="can('roles.create')" @click="create()" data-bs-toggle="modal"
-                                  data-bs-target="#modalAdd" class="btn btn-success">
-                                  <i class="ri-add-fill align-bottom me-1"></i>Agregar</a>
-                          </div>
-                      </div> -->
+            <div class="col-md-6 d-flex justify-content-end">
+              <btn-option :action="{ id: 'roles', method: 'create' }" type="button" color="success" text="Agregar"
+              icon="ri-add-fill" v-if="(can('roles.create'))"></btn-option>
+            </div>
           </div>
           <div class="row">
             <div class="col-xxl-12 mt-2" v-for="(role, index) in roles" :key="index">
@@ -65,12 +62,11 @@
       </div>
     </div>
   </div>
-  <roles-add-edit :permissions="permissions"/>
+  <roles-add-edit :permissions="permissions" />
 </template>
 <script>
 import RolesAddEdit from "@/Components/Roles/RolesAddEdit.vue";
 import BtnOption from '@/Components/BtnOption.vue'
-import useBasicCrud from "@/Composables/useBasicCrud.js";
 import { reactive } from '@vue/reactivity';
 export default {
   components: {
