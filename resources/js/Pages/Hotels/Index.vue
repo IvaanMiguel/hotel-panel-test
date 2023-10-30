@@ -2,13 +2,32 @@
     <div class="container-fluid">
         <div class="row">
             <div
-                class="col-md-6"
+                class="col-md-4"
                 v-for="(hotel, index) in variables.hotels"
                 :key="index"
             >
                 <div class="card mb-4">
+                    <div class="position-absolute top-0 end-0">
+                        <btn-option
+                            :action="{
+                                id: 'hotels',
+                                method: 'edit',
+                                params: { id: hotel.id },
+                            }"
+                            type="button"
+                            color="success"
+                            icon="ri-pencil-fill fs-16"
+                            v-if="can('hotels.update')"
+                        ></btn-option>
+                    </div>
                     <div class="card-body">
-                        <h4 class="card-title mb-2">{{ hotel.name }}</h4>
+                        <btn-option
+                            :btnRoute="route('hotels.show', hotel.id)"
+                            type="button"
+                            color="light"
+                            :text="hotel.name"
+                            v-if="can('hotels.get')"
+                        ></btn-option>
                         <h6 class="card-subtitle font-14 text-muted"></h6>
                     </div>
                     <img
@@ -20,41 +39,33 @@
                         <p class="card-text">{{ hotel.address }}</p>
                     </div>
                     <div class="card-footer">
-                        <!-- details button -->
-                        <btn-option
-                            :btnRoute="route('hotels.show', hotel.id)"
-                            type="button"
-                            color="primary"
-                            text="Detalles"
-                            icon="ri-eye-fill"
-                            v-if="can('hotels.get')"
-                        ></btn-option>
-                        <!-- edit button  -->
-                        <btn-option
-                            :action="{
-                                id: 'hotels',
-                                method: 'edit',
-                                params: { id: hotel.id },
-                            }"
-                            type="button"
-                            color="success"
-                            text="Editar"
-                            icon="ri-image-edit-line"
-                            v-if="can('hotels.update')"
-                        ></btn-option>
-                        <!-- delete button  -->
-                        <btn-option
-                            :action="{
-                                id: 'hotels',
-                                method: 'destroy',
-                                params: { id: hotel.id },
-                            }"
-                            type="button"
-                            color="danger"
-                            text="Eliminar"
-                            icon="ri-delete-bin-5-fill"
-                            v-if="can('hotels.destroy')"
-                        ></btn-option>
+                        <div class="container">
+                            <div class="row justify-content-md-center">
+                                    <btn-option
+                                    :btnRoute="route('hotels.show', hotel.id)"
+                                    type="button"
+                                    color="primary"
+                                    text="Detalles"
+                                    icon="ri-eye-fill"
+                                    v-if="can('hotels.get')"
+                                     ></btn-option> 
+                                
+                               
+                                    <btn-option
+                                    :action="{
+                                        id: 'hotels',
+                                        method: 'destroy',
+                                        params: { id: hotel.id },
+                                    }"
+                                    type="button"
+                                    color="danger"
+                                    text="Eliminar"
+                                    icon="ri-delete-bin-5-fill"
+                                    v-if="can('hotels.destroy')"
+                                    ></btn-option>
+                                 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
