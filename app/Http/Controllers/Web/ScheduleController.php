@@ -302,4 +302,27 @@ class ScheduleController extends Controller
         ]);
             
     }
+
+    public function update_stock(Request $request){
+
+        if($schedules = Schedule::whereIn('id', $request->schedule_ids)->update([          
+                'stock' => $request->stock ?? 0])){
+            
+                LogController::store(Auth::user()->id, 'cambiar stock', 0, 'cambiar stock de una planeacion', 'schedules', FacadesRequest::getRequestUri());
+                
+                return response()->json([
+                    'message' => 'stock de planeacion actualizado correctamente',
+                    'code' => 1, 
+                    'data' => $schedules
+                ]);
+            }
+
+        LogController::store(Auth::user()->id, 'error', 0, 'error al cambiar stock de una planeacion', 'schedules', FacadesRequest::getRequestUri());
+       
+        return response()->json([
+            'message' => 'Ha ocurrido un error',
+            'code' => -1,
+            'data' => $request->schedule_ids
+        ]);
+    }
 }
