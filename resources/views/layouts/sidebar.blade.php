@@ -72,11 +72,19 @@
                         </a>
                     </li>
                 @endif
-                @if (Auth::user()->hasPermissionTo('rates.get'))
-                <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('rates*') ? 'active' : '' }}" href="{{ route('rates')}}" role="button">
-                        <i class=" ri-bank-card-line"></i><span>Tarifas</span>
+                @if (Auth::user()->hasPermissionTo('coupons.get'))
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle  {{ request()->is('coupons*') || request()->is('rates*') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="ri-coupon-3-line"></i> <span>Cupones</span>
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item  {{ request()->is('coupons*') ? 'active' : '' }}" href="{{ route('coupons')}}" role="button">
+                            <i class="ri-coupon-3-line"></i> <span>Cupones</span>
+                        </a>
+                            <a class="dropdown-item {{ request()->is('rates*') ? 'active' : '' }}" href="{{ route('rates')}}" role="button">
+                                <i class=" ri-bank-card-line"></i><span>Tarifas</span>
+                            </a>
+                    </div>
                 </li>
                 @endif
                 @if (Auth::user()->hasPermissionTo('users.get'))
@@ -101,15 +109,9 @@
                     </a>
                 </li>
                 @endif
-                @if (Auth::user()->hasPermissionTo('coupons.get'))
-                <li class="nav-item">
-                    <a class="nav-link menu-link {{ request()->is('coupons*') ? 'active' : '' }}" href="{{ route('coupons')}}" role="button">
-                        <i class="ri-coupon-3-line"></i> <span>Cupones</span>
-                    </a>
-                </li>
-                @endif
+            
                 @if (Auth::user()->hasPermissionTo('settings.get'))
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link menu-link {{ request()->is('settings*') ? 'active' : '' }}" href="{{ route('settings')}}" role="button">
                         <i class="ri-settings-3-line"></i> <span>Configuracion</span>
                     </a>

@@ -209,7 +209,7 @@
             n = "",
             s = "";
         Array.from(o).forEach(function(e, t) {
-            t + 1 === a && (s = e), a < t + 1 && (n += e.outerHTML, e.remove()), t + 1 === o.length && s.insertAdjacentHTML && s.insertAdjacentHTML("afterend", '<li class="nav-item">\t\t\t\t\t\t<a class="nav-link" href="#sidebarMore" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMore">\t\t\t\t\t\t\t<i class="ri-briefcase-2-line"></i> More\t\t\t\t\t\t</a>\t\t\t\t\t\t<div class="collapse menu-dropdown" id="sidebarMore"><ul class="nav nav-sm flex-column">' + n + "</ul></div>\t\t\t\t\t</li>")
+           // t + 1 === a && (s = e), a < t + 1 && (n += e.outerHTML, e.remove()), t + 1 === o.length && s.insertAdjacentHTML && s.insertAdjacentHTML("afterend", '<li class="nav-item">\t\t\t\t\t\t<a class="nav-link" href="#sidebarMore" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMore">\t\t\t\t\t\t\t<i class="ri-briefcase-2-line"></i> More\t\t\t\t\t\t</a>\t\t\t\t\t\t<div class="collapse menu-dropdown" id="sidebarMore"><ul class="nav nav-sm flex-column">' + n + "</ul></div>\t\t\t\t\t</li>")
         })
     }
 
