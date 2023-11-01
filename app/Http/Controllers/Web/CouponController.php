@@ -184,7 +184,10 @@ class CouponController extends Controller
      */
     public function show($id)
     {
-        $coupon = Coupon::with(['coupon_data'])->find($id);
+        $coupon = Coupon::with(['coupon_data', 'types', 'images', 'hotel'])->find($id);
+
+        $breadcrumb_info = $this->breadcrumb_info;
+        $breadcrumb_info['second_level'] = 'Detalles';
 
         if($coupon){
             
