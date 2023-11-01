@@ -1,1 +1,8 @@
-{{ json_encode(get_defined_vars()) }}
+<x-app :breadcrumb="$breadcrumb_info"> 
+	<show-coupon :info='@json(get_defined_vars())' />
+
+	<x-slot name="scripts">
+    	<script src="{{ asset('assets/libs/list.js/list.min.js') }}"></script>
+    	<script src="{{ asset('assets/libs/list.pagination.js/list.pagination.min.js') }}"></script>
+  	</x-slot> 
+</x-app>

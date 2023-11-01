@@ -73,8 +73,6 @@ const props = defineProps({
     }
 })
 
-console.log(props.variables);
-
 const couponKeys = ["name", "hotel_name", "code"]
 
 const getHotelNameById = id => props.variables.hotels.find(hotel => hotel.id === id).name

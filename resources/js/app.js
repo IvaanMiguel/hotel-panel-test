@@ -6,6 +6,7 @@ import HotelsIndex from "./Pages/Hotels/Index.vue";
 import UsersIndex from "./Pages/Users/Index.vue";
 import ClientsIndex from "./Pages/Clients/Index.vue";
 import CouponsIndex from "./Pages/Coupons/Index.vue";
+import ShowCoupon from './Pages/Coupons/Show.vue';
 import ContactsIndex from "./Pages/Contacts/Index.vue";
 import SettingsIndex  from "./Pages/Settings/index.vue";
 import ProfileIndex from "./Pages/Users/Profile.vue";
@@ -25,6 +26,7 @@ const app = createApp({
         UsersIndex,
         ClientsIndex,
         CouponsIndex,
+        ShowCoupon,
         ContactsIndex,
         SettingsIndex,
         RolesIndex,
